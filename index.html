@@ -83,6 +83,21 @@
             letter-spacing: -0.025em;
         }
 
+        /* Self-Attestation QR panels only: the qrcode@1.5.3 library draws its
+           canvas at a fixed 200x200px, which is wider than these boxes
+           (112px / 96px). Clip + scale the canvas down to fit its box so it
+           can never spill over the "New QR Code" button/status text below.
+           Scoped to these two IDs only — the Part 2 "Mobile Relay" QR panel
+           (#sigMobileQr) is untouched. */
+        #attestMobileQr, #attestHandwrittenQr {
+            overflow: hidden;
+        }
+        #attestMobileQr canvas, #attestHandwrittenQr canvas {
+            width: 100% !important;
+            height: 100% !important;
+            display: block;
+        }
+
         /* "Drop it like it's hot coffee!" animations & overlay styles */
         @keyframes coffeeFloat {
             0%, 100% { transform: translateY(0) scale(1); }
@@ -1228,15 +1243,18 @@ Uses the last signature cleaned in the Signature Workshop. If nothing shows up o
 </div>
 </div>
 <!-- Mobile Pad: its own independent QR/Firestore session, separate from the Part 2 one -->
-<div class="hidden space-y-3 text-center p-4 bg-[#f4f6fb] dark:bg-[#131724] rounded-2xl" id="attestSigPanel-mobile">
-<div class="w-28 h-28 bg-white p-2 rounded-2xl mx-auto flex items-center justify-center border border-black/[0.08] shadow-md" id="attestMobileQr">
+<div class="hidden p-4 bg-[#f4f6fb] dark:bg-[#131724] rounded-2xl" id="attestSigPanel-mobile">
+<div class="flex flex-row items-center gap-4">
+<div class="w-28 h-28 shrink-0 bg-white p-2 rounded-2xl flex items-center justify-center border border-black/[0.08] shadow-md" id="attestMobileQr">
 <i class="fa-solid fa-qrcode text-5xl text-slate-900"></i>
 </div>
+<div class="flex-1 text-left space-y-1.5">
 <p class="text-xs font-bold text-slate-900 dark:text-white" id="attestMobileStatus">Generating QR code…</p>
 <p class="text-[11px] text-slate-500 dark:text-slate-400">Scan with your phone to draw and send the attestation signature.</p>
 <button class="clay-pill px-4 py-1.5 text-[11px] font-bold text-slate-700 dark:text-slate-200" onclick="refreshAttestMobileSession()">
 <i class="fa-solid fa-rotate-right mr-1"></i> New QR Code
 </button>
+</div>
 </div>
 </div>
 <!-- 3. Self-Attested Block Configuration -->
@@ -1260,15 +1278,18 @@ Uses the last signature cleaned in the Signature Workshop. If nothing shows up o
 </div>
 </div>
 <!-- Handwritten Self-Attested + Date block, via the same Mobile Pad relay pattern -->
-<div class="hidden space-y-3 text-center p-4 bg-white dark:bg-[#1d2236] rounded-2xl" id="attestBlockPanel-handwritten">
-<div class="w-24 h-24 bg-white p-2 rounded-2xl mx-auto flex items-center justify-center border border-black/[0.08] shadow-md" id="attestHandwrittenQr">
+<div class="hidden p-4 bg-white dark:bg-[#1d2236] rounded-2xl" id="attestBlockPanel-handwritten">
+<div class="flex flex-row items-center gap-3">
+<div class="w-24 h-24 shrink-0 bg-white p-2 rounded-2xl flex items-center justify-center border border-black/[0.08] shadow-md" id="attestHandwrittenQr">
 <i class="fa-solid fa-qrcode text-4xl text-slate-900"></i>
 </div>
+<div class="flex-1 text-left space-y-1.5">
 <p class="text-xs font-bold text-slate-900 dark:text-white" id="attestHandwrittenStatus">Generating QR code…</p>
 <p class="text-[11px] text-slate-500 dark:text-slate-400">Scan, then write "Self-Attested" plus today's date by hand.</p>
 <button class="clay-pill px-4 py-1.5 text-[11px] font-bold text-slate-700 dark:text-slate-200" onclick="refreshAttestHandwrittenSession()">
 <i class="fa-solid fa-rotate-right mr-1"></i> New QR Code
 </button>
+</div>
 </div>
 </div>
 </div>
