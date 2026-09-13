@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+<title>Sign here</title>
+<style>
+  * { box-sizing: border-box; touch-action: none; }
+  body { font-family: system-ui, sans-serif; margin:0; padding:20px; background:#0f1220; color:#eee; display:flex; flex-direction:column; align-items:center; }
+  h2 { font-size: 18px; margin-bottom: 8px; }
+  canvas { background:#fff; border-radius:12px; width:100%; max-width:500px; height:220px; touch-action:none; }
+  .row { display:flex; gap:10px; margin-top:16px; width:100%; max-width:500px; }
+  button { flex:1; padding:14px; border-radius:10px; border:none; font-size:15px; cursor:pointer; }
+  #clearBtn { background:#333; color:#eee; }
+  #doneBtn { background:#4c6fff; color:#fff; font-weight:600; }
+  #doneBtn:disabled { background:#555; }
+  #status { margin-top:10px; font-size:13px; color:#9fb; }
+  #msg { margin-top:14px; font-size:14px; color:#9fb; text-align:center; }
+</style>
+</head>
+<body>
+  <h2 id="padTitle">✍️ Draw your signature</h2>
+  <div id="status">Connecting…</div>
+  <canvas id="pad"></canvas>
+  <div class="row">
+    <button id="clearBtn">Clear</button>
+    <button id="doneBtn">Upload</button>
+  </div>
+  <div id="msg"></div>
+
+<script type="module">
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
+  import { getFirestore, doc, setDoc } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
+
+  // ⬇️ SAME FIREBASE CONFIG AS the desktop app / prototype ⬇️
+  const firebaseConfig = {
+    apiKey: "AIzaSyD-JvqaiLTHhbjBZmp2zEeF-yVmb7sXnok",
+    authDomain: "signature-71f9a.firebaseapp.com",
+    projectId: "signature-71f9a",
+    storageBucket: "signature-71f9a.firebasestorage.app",
+    messagingSenderId: "259820401618",
+    appId: "1:259820401618:web:29a3d7fb4209dd3f7c4e0b",
+    measurementId: "G-LPJVXVZCYY"
+  };
+
+  const app = initializeApp(firebaseConfig);
+  const db = getFirestore(app);
+
+  const params = new URLSearchParams(location.search);
+  const sessionId = params.get('session');
+  const msg = document.getElementById('msg');
+  const status = document.getElementById('status');
+
+  // Optional custom prompt (e.g. "Write your self-attestation + date") set by whichever
+  // desktop tab generated the QR code — defaults to the plain signature prompt.
+  const label = params.get('label');
+  if (label) {
+    document.getElementById('padTitle').textContent = `✍️ ${label}`;
+  }
+
+  if (!sessionId) {
+    status.textContent = '⚠️ No session found.';
+    msg.textContent = '⚠️ No session found. Please scan the QR code again.';
+    document.getElementById('doneBtn').disabled = true;
+  } else {
+    status.textContent = 'Session Connected';
+    setDoc(doc(db, "signatures", sessionId), { connected: true }, { merge: true }).catch(() => {});
+  }
+
+  // --- Canvas signature drawing (transparent background, matches the desktop clean-up pipeline) ---
+  const canvas = document.getElementById('pad');
+  const ctx = canvas.getContext('2d');
+
+  function resizeCanvas() {
+    const ratio = window.devicePixelRatio || 1;
+    const rect = canvas.getBoundingClientRect();
+    canvas.width = rect.width * ratio;
+    canvas.height = rect.height * ratio;
+    ctx.scale(ratio, ratio);
+    ctx.lineWidth = 2.5;
+    ctx.lineCap = 'round';
+    ctx.strokeStyle = '#111';
+    // Fill with solid white so the exported PNG is fully opaque, matching the
+    // desktop "Draw" pad's canvas. The cleaning pipeline (cleanSignatureCanvas)
+    // reads ink vs. paper purely from RGB luminance and ignores alpha, so a
+    // transparent background gets misread as solid black ink.
+    ctx.fillStyle = '#ffffff';
+    ctx.fillRect(0, 0, rect.width, rect.height);
+  }
+  resizeCanvas();
+
+  let drawing = false, lastX = 0, lastY = 0;
+
+  function getPos(e) {
+    const rect = canvas.getBoundingClientRect();
+    const t = e.touches ? e.touches[0] : e;
+    return { x: t.clientX - rect.left, y: t.clientY - rect.top };
+  }
+
+  function start(e) {
+    e.preventDefault();
+    drawing = true;
+    const p = getPos(e);
+    lastX = p.x; lastY = p.y;
+  }
+  function move(e) {
+    if (!drawing) return;
+    e.preventDefault();
+    const p = getPos(e);
+    ctx.beginPath();
+    ctx.moveTo(lastX, lastY);
+    ctx.lineTo(p.x, p.y);
+    ctx.stroke();
+    lastX = p.x; lastY = p.y;
+  }
+  function end(e) { drawing = false; }
+
+  canvas.addEventListener('mousedown', start);
+  canvas.addEventListener('mousemove', move);
+  canvas.addEventListener('mouseup', end);
+  canvas.addEventListener('mouseleave', end);
+  canvas.addEventListener('touchstart', start, { passive:false });
+  canvas.addEventListener('touchmove', move, { passive:false });
+  canvas.addEventListener('touchend', end);
+
+  document.getElementById('clearBtn').addEventListener('click', () => {
+    const rect = canvas.getBoundingClientRect();
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    ctx.fillStyle = '#ffffff';
+    ctx.fillRect(0, 0, rect.width, rect.height);
+  });
+
+  document.getElementById('doneBtn').addEventListener('click', async () => {
+    if (!sessionId) return;
+    // Canvas is pre-filled white (see resizeCanvas/clearBtn), so this exports an
+    // opaque white-paper PNG — same as the desktop "Draw" pad's canvas — which
+    // cleanSignatureCanvas needs since it reads ink vs. paper from RGB luminance
+    // only and doesn't look at the alpha channel.
+    const dataUrl = canvas.toDataURL('image/png');
+    msg.textContent = 'Uploading…';
+    try {
+      await setDoc(doc(db, "signatures", sessionId), {
+        image: dataUrl,
+        signedAt: Date.now()
+      });
+      msg.textContent = '✅ Sent! You can return to your laptop now.';
+      document.getElementById('doneBtn').disabled = true;
+    } catch (err) {
+      console.error(err);
+      msg.textContent = '❌ Upload failed. Check your connection and try again.';
+    }
+  });
+</script>
+</body>
+</html>
