@@ -93,8 +93,8 @@
             overflow: hidden;
         }
         #attestMobileQr canvas, #attestHandwrittenQr canvas {
-            width: 100% !important;
-            height: 100% !important;
+            max-width: 100%;
+            max-height: 100%;
             display: block;
         }
 
@@ -1196,9 +1196,9 @@
 <i class="fa-solid fa-arrow-left text-[10px]"></i> All Stations
                 </button>
 </div>
-<div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-stretch">
+<div class="grid grid-cols-12 gap-6 items-stretch">
 <!-- Attestation Options -->
-<div class="lg:col-span-5 space-y-5 flex flex-col">
+<div class="col-span-5 space-y-5 flex flex-col">
 <div class="clay-card p-6 space-y-4 flex-1">
 <div class="border-b border-black/[0.05] dark:border-white/[0.08] pb-3 flex items-center justify-between">
 <span class="text-[10px] font-mono text-amber-600 dark:text-amber-400 font-bold uppercase tracking-wider">Stamp Controls</span>
@@ -1245,7 +1245,7 @@ Uses the last signature cleaned in the Signature Workshop. If nothing shows up o
 <!-- Mobile Pad: its own independent QR/Firestore session, separate from the Part 2 one -->
 <div class="hidden p-4 bg-[#f4f6fb] dark:bg-[#131724] rounded-2xl" id="attestSigPanel-mobile">
 <div class="flex flex-row items-center gap-4">
-<div class="w-28 h-28 shrink-0 bg-white p-2 rounded-2xl flex items-center justify-center border border-black/[0.08] shadow-md" id="attestMobileQr">
+<div class="w-[216px] h-[216px] shrink-0 bg-white p-2 rounded-2xl flex items-center justify-center border border-black/[0.08] shadow-md" id="attestMobileQr">
 <i class="fa-solid fa-qrcode text-5xl text-slate-900"></i>
 </div>
 <div class="flex-1 text-left space-y-1.5">
@@ -1280,7 +1280,7 @@ Uses the last signature cleaned in the Signature Workshop. If nothing shows up o
 <!-- Handwritten Self-Attested + Date block, via the same Mobile Pad relay pattern -->
 <div class="hidden p-4 bg-white dark:bg-[#1d2236] rounded-2xl" id="attestBlockPanel-handwritten">
 <div class="flex flex-row items-center gap-3">
-<div class="w-24 h-24 shrink-0 bg-white p-2 rounded-2xl flex items-center justify-center border border-black/[0.08] shadow-md" id="attestHandwrittenQr">
+<div class="w-[216px] h-[216px] shrink-0 bg-white p-2 rounded-2xl flex items-center justify-center border border-black/[0.08] shadow-md" id="attestHandwrittenQr">
 <i class="fa-solid fa-qrcode text-4xl text-slate-900"></i>
 </div>
 <div class="flex-1 text-left space-y-1.5">
@@ -1299,7 +1299,7 @@ Uses the last signature cleaned in the Signature Workshop. If nothing shows up o
 </div>
 </div>
 <!-- Right Document Canvas Viewport Stage -->
-<div class="lg:col-span-7 space-y-5 flex flex-col">
+<div class="col-span-7 space-y-5 flex flex-col">
 <div class="clay-card p-6 space-y-3 flex-1">
 <div class="flex items-center justify-between border-b border-black/[0.05] dark:border-white/[0.08] pb-2.5">
 <span class="text-[10px] font-mono text-slate-400 uppercase tracking-wider font-bold">Interactive Stamping Stage</span>
