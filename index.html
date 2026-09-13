@@ -1211,9 +1211,32 @@
 <div class="space-y-1.5">
 <label class="text-[11px] font-bold text-slate-700 dark:text-slate-300 uppercase tracking-wide">2. Signature Source</label>
 <div class="grid grid-cols-3 gap-2">
-<button class="clay-pill py-2 text-xs font-bold text-amber-700 dark:text-amber-300 border-amber-400/50">Auto-Cleaned</button>
-<button class="clay-pill py-2 text-xs font-medium text-slate-600 dark:text-slate-400">From File</button>
-<button class="clay-pill py-2 text-xs font-medium text-slate-600 dark:text-slate-400">Mobile Pad</button>
+<button class="clay-pill py-2 text-xs font-bold text-amber-700 dark:text-amber-300 border-amber-400/50" id="attestSigMode-auto" onclick="switchAttestSigMode('auto')">Auto-Cleaned</button>
+<button class="clay-pill py-2 text-xs font-medium text-slate-600 dark:text-slate-400" id="attestSigMode-file" onclick="switchAttestSigMode('file')">From File</button>
+<button class="clay-pill py-2 text-xs font-medium text-slate-600 dark:text-slate-400" id="attestSigMode-mobile" onclick="switchAttestSigMode('mobile')">Mobile Pad</button>
+</div>
+<!-- Auto-Cleaned: pulls whatever is currently sitting in the Signature Workshop preview -->
+<div class="p-3 rounded-xl bg-[#f4f6fb] dark:bg-[#131724] text-[11px] text-slate-500 dark:text-slate-400 font-medium" id="attestSigPanel-auto">
+Uses the last signature cleaned in the Signature Workshop. If nothing shows up on the stamp, clean one there first.
+</div>
+<!-- From File: simple upload, independent of the Part 2 uploader -->
+<div class="hidden space-y-2" id="attestSigPanel-file">
+<div class="clay-inset h-20 flex flex-col items-center justify-center cursor-pointer text-center p-2" id="attestSigFileDropZone">
+<i class="fa-solid fa-upload text-sm text-amber-500 mb-1"></i>
+<span class="text-[11px] font-bold text-slate-700 dark:text-slate-300">Upload signature image</span>
+<input accept="image/*" class="hidden" id="attestSigFileInput" type="file">
+</div>
+</div>
+<!-- Mobile Pad: its own independent QR/Firestore session, separate from the Part 2 one -->
+<div class="hidden space-y-3 text-center p-4 bg-[#f4f6fb] dark:bg-[#131724] rounded-2xl" id="attestSigPanel-mobile">
+<div class="w-28 h-28 bg-white p-2 rounded-2xl mx-auto flex items-center justify-center border border-black/[0.08] shadow-md" id="attestMobileQr">
+<i class="fa-solid fa-qrcode text-5xl text-slate-900"></i>
+</div>
+<p class="text-xs font-bold text-slate-900 dark:text-white" id="attestMobileStatus">Generating QR code…</p>
+<p class="text-[11px] text-slate-500 dark:text-slate-400">Scan with your phone to draw and send the attestation signature.</p>
+<button class="clay-pill px-4 py-1.5 text-[11px] font-bold text-slate-700 dark:text-slate-200" onclick="refreshAttestMobileSession()">
+<i class="fa-solid fa-rotate-right mr-1"></i> New QR Code
+</button>
 </div>
 </div>
 <!-- 3. Self-Attested Block Configuration -->
@@ -1249,8 +1272,10 @@
 </div>
 <!-- Viewport Stage -->
 <div class="relative w-full h-[420px] clay-inset flex items-center justify-center overflow-hidden bg-[#eef3ff]/40 dark:bg-[#090b14]" id="attestViewportArea">
-<!-- Simulated A4 Document Base -->
-<div class="w-72 h-96 bg-white dark:bg-[#1a1d2d] rounded-2xl shadow-xl border border-black/[0.08] dark:border-white/[0.08] p-6 flex flex-col justify-between text-[11px] text-slate-400 relative select-none">
+<!-- Real uploaded document preview (image or PDF) — hidden until a file is loaded -->
+<div class="hidden absolute inset-4 flex items-center justify-center" id="attestDocPreviewContainer"></div>
+<!-- Simulated A4 Document Base (placeholder shown until a real document is uploaded) -->
+<div class="w-72 h-96 bg-white dark:bg-[#1a1d2d] rounded-2xl shadow-xl border border-black/[0.08] dark:border-white/[0.08] p-6 flex flex-col justify-between text-[11px] text-slate-400 relative select-none" id="attestDocPlaceholder">
 <div class="space-y-2">
 <div class="flex items-center gap-2">
 <div class="w-8 h-8 rounded-lg bg-slate-200 dark:bg-slate-700"></div>
@@ -1268,6 +1293,7 @@
 </div>
 <!-- Draggable & Resizable Signature Overlay Stamp -->
 <div class="absolute bottom-12 right-24 bg-white/95 dark:bg-[#141724]/95 border-2 border-amber-500 p-3 rounded-2xl shadow-2xl cursor-move flex flex-col items-center select-none" id="attestInteractiveStamp">
+<img alt="Signature" class="hidden max-h-10 mb-1 object-contain" id="attestSignatureImg"/>
 <span class="text-sm font-extrabold text-blue-700 dark:text-blue-400 font-serif italic" id="previewSignerDisplay">Johnathan Doe</span>
 <span class="text-[10px] font-bold text-slate-800 dark:text-slate-200 mt-0.5" id="previewAttestTag">Self-Attested for Official Verification</span>
 <span class="text-[9px] font-mono text-slate-500" id="previewDateDisplay">Date: 2026-09-12</span>
@@ -1559,6 +1585,8 @@
 
         // Tab Switching Engine
         function switchMainTab(tabKey) {
+            if (typeof sigMobileRelay !== "undefined") sigMobileRelay.stopListening();
+            if (typeof attestMobileRelay !== "undefined") attestMobileRelay.stopListening();
             ["hub", "photo", "signature", "attest", "pdf"].forEach(key => {
                 const view = document.getElementById("view-" + key);
                 const nav = document.getElementById("tabNav-" + key);
@@ -1836,56 +1864,156 @@
             return sigMobileDb;
         }
 
-        function sigMobileStopListening() {
-            if (sigMobileUnsub) { sigMobileUnsub(); sigMobileUnsub = null; }
-            sigMobileSessionId = null;
-        }
+        // Generic Mobile QR Relay factory — each caller gets its OWN Firestore
+        // session/listener, so the Signature Workshop's QR panel and the
+        // Self-Attestation QR panel never clash or overwrite each other.
+        function createMobileSignatureRelay({ qrElId, statusElId, onSignature }) {
+            let unsub = null;
+            let sessionId = null;
 
-        async function refreshMobileSignatureSession() {
-            await sigMobileStartSession();
-        }
-
-        async function sigMobileStartSession() {
-            sigMobileStopListening();
-            const status = document.getElementById("sigMobileStatus");
-            const qrHost = document.getElementById("sigMobileQr");
-            if (!status || !qrHost) return;
-            status.textContent = "Generating QR code…";
-
-            const db = await sigMobileGetDb();
-            const { doc, onSnapshot, deleteDoc } = await import("https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js");
-            const QRCode = (await import("https://esm.sh/qrcode@1.5.3")).default;
-
-            sigMobileSessionId = crypto.randomUUID();
-            const signUrl = sigMobileGetMobileUrl(sigMobileSessionId);
-            const thisSessionId = sigMobileSessionId;
-
-            qrHost.innerHTML = "";
-            const canvas = document.createElement("canvas");
-            try {
-                await QRCode.toCanvas(canvas, signUrl, { width: 200 });
-                qrHost.appendChild(canvas);
-                status.textContent = "Waiting for mobile…";
-            } catch (err) {
-                console.error("QR generation failed:", err);
-                status.textContent = "Failed to generate QR code.";
-                showToast("Could not generate QR code — check your connection", "error");
-                return;
+            function stopListening() {
+                if (unsub) { unsub(); unsub = null; }
+                sessionId = null;
             }
 
-            sigMobileUnsub = onSnapshot(doc(db, "signatures", thisSessionId), (snap) => {
-                if (thisSessionId !== sigMobileSessionId) return; // stale session, ignore
-                if (!snap.exists()) return;
-                const data = snap.data();
-                if (data.image) {
-                    status.textContent = "Signature received";
-                    applySignatureDataUrl(data.image);
-                    showToast("Signature received from phone", "success");
-                    deleteDoc(doc(db, "signatures", thisSessionId)).catch(() => {});
-                } else if (data.connected) {
-                    status.textContent = "Mobile connected";
+            async function startSession() {
+                stopListening();
+                const status = document.getElementById(statusElId);
+                const qrHost = document.getElementById(qrElId);
+                if (!status || !qrHost) return;
+                status.textContent = "Generating QR code…";
+
+                const db = await sigMobileGetDb();
+                const { doc, onSnapshot, deleteDoc } = await import("https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js");
+                const QRCode = (await import("https://esm.sh/qrcode@1.5.3")).default;
+
+                sessionId = crypto.randomUUID();
+                const signUrl = sigMobileGetMobileUrl(sessionId);
+                const thisSessionId = sessionId;
+
+                qrHost.innerHTML = "";
+                const canvas = document.createElement("canvas");
+                try {
+                    await QRCode.toCanvas(canvas, signUrl, { width: 200 });
+                    qrHost.appendChild(canvas);
+                    status.textContent = "Waiting for mobile…";
+                } catch (err) {
+                    console.error("QR generation failed:", err);
+                    status.textContent = "Failed to generate QR code.";
+                    showToast("Could not generate QR code — check your connection", "error");
+                    return;
+                }
+
+                unsub = onSnapshot(doc(db, "signatures", thisSessionId), (snap) => {
+                    if (thisSessionId !== sessionId) return; // stale session, ignore
+                    if (!snap.exists()) return;
+                    const data = snap.data();
+                    if (data.image) {
+                        status.textContent = "Signature received";
+                        onSignature(data.image);
+                        showToast("Signature received from phone", "success");
+                        deleteDoc(doc(db, "signatures", thisSessionId)).catch(() => {});
+                    } else if (data.connected) {
+                        status.textContent = "Mobile connected";
+                    }
+                });
+            }
+
+            return { startSession, stopListening };
+        }
+
+        const sigMobileRelay = createMobileSignatureRelay({
+            qrElId: "sigMobileQr",
+            statusElId: "sigMobileStatus",
+            onSignature: applySignatureDataUrl
+        });
+        function sigMobileStartSession() { return sigMobileRelay.startSession(); }
+        function sigMobileStopListening() { return sigMobileRelay.stopListening(); }
+        async function refreshMobileSignatureSession() { await sigMobileRelay.startSession(); }
+
+        // ---- Self-Attestation signature sources (Part 3) ----
+        function applyAttestSignatureDataUrl(dataUrl) {
+            const img = document.getElementById("attestSignatureImg");
+            if (img) {
+                img.src = dataUrl;
+                img.classList.remove("hidden");
+            }
+        }
+
+        const attestMobileRelay = createMobileSignatureRelay({
+            qrElId: "attestMobileQr",
+            statusElId: "attestMobileStatus",
+            onSignature: applyAttestSignatureDataUrl
+        });
+        async function refreshAttestMobileSession() { await attestMobileRelay.startSession(); }
+
+        function switchAttestSigMode(mode) {
+            ["auto", "file", "mobile"].forEach(m => {
+                const btn = document.getElementById("attestSigMode-" + m);
+                const pnl = document.getElementById("attestSigPanel-" + m);
+                if (btn) {
+                    btn.classList.toggle("text-amber-700", m === mode);
+                    btn.classList.toggle("dark:text-amber-300", m === mode);
+                    btn.classList.toggle("border-amber-400/50", m === mode);
+                    btn.classList.toggle("font-bold", m === mode);
+                    btn.classList.toggle("text-slate-600", m !== mode);
+                    btn.classList.toggle("dark:text-slate-400", m !== mode);
+                    btn.classList.toggle("font-medium", m !== mode);
+                }
+                if (pnl) pnl.classList.toggle("hidden", m !== mode);
+            });
+            if (mode === "mobile") {
+                attestMobileRelay.startSession();
+            } else {
+                attestMobileRelay.stopListening();
+            }
+            if (mode === "auto") {
+                const cleanedCanvas = document.getElementById("sigPreviewCanvas");
+                const cleanedNote = document.getElementById("sigPlaceholderNote");
+                if (cleanedCanvas && cleanedNote && cleanedNote.classList.contains("hidden")) {
+                    applyAttestSignatureDataUrl(cleanedCanvas.toDataURL("image/png"));
+                }
+            }
+        }
+
+        const attestSigFileDropZoneEl = document.getElementById("attestSigFileDropZone");
+        const attestSigFileInputEl = document.getElementById("attestSigFileInput");
+        if (attestSigFileDropZoneEl && attestSigFileInputEl) {
+            attestSigFileDropZoneEl.addEventListener("click", () => attestSigFileInputEl.click());
+            attestSigFileInputEl.addEventListener("change", (e) => {
+                if (e.target.files && e.target.files[0]) {
+                    const reader = new FileReader();
+                    reader.onload = (evt) => applyAttestSignatureDataUrl(evt.target.result);
+                    reader.readAsDataURL(e.target.files[0]);
                 }
             });
+        }
+
+        // Renders the uploaded base document (image or PDF) into the stamping
+        // stage, replacing the gray placeholder mockup.
+        function loadAttestDocFile(file) {
+            const placeholder = document.getElementById("attestDocPlaceholder");
+            const previewContainer = document.getElementById("attestDocPreviewContainer");
+            if (!previewContainer) return;
+            previewContainer.innerHTML = "";
+
+            const objectUrl = URL.createObjectURL(file);
+            if (file.type === "application/pdf") {
+                const embed = document.createElement("embed");
+                embed.src = objectUrl;
+                embed.type = "application/pdf";
+                embed.className = "w-full h-full rounded-xl";
+                previewContainer.appendChild(embed);
+            } else {
+                const img = document.createElement("img");
+                img.src = objectUrl;
+                img.alt = file.name;
+                img.className = "max-w-full max-h-full object-contain rounded-xl shadow-lg";
+                previewContainer.appendChild(img);
+            }
+
+            if (placeholder) placeholder.classList.add("hidden");
+            previewContainer.classList.remove("hidden");
         }
 
         // Setup dropzone for Self-Attestation Document (Part 3)
@@ -1894,10 +2022,12 @@
         if (docDropZoneEl && docInputEl) {
             docDropZoneEl.addEventListener("click", () => docInputEl.click());
             setupHotCoffeeDropzone("docDropZone", "attestDragOverlay", (file) => {
+                loadAttestDocFile(file);
                 showToast("Loaded " + file.name + " — ready for stamp overlay", "success");
             });
             docInputEl.addEventListener("change", (e) => {
                 if (e.target.files && e.target.files[0]) {
+                    loadAttestDocFile(e.target.files[0]);
                     showToast("Loaded " + e.target.files[0].name + " — ready for stamp overlay", "success");
                 }
             });
