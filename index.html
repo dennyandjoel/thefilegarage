@@ -1208,7 +1208,7 @@
 </div>
 </div>
 <!-- 2. Signature Source Choice for Overlay -->
-<div class="space-y-1.5">
+<div class="space-y-3">
 <label class="text-[11px] font-bold text-slate-700 dark:text-slate-300 uppercase tracking-wide">2. Signature Source</label>
 <div class="grid grid-cols-3 gap-2">
 <button class="clay-pill py-2 text-xs font-bold text-amber-700 dark:text-amber-300 border-amber-400/50" id="attestSigMode-auto" onclick="switchAttestSigMode('auto')">Auto-Cleaned</button>
@@ -1248,11 +1248,27 @@ Uses the last signature cleaned in the Signature Workshop. If nothing shows up o
 </label>
 <span class="text-[10px] font-mono text-slate-400">Editable Stamp</span>
 </div>
-<div class="space-y-2">
+<div class="grid grid-cols-2 gap-2">
+<button class="clay-pill py-1.5 text-[11px] font-bold text-amber-700 dark:text-amber-300 border-amber-400/50" id="attestBlockMode-typed" onclick="switchAttestBlockMode('typed')">Typed</button>
+<button class="clay-pill py-1.5 text-[11px] font-medium text-slate-600 dark:text-slate-400" id="attestBlockMode-handwritten" onclick="switchAttestBlockMode('handwritten')">Write by Hand (Mobile)</button>
+</div>
+<div class="space-y-2" id="attestBlockPanel-typed">
 <input class="w-full bg-white dark:bg-[#1d2236] border border-black/[0.08] dark:border-white/[0.1] rounded-xl px-3 py-2 text-xs font-bold text-slate-900 dark:text-white" id="attestNameField" oninput="updateStampPreview()" type="text" value="Self-Attested for Official Verification">
 <div class="grid grid-cols-2 gap-2">
 <input class="bg-white dark:bg-[#1d2236] border border-black/[0.08] dark:border-white/[0.1] rounded-xl px-3 py-1.5 text-xs font-semibold text-slate-900 dark:text-white" id="attestSignerName" oninput="updateStampPreview()" placeholder="Full Name" type="text" value="Johnathan Doe">
 <input class="bg-white dark:bg-[#1d2236] border border-black/[0.08] dark:border-white/[0.1] rounded-xl px-3 py-1.5 text-xs font-semibold text-slate-900 dark:text-white" id="attestDateField" oninput="updateStampPreview()" type="date">
+</div>
+</div>
+<!-- Handwritten Self-Attested + Date block, via the same Mobile Pad relay pattern -->
+<div class="hidden space-y-3 text-center p-4 bg-white dark:bg-[#1d2236] rounded-2xl" id="attestBlockPanel-handwritten">
+<div class="w-24 h-24 bg-white p-2 rounded-2xl mx-auto flex items-center justify-center border border-black/[0.08] shadow-md" id="attestHandwrittenQr">
+<i class="fa-solid fa-qrcode text-4xl text-slate-900"></i>
+</div>
+<p class="text-xs font-bold text-slate-900 dark:text-white" id="attestHandwrittenStatus">Generating QR code…</p>
+<p class="text-[11px] text-slate-500 dark:text-slate-400">Scan, then write "Self-Attested" plus today's date by hand.</p>
+<button class="clay-pill px-4 py-1.5 text-[11px] font-bold text-slate-700 dark:text-slate-200" onclick="refreshAttestHandwrittenSession()">
+<i class="fa-solid fa-rotate-right mr-1"></i> New QR Code
+</button>
 </div>
 </div>
 </div>
@@ -1292,11 +1308,12 @@ Uses the last signature cleaned in the Signature Workshop. If nothing shows up o
 </div>
 </div>
 <!-- Draggable & Resizable Signature Overlay Stamp -->
-<div class="absolute bottom-12 right-24 bg-white/95 dark:bg-[#141724]/95 border-2 border-amber-500 p-3 rounded-2xl shadow-2xl cursor-move flex flex-col items-center select-none" id="attestInteractiveStamp">
+<div class="absolute bottom-12 right-24 p-2 flex flex-col items-center select-none cursor-move" id="attestInteractiveStamp">
 <img alt="Signature" class="hidden max-h-10 mb-1 object-contain" id="attestSignatureImg"/>
 <span class="text-sm font-extrabold text-blue-700 dark:text-blue-400 font-serif italic" id="previewSignerDisplay">Johnathan Doe</span>
 <span class="text-[10px] font-bold text-slate-800 dark:text-slate-200 mt-0.5" id="previewAttestTag">Self-Attested for Official Verification</span>
 <span class="text-[9px] font-mono text-slate-500" id="previewDateDisplay">Date: 2026-09-12</span>
+<img alt="Handwritten self-attestation" class="hidden max-h-10 mt-0.5 object-contain" id="attestHandwrittenImg"/>
 </div>
 </div>
 </div>
@@ -1587,6 +1604,7 @@ Uses the last signature cleaned in the Signature Workshop. If nothing shows up o
         function switchMainTab(tabKey) {
             if (typeof sigMobileRelay !== "undefined") sigMobileRelay.stopListening();
             if (typeof attestMobileRelay !== "undefined") attestMobileRelay.stopListening();
+            if (typeof attestHandwrittenRelay !== "undefined") attestHandwrittenRelay.stopListening();
             ["hub", "photo", "signature", "attest", "pdf"].forEach(key => {
                 const view = document.getElementById("view-" + key);
                 const nav = document.getElementById("tabNav-" + key);
@@ -1848,11 +1866,14 @@ Uses the last signature cleaned in the Signature Workshop. If nothing shows up o
 
         // Resolves "mobileSign.html" as a sibling of wherever code.html is served from.
         // Must be deployed alongside this file (same directory) on Vercel.
-        function sigMobileGetMobileUrl(sessionId) {
+        // An optional `label` sets the custom prompt shown on the phone (e.g.
+        // asking the visitor to write the attestation block instead of just a signature).
+        function sigMobileGetMobileUrl(sessionId, label) {
             const url = new URL("mobileSign.html", location.href);
             url.search = "";
             url.hash = "";
             url.searchParams.set("session", sessionId);
+            if (label) url.searchParams.set("label", label);
             return url.href;
         }
 
@@ -1867,7 +1888,7 @@ Uses the last signature cleaned in the Signature Workshop. If nothing shows up o
         // Generic Mobile QR Relay factory — each caller gets its OWN Firestore
         // session/listener, so the Signature Workshop's QR panel and the
         // Self-Attestation QR panel never clash or overwrite each other.
-        function createMobileSignatureRelay({ qrElId, statusElId, onSignature }) {
+        function createMobileSignatureRelay({ qrElId, statusElId, onSignature, label }) {
             let unsub = null;
             let sessionId = null;
 
@@ -1888,7 +1909,7 @@ Uses the last signature cleaned in the Signature Workshop. If nothing shows up o
                 const QRCode = (await import("https://esm.sh/qrcode@1.5.3")).default;
 
                 sessionId = crypto.randomUUID();
-                const signUrl = sigMobileGetMobileUrl(sessionId);
+                const signUrl = sigMobileGetMobileUrl(sessionId, label);
                 const thisSessionId = sessionId;
 
                 qrHost.innerHTML = "";
@@ -1946,6 +1967,60 @@ Uses the last signature cleaned in the Signature Workshop. If nothing shows up o
             onSignature: applyAttestSignatureDataUrl
         });
         async function refreshAttestMobileSession() { await attestMobileRelay.startSession(); }
+
+        // Handwritten "Self-Attested + Date" block — a second, independent
+        // Mobile Pad relay, with a custom on-phone prompt instead of the
+        // plain signature prompt.
+        function applyAttestHandwrittenDataUrl(dataUrl) {
+            const img = document.getElementById("attestHandwrittenImg");
+            const tag = document.getElementById("previewAttestTag");
+            const date = document.getElementById("previewDateDisplay");
+            if (img) {
+                img.src = dataUrl;
+                img.classList.remove("hidden");
+            }
+            if (tag) tag.classList.add("hidden");
+            if (date) date.classList.add("hidden");
+        }
+
+        const attestHandwrittenRelay = createMobileSignatureRelay({
+            qrElId: "attestHandwrittenQr",
+            statusElId: "attestHandwrittenStatus",
+            onSignature: applyAttestHandwrittenDataUrl,
+            label: "Write your self-attestation + date"
+        });
+        async function refreshAttestHandwrittenSession() { await attestHandwrittenRelay.startSession(); }
+
+        function switchAttestBlockMode(mode) {
+            ["typed", "handwritten"].forEach(m => {
+                const btn = document.getElementById("attestBlockMode-" + m);
+                const pnl = document.getElementById("attestBlockPanel-" + m);
+                if (btn) {
+                    btn.classList.toggle("text-amber-700", m === mode);
+                    btn.classList.toggle("dark:text-amber-300", m === mode);
+                    btn.classList.toggle("border-amber-400/50", m === mode);
+                    btn.classList.toggle("font-bold", m === mode);
+                    btn.classList.toggle("text-slate-600", m !== mode);
+                    btn.classList.toggle("dark:text-slate-400", m !== mode);
+                    btn.classList.toggle("font-medium", m !== mode);
+                }
+                if (pnl) pnl.classList.toggle("hidden", m !== mode);
+            });
+            if (mode === "handwritten") {
+                attestHandwrittenRelay.startSession();
+            } else {
+                attestHandwrittenRelay.stopListening();
+                // Back to typed mode: hide any handwritten block image and
+                // restore the printed tag/date text.
+                const img = document.getElementById("attestHandwrittenImg");
+                const tag = document.getElementById("previewAttestTag");
+                const date = document.getElementById("previewDateDisplay");
+                if (img) img.classList.add("hidden");
+                if (tag) tag.classList.remove("hidden");
+                if (date) date.classList.remove("hidden");
+                updateStampPreview();
+            }
+        }
 
         function switchAttestSigMode(mode) {
             ["auto", "file", "mobile"].forEach(m => {
