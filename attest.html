@@ -113,7 +113,7 @@
 <!-- Sub-Nav Pill Strip (3D Clay switcher for all 4 workbench tools) -->
 <div class="max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 pt-5 pb-3 relative z-10">
 <div class="p-2 rounded-full bg-white/70 dark:bg-[#0c0e18]/80  border border-white/90 dark:border-white/10 flex items-center gap-1.5 overflow-x-auto shadow-[0_12px_32px_-6px_rgba(35,51,231,0.08)] dark:shadow-[0_12px_32px_-6px_rgba(0,0,0,0.8)]">
-<button class="clay-tab active flex-1 justify-center whitespace-nowrap" id="tabNav-hub" onclick="location.href='index.html'">
+<button class="clay-tab flex-1 justify-center whitespace-nowrap" id="tabNav-hub" onclick="location.href='index.html'">
 <span class="text-base"><i class="fa-solid fa-folder-tree" aria-hidden="true"></i></span>
 <span class="">Garage Directory</span>
 </button>
@@ -125,7 +125,7 @@
 <span class="text-base"><i class="fa-solid fa-pen-nib" aria-hidden="true"></i></span>
 <span class="">2. Signature Clean-Up</span>
 </button>
-<button class="clay-tab flex-1 justify-center whitespace-nowrap" id="tabNav-attest" onclick="location.href='attest.html'">
+<button class="clay-tab active flex-1 justify-center whitespace-nowrap" id="tabNav-attest" onclick="location.href='attest.html'">
 <span class="text-base"><i class="fa-solid fa-file-signature" aria-hidden="true"></i></span>
 <span class="">3. Self-Attestation</span>
 </button>
@@ -137,169 +137,162 @@
 </div>
 <!-- Main Workspace Container -->
 <main class="flex-1 max-w-7xl w-full mx-auto p-4 sm:p-6 lg:p-8 relative z-10 flex flex-col justify-center">
-<section class="space-y-8" id="view-hub">
-<!-- 3D Clay Hero Banner -->
-<div class="clay-card p-8 sm:p-12 relative overflow-hidden">
-<div class="relative z-10 max-w-3xl space-y-6">
-<div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/90 dark:bg-white/10 text-primary dark:text-indigo-300 text-xs font-extrabold border border-white dark:border-white/15 shadow-[0_4px_16px_rgba(35,51,231,0.12)]">
-<span class="text-amber-500"></span> Hot Coffee Drag &amp; Drop · Instant Client-Side Wasm
-                    </div>
-<h1 class="text-3xl sm:text-5xl lg:text-6xl font-black heading-font tracking-tight text-slate-900 dark:text-white leading-[1.08]">
-                        Precision file tuning for strict portals and official documents.
-                    </h1>
-<p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed max-w-2xl font-medium">
-                        Every biometric face alignment, signature extraction, document attestation stamp, and PDF shrinkage executes strictly in your local browser memory. Zero upload latency, 100% privacy.
-                    </p>
-<div class="pt-2 flex flex-wrap items-center gap-4">
-<button class="clay-btn-primary px-7 py-3.5 text-xs uppercase tracking-wider flex items-center gap-2.5" onclick="switchMainTab('photo')">
-<span class="">Open Biometric Studio</span>
-<i class="fa-solid fa-arrow-right text-[11px]"></i>
-</button>
-<button class="clay-pill px-6 py-3.5 text-xs font-bold text-slate-800 dark:text-slate-200 flex items-center gap-2" onclick="switchMainTab('pdf')">
-<i class="fa-solid fa-shield-check text-primary"></i>
-<span class="">Audit Signed PDF</span>
-</button>
-</div>
-</div>
-<div class="absolute -right-8 -bottom-10 opacity-[0.05] dark:opacity-[0.07] pointer-events-none text-primary dark:text-indigo-400 transform rotate-12">
-<i class="fa-solid fa-cubes-stacked text-[20rem]"></i>
-</div>
-</div>
-<!-- Service Workbenches Directory (4 Tactile Clay Cards) -->
-<div class="space-y-4">
+<section class="space-y-6" id="view-attest">
 <div class="flex items-center justify-between pb-3 border-b border-black/[0.06] dark:border-white/[0.08]">
-<div class="flex items-center gap-2.5">
-<span class="text-lg font-black heading-font text-slate-900 dark:text-white">Tactile Tool Workbenches</span>
-<span class="text-xs font-mono font-bold px-2.5 py-0.5 rounded-full bg-primary/10 text-primary dark:text-indigo-300">4 Stations</span>
-</div>
-<span class="text-xs font-medium text-slate-400">Strict Government Conformance</span>
-</div>
-<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-<!-- Workbench 1: Biometric Photo Studio -->
-<div class="clay-card p-6 flex flex-col justify-between cursor-pointer group" onclick="switchMainTab('photo')">
-<div class="space-y-4">
-<div class="flex items-center justify-between">
-<div class="w-14 h-14 rounded-2xl bg-teal-500 text-white flex items-center justify-center clay-token text-xl group-hover:scale-110 transition-transform shadow-[0_10px_24px_rgba(20,184,166,0.35)]">
-<i class="fa-solid fa-camera"></i>
-</div>
-<span class="text-[10px] font-mono font-bold px-3 py-1 rounded-full bg-teal-50 dark:bg-teal-950/40 text-teal-700 dark:text-teal-300 border border-teal-200 dark:border-teal-800/40">Station 01</span>
-</div>
-<h3 class="text-lg font-bold text-slate-900 dark:text-white heading-font group-hover:text-primary dark:group-hover:text-indigo-400 transition-colors">
-                                Biometric Photo Studio
-                            </h3>
-<p class="text-xs text-slate-600 dark:text-slate-400 leading-relaxed font-medium">
-                                Strict country specs (India, US, UK, Canada, Schengen), face centering crop guide, backdrop swap, and exact KB clamping.
-                            </p>
-<div class="spec-reveal text-[10px] font-mono font-bold text-teal-600 dark:text-teal-400 flex items-center gap-1.5">
-<i class="fa-solid fa-bolt text-[9px]"></i><span>Max 50KB · Processed in &lt;1s</span>
-</div>
-</div>
-<div class="mt-6 pt-4 border-t border-black/[0.06] dark:border-white/[0.08] flex items-center justify-between text-xs font-bold text-teal-600 dark:text-teal-400">
-<span class="">Open Photo Studio</span>
-<i class="fa-solid fa-arrow-right text-[11px] transform group-hover:translate-x-1.5 transition-transform"></i>
-</div>
-</div>
-<!-- Workbench 2: Signature Clean-Up -->
-<div class="clay-card p-6 flex flex-col justify-between cursor-pointer group" onclick="switchMainTab('signature')">
-<div class="space-y-4">
-<div class="flex items-center justify-between">
-<div class="w-14 h-14 rounded-2xl bg-primary text-white flex items-center justify-center clay-token text-xl group-hover:scale-110 transition-transform shadow-[0_10px_24px_rgba(35,51,231,0.35)]">
-<i class="fa-solid fa-pen-nib"></i>
-</div>
-<span class="text-[10px] font-mono font-bold px-3 py-1 rounded-full bg-indigo-50 dark:bg-indigo-950/40 text-primary dark:text-indigo-300 border border-indigo-200 dark:border-indigo-800/40">Station 02</span>
-</div>
-<h3 class="text-lg font-bold text-slate-900 dark:text-white heading-font group-hover:text-primary dark:group-hover:text-indigo-400 transition-colors">
-                                Signature Vector Clean-Up
-                            </h3>
-<p class="text-xs text-slate-600 dark:text-slate-400 leading-relaxed font-medium">
-                                Remove paper noise, adjust ink color (Royal blue, black, custom), straighten, crop, and export transparent PNGs with KB control.
-                            </p>
-<div class="spec-reveal text-[10px] font-mono font-bold text-primary dark:text-indigo-400 flex items-center gap-1.5">
-<i class="fa-solid fa-bolt text-[9px]"></i><span>Max 20KB · Processed in &lt;2s</span>
-</div>
-</div>
-<div class="mt-6 pt-4 border-t border-black/[0.06] dark:border-white/[0.08] flex items-center justify-between text-xs font-bold text-primary dark:text-indigo-400">
-<span class="">Clean Signature</span>
-<i class="fa-solid fa-arrow-right text-[11px] transform group-hover:translate-x-1.5 transition-transform"></i>
-</div>
-</div>
-<!-- Workbench 3: Digital Self-Attestation -->
-<div class="clay-card p-6 flex flex-col justify-between cursor-pointer group" onclick="switchMainTab('attest')">
-<div class="space-y-4">
-<div class="flex items-center justify-between">
-<div class="w-14 h-14 rounded-2xl bg-amber-500 text-white flex items-center justify-center clay-token text-xl group-hover:scale-110 transition-transform shadow-[0_10px_24px_rgba(217,119,6,0.35)]">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-2xl bg-amber-500 text-white flex items-center justify-center text-lg clay-token">
 <i class="fa-solid fa-stamp"></i>
 </div>
-<span class="text-[10px] font-mono font-bold px-3 py-1 rounded-full bg-amber-50 dark:bg-amber-950/40 text-amber-700 dark:text-amber-300 border border-amber-200 dark:border-amber-800/40">Station 03</span>
-</div>
-<h3 class="text-lg font-bold text-slate-900 dark:text-white heading-font group-hover:text-primary dark:group-hover:text-indigo-400 transition-colors">
-                                Digital Self-Attestation
-                            </h3>
-<p class="text-xs text-slate-600 dark:text-slate-400 leading-relaxed font-medium">
-                                Drag &amp; drop signature overlay, customizable self-attestation tag, and automatic today's date onto legal ID scans or PDFs.
-                            </p>
-<div class="spec-reveal text-[10px] font-mono font-bold text-amber-600 dark:text-amber-400 flex items-center gap-1.5">
-<i class="fa-solid fa-bolt text-[9px]"></i><span>PDF &amp; JPG · Processed in &lt;2s</span>
+<div>
+<h2 class="text-xl font-bold heading-font text-slate-900 dark:text-white">Digital Self-Attestation Workshop</h2>
+<p class="text-xs text-slate-500 dark:text-slate-400 font-medium">Overlay cleaned signatures, verified legal tags, and today's timestamp directly onto ID scans.</p>
 </div>
 </div>
-<div class="mt-6 pt-4 border-t border-black/[0.06] dark:border-white/[0.08] flex items-center justify-between text-xs font-bold text-amber-600 dark:text-amber-400">
-<span class="">Attest Document</span>
-<i class="fa-solid fa-arrow-right text-[11px] transform group-hover:translate-x-1.5 transition-transform"></i>
+<button class="clay-pill px-4 py-2 text-xs text-slate-600 dark:text-slate-300 flex items-center gap-2" onclick="switchMainTab('hub')">
+<i class="fa-solid fa-arrow-left text-[10px]"></i> All Stations
+                </button>
+</div>
+<div class="grid grid-cols-12 gap-6 items-stretch">
+<!-- Attestation Options -->
+<div class="col-span-5 space-y-5 flex flex-col">
+<div class="clay-card p-6 space-y-4 flex-1">
+<div class="border-b border-black/[0.05] dark:border-white/[0.08] pb-3 flex items-center justify-between">
+<span class="text-[10px] font-mono text-amber-600 dark:text-amber-400 font-bold uppercase tracking-wider">Stamp Controls</span>
+<span class="hot-coffee-badge text-[10px] font-bold px-2.5 py-0.5 rounded-full">PDF &amp; JPG Stamping</span>
+</div>
+<!-- 1. Document Upload Dropzone -->
+<div class="space-y-1.5">
+<label class="text-[11px] font-bold text-slate-700 dark:text-slate-300 uppercase tracking-wide">1. Base Document Scan</label>
+<div class="clay-inset h-28 flex flex-col items-center justify-center cursor-pointer text-center p-3 relative overflow-hidden" id="docDropZone">
+<!-- Hot Coffee Drag Overlay (Part 3 Spec - strictly hidden initially) -->
+<div class="coffee-drag-overlay hidden" id="attestDragOverlay">
+<div class="w-12 h-12 rounded-full bg-white/20 flex items-center justify-center mb-1 shadow-inner">
+<span class="text-3xl filter drop-shadow animate-coffee"></span>
+</div>
+<p class="coffee-message">Drop it like it's hot coffee!</p>
+<p class="coffee-submessage">Instant local client-side processing</p>
+</div>
+<i class="fa-solid fa-file-pdf text-xl text-amber-500 mb-1"></i>
+<span class="text-xs font-bold text-slate-800 dark:text-slate-200">Upload Marksheet, License, or Certificate</span>
+<span class="text-[10px] text-slate-400">PDF, JPG, PNG accepted</span>
+<input accept="image/*,application/pdf" class="hidden" id="attestDocInput" type="file">
 </div>
 </div>
-<!-- Workbench 4: PDF & Document Toolkit -->
-<div class="clay-card p-6 flex flex-col justify-between cursor-pointer group" onclick="switchMainTab('pdf')">
-<div class="space-y-4">
+<!-- 2. Signature Source Choice for Overlay -->
+<div class="space-y-3">
+<label class="text-[11px] font-bold text-slate-700 dark:text-slate-300 uppercase tracking-wide">2. Signature Source</label>
+<div class="grid grid-cols-3 gap-2">
+<button class="clay-pill py-2 text-xs font-bold text-amber-700 dark:text-amber-300 border-amber-400/50" id="attestSigMode-auto" onclick="switchAttestSigMode('auto')">Auto-Cleaned</button>
+<button class="clay-pill py-2 text-xs font-medium text-slate-600 dark:text-slate-400" id="attestSigMode-file" onclick="switchAttestSigMode('file')">From File</button>
+<button class="clay-pill py-2 text-xs font-medium text-slate-600 dark:text-slate-400" id="attestSigMode-mobile" onclick="switchAttestSigMode('mobile')">Mobile Pad</button>
+</div>
+<!-- Auto-Cleaned: pulls whatever is currently sitting in the Signature Workshop preview -->
+<div class="p-3 rounded-xl bg-[#f4f6fb] dark:bg-[#131724] text-[11px] text-slate-500 dark:text-slate-400 font-medium" id="attestSigPanel-auto">
+Uses the last signature cleaned in the Signature Workshop. If nothing shows up on the stamp, clean one there first.
+</div>
+<!-- From File: simple upload, independent of the Part 2 uploader -->
+<div class="hidden space-y-2" id="attestSigPanel-file">
+<div class="clay-inset h-20 flex flex-col items-center justify-center cursor-pointer text-center p-2" id="attestSigFileDropZone">
+<i class="fa-solid fa-upload text-sm text-amber-500 mb-1"></i>
+<span class="text-[11px] font-bold text-slate-700 dark:text-slate-300">Upload signature image</span>
+<input accept="image/*" class="hidden" id="attestSigFileInput" type="file">
+</div>
+</div>
+<!-- Mobile Pad: its own independent QR/Firestore session, separate from the Part 2 one -->
+<div class="hidden p-4 bg-[#f4f6fb] dark:bg-[#131724] rounded-2xl" id="attestSigPanel-mobile">
+<div class="flex flex-row items-center gap-4">
+<div class="w-[216px] h-[216px] shrink-0 bg-white p-2 rounded-2xl flex items-center justify-center border border-black/[0.08] shadow-md" id="attestMobileQr">
+<i class="fa-solid fa-qrcode text-5xl text-slate-900"></i>
+</div>
+<div class="flex-1 text-left space-y-1.5">
+<p class="text-xs font-bold text-slate-900 dark:text-white" id="attestMobileStatus">Generating QR code…</p>
+<p class="text-[11px] text-slate-500 dark:text-slate-400">Scan with your phone to draw and send the attestation signature.</p>
+<button class="clay-pill px-4 py-1.5 text-[11px] font-bold text-slate-700 dark:text-slate-200" onclick="refreshAttestMobileSession()">
+<i class="fa-solid fa-rotate-right mr-1"></i> New QR Code
+</button>
+</div>
+</div>
+</div>
+<!-- 3. Self-Attested Block Configuration -->
+<div class="p-4 rounded-2xl bg-[#f4f6fb] dark:bg-[#131724] border border-black/[0.06] dark:border-white/[0.08] space-y-3">
 <div class="flex items-center justify-between">
-<div class="w-14 h-14 rounded-2xl bg-sky-600 text-white flex items-center justify-center clay-token text-xl group-hover:scale-110 transition-transform shadow-[0_10px_24px_rgba(2,132,199,0.35)]">
-<i class="fa-solid fa-file-pdf"></i>
+<label class="flex items-center gap-2 text-xs font-bold text-slate-900 dark:text-white cursor-pointer">
+<input checked="" class="w-4 h-4 accent-amber-500 rounded cursor-pointer" id="attestTextCheck" type="checkbox">
+<span class="">Include "Self-Attested" Label</span>
+</label>
+<span class="text-[10px] font-mono text-slate-400">Editable Stamp</span>
 </div>
-<span class="text-[10px] font-mono font-bold px-3 py-1 rounded-full bg-sky-50 dark:bg-sky-950/40 text-sky-700 dark:text-sky-300 border border-sky-200 dark:border-sky-800/40">Station 04</span>
+<div class="grid grid-cols-2 gap-2">
+<button class="clay-pill py-1.5 text-[11px] font-bold text-amber-700 dark:text-amber-300 border-amber-400/50" id="attestBlockMode-typed" onclick="switchAttestBlockMode('typed')">Typed</button>
+<button class="clay-pill py-1.5 text-[11px] font-medium text-slate-600 dark:text-slate-400" id="attestBlockMode-handwritten" onclick="switchAttestBlockMode('handwritten')">Write by Hand (Mobile)</button>
 </div>
-<h3 class="text-lg font-bold text-slate-900 dark:text-white heading-font group-hover:text-primary dark:group-hover:text-indigo-400 transition-colors">
-                                PDF &amp; Document Toolkit
-                            </h3>
-<p class="text-xs text-slate-600 dark:text-slate-400 leading-relaxed font-medium">
-                                Multi-JPG merge into 1-page PDF (Aadhaar / ID Card front+back), targeted PDF compressor, and cryptographic signature audit.
-                            </p>
-<div class="spec-reveal text-[10px] font-mono font-bold text-blue-600 dark:text-blue-400 flex items-center gap-1.5">
-<i class="fa-solid fa-bolt text-[9px]"></i><span>Max 1MB · Processed in &lt;3s</span>
-</div>
-</div>
-<div class="mt-6 pt-4 border-t border-black/[0.06] dark:border-white/[0.08] flex items-center justify-between text-xs font-bold text-blue-600 dark:text-blue-400">
-<span class="">Launch Doc Tools</span>
-<i class="fa-solid fa-arrow-right text-[11px] transform group-hover:translate-x-1.5 transition-transform"></i>
+<div class="space-y-2" id="attestBlockPanel-typed">
+<input class="w-full bg-white dark:bg-[#1d2236] border border-black/[0.08] dark:border-white/[0.1] rounded-xl px-3 py-2 text-xs font-bold text-slate-900 dark:text-white" id="attestNameField" oninput="updateStampPreview()" type="text" value="Self-Attested for Official Verification">
+<div class="grid grid-cols-2 gap-2">
+<input class="bg-white dark:bg-[#1d2236] border border-black/[0.08] dark:border-white/[0.1] rounded-xl px-3 py-1.5 text-xs font-semibold text-slate-900 dark:text-white" id="attestSignerName" oninput="updateStampPreview()" placeholder="Full Name" type="text" value="Johnathan Doe">
+<input class="bg-white dark:bg-[#1d2236] border border-black/[0.08] dark:border-white/[0.1] rounded-xl px-3 py-1.5 text-xs font-semibold text-slate-900 dark:text-white" id="attestDateField" oninput="updateStampPreview()" type="date">
 </div>
 </div>
+<!-- Handwritten Self-Attested + Date block, via the same Mobile Pad relay pattern -->
+<div class="hidden p-4 bg-white dark:bg-[#1d2236] rounded-2xl" id="attestBlockPanel-handwritten">
+<div class="flex flex-row items-center gap-3">
+<div class="w-[216px] h-[216px] shrink-0 bg-white p-2 rounded-2xl flex items-center justify-center border border-black/[0.08] shadow-md" id="attestHandwrittenQr">
+<i class="fa-solid fa-qrcode text-4xl text-slate-900"></i>
+</div>
+<div class="flex-1 text-left space-y-1.5">
+<p class="text-xs font-bold text-slate-900 dark:text-white" id="attestHandwrittenStatus">Generating QR code…</p>
+<p class="text-[11px] text-slate-500 dark:text-slate-400">Scan, then write "Self-Attested" plus today's date by hand.</p>
+<button class="clay-pill px-4 py-1.5 text-[11px] font-bold text-slate-700 dark:text-slate-200" onclick="refreshAttestHandwrittenSession()">
+<i class="fa-solid fa-rotate-right mr-1"></i> New QR Code
+</button>
 </div>
 </div>
-<!-- Bottom Clay Feature Highlights -->
-<div class="grid grid-cols-1 md:grid-cols-3 gap-5 pt-2">
-<div class="clay-card p-5 flex items-start gap-4">
-<div class="w-12 h-12 rounded-2xl bg-primary/10 text-primary dark:text-indigo-400 flex items-center justify-center shrink-0 text-xl clay-token">
-<i class="fa-solid fa-microchip"></i>
-</div>
-<div>
-<h4 class="text-sm font-bold text-slate-900 dark:text-white heading-font">Pure Client-Side Wasm</h4>
-<p class="text-xs text-slate-600 dark:text-slate-400 mt-1 leading-normal font-medium">Photos and sensitive PDFs never touch any server. Completely compliant with GDPR and legal confidentiality.</p>
 </div>
 </div>
-<div class="clay-card p-5 flex items-start gap-4">
-<div class="w-12 h-12 rounded-2xl bg-amber-500/10 text-amber-600 dark:text-amber-400 flex items-center justify-center shrink-0 text-xl clay-token">
-<i class="fa-solid fa-mug-hot"></i>
-</div>
-<div>
-<h4 class="text-sm font-bold text-slate-900 dark:text-white heading-font">"Hot Coffee" Drag &amp; Drop</h4>
-<p class="text-xs text-slate-600 dark:text-slate-400 mt-1 leading-normal font-medium">Visual high-fidelity dropzones across all 4 stations with live mime validation and instant canvas binding.</p>
+<button class="w-full clay-btn-primary py-3.5 px-4 text-xs uppercase tracking-wider flex items-center justify-center gap-2" onclick="renderAttestationExport()">
+<i class="fa-solid fa-file-export"></i> Export Merged PDF Document
+                        </button>
 </div>
 </div>
-<div class="clay-card p-5 flex items-start gap-4">
-<div class="w-12 h-12 rounded-2xl bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 flex items-center justify-center shrink-0 text-xl clay-token">
-<i class="fa-solid fa-qrcode"></i>
+<!-- Right Document Canvas Viewport Stage -->
+<div class="col-span-7 space-y-5 flex flex-col">
+<div class="clay-card p-6 space-y-3 flex-1">
+<div class="flex items-center justify-between border-b border-black/[0.05] dark:border-white/[0.08] pb-2.5">
+<span class="text-[10px] font-mono text-slate-400 uppercase tracking-wider font-bold">Interactive Stamping Stage</span>
+<span class="text-[10px] font-mono font-bold px-2.5 py-0.5 rounded-full bg-amber-100 dark:bg-amber-950/60 text-amber-800 dark:text-amber-300">
+                                Drag &amp; Position Freely
+                            </span>
 </div>
-<div>
-<h4 class="text-sm font-bold text-slate-900 dark:text-white heading-font">Mobile Relay Pairing</h4>
-<p class="text-xs text-slate-600 dark:text-slate-400 mt-1 leading-normal font-medium">Sign smoothly with your finger or stylus on any smartphone; ink transmits live to your workstation.</p>
+<!-- Viewport Stage -->
+<div class="relative w-full h-[420px] clay-inset flex items-center justify-center overflow-hidden bg-[#eef3ff]/40 dark:bg-[#090b14]" id="attestViewportArea">
+<!-- Real uploaded document preview (image or PDF) — hidden until a file is loaded -->
+<div class="hidden absolute inset-4 flex items-center justify-center" id="attestDocPreviewContainer"></div>
+<!-- Simulated A4 Document Base (placeholder shown until a real document is uploaded) -->
+<div class="w-72 h-96 bg-white dark:bg-[#1a1d2d] rounded-2xl shadow-xl border border-black/[0.08] dark:border-white/[0.08] p-6 flex flex-col justify-between text-[11px] text-slate-400 relative select-none" id="attestDocPlaceholder">
+<div class="space-y-2">
+<div class="flex items-center gap-2">
+<div class="w-8 h-8 rounded-lg bg-slate-200 dark:bg-slate-700"></div>
+<div class="w-32 h-3 bg-slate-200 dark:bg-slate-700 rounded"></div>
+</div>
+<div class="w-full h-2 bg-slate-100 dark:bg-slate-800 rounded mt-3"></div>
+<div class="w-5/6 h-2 bg-slate-100 dark:bg-slate-800 rounded"></div>
+<div class="w-4/6 h-2 bg-slate-100 dark:bg-slate-800 rounded"></div>
+<div class="w-full h-2 bg-slate-100 dark:bg-slate-800 rounded"></div>
+</div>
+<div class="border-t border-black/[0.06] dark:border-white/[0.08] pt-3 flex justify-between items-center text-[9px] text-slate-400">
+<span class="">CERTIFIED TRUE COPY</span>
+<span class="">PAGE 1 OF 1</span>
+</div>
+</div>
+<!-- Draggable & Resizable Signature Overlay Stamp -->
+<div class="absolute bottom-12 right-24 p-2 flex flex-col items-center select-none cursor-move" id="attestInteractiveStamp">
+<img alt="Signature" class="hidden max-h-10 mb-1 object-contain" id="attestSignatureImg"/>
+<span class="text-sm font-extrabold text-blue-700 dark:text-blue-400 font-serif italic" id="previewSignerDisplay">Johnathan Doe</span>
+<span class="text-[10px] font-bold text-slate-800 dark:text-slate-200 mt-0.5" id="previewAttestTag">Self-Attested for Official Verification</span>
+<span class="text-[9px] font-mono text-slate-500" id="previewDateDisplay">Date: 2026-09-12</span>
+<img alt="Handwritten self-attestation" class="hidden max-h-10 mt-0.5 object-contain" id="attestHandwrittenImg"/>
+</div>
+</div>
 </div>
 </div>
 </div>

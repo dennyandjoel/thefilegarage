@@ -1,0 +1,1369 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TheFileGarage — Global Preset Selector</title>
+    <!-- Apply the saved theme BEFORE any CSS/paint happens, so there is no dark->light flash
+         on reload. This must run synchronously, as early as possible in <head>. -->
+    <script>
+        (function () {
+            var saved = localStorage.getItem("theme");
+            if (saved === "light") {
+                document.documentElement.classList.remove("dark");
+            } else {
+                document.documentElement.classList.add("dark");
+            }
+        })();
+    </script>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        primary: "#2333e7",
+                        "primary-container": "#4353ff",
+                        "primary-fixed-dim": "#bdc2ff",
+                        secondary: "#a43073",
+                        "secondary-container": "#fc79bd",
+                        "secondary-fixed": "#ffd8e7",
+                        tertiary: "#005d53",
+                        "tertiary-fixed": "#62fae3",
+                        "tertiary-fixed-dim": "#3cddc7",
+                        surface: "#f8f9ff",
+                        "surface-bright": "#f8f9ff",
+                        "surface-dim": "#cbdbf5",
+                        "surface-container-lowest": "#ffffff",
+                        "surface-container-low": "#eff4ff",
+                        "surface-container": "#e5eeff",
+                        "surface-container-high": "#dce9ff",
+                        "surface-container-highest": "#d3e4fe",
+                        "on-surface": "#0b1c30",
+                        "on-surface-variant": "#454556",
+                        outline: "#757688",
+                        "outline-variant": "#c5c5d9",
+                    },
+                    borderRadius: {
+                        DEFAULT: "1rem",
+                        lg: "1.5rem",
+                        xl: "2.25rem",
+                        "2xl": "3rem",
+                        full: "9999px",
+                    },
+                    fontFamily: {
+                        sans: ['Plus Jakarta Sans', 'sans-serif'],
+                        space: ['Space Grotesk', 'sans-serif'],
+                        heading: ["Space Grotesk", "Plus Jakarta Sans", "sans-serif"],
+                        mono: ["JetBrains Mono", "ui-monospace", "monospace"],
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    <!-- Client-side PDF generation / manipulation libraries for the existing merger/compressor only. -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf-lib/1.17.1/pdf-lib.min.js"></script>
+    <!-- Face Mesh runs entirely in the browser. Its compact model assets are warmed into Cache Storage after first use, so later scans can use the local browser cache. -->
+    <script src="https://cdn.jsdelivr.net/npm/@mediapipe/face_mesh/face_mesh.js"></script>
+    
+<link rel="stylesheet" href="style.css">
+</head>
+<body class="min-h-screen flex flex-col antialiased relative overflow-x-hidden selection:bg-indigo-500 selection:text-white">
+<!-- Ambient cursor-reactive light (dark mode only) -->
+<div id="ambientCursorLight"></div>
+<!-- Ambient Clay Floating Glows -->
+<div class="clay-mesh-blob w-96 h-96 -top-20 -left-20 bg-primary-fixed-dim/60 animate-pulse"></div>
+<div class="clay-mesh-blob w-[32rem] h-[32rem] top-1/3 -right-24 bg-secondary-fixed/70"></div>
+<div class="clay-mesh-blob w-96 h-96 bottom-10 left-1/4 bg-tertiary-fixed/40"></div>
+
+    <!-- Header Navigation -->
+    <header class="glass-bar sticky top-0 z-50 px-4 sm:px-8 py-3.5 transition-colors">
+        <div class="max-w-7xl mx-auto flex items-center justify-between gap-3 relative z-10">
+            <div class="flex items-center gap-3 min-w-0">
+                <div class="flex items-center gap-2.5 p-1 -ml-1 min-w-0">
+                    <div class="w-10 h-10 shrink-0 rounded-2xl bg-primary flex items-center justify-center clay-token drop-shadow-[0_4px_8px_rgba(35,51,231,0.03)]">
+                        <i class="fa-solid fa-warehouse text-white text-lg"></i>
+                    </div>
+                    <div class="text-left min-w-0">
+                        <span class="text-base font-extrabold text-slate-900 dark:text-white tracking-tight heading-font block leading-none truncate">TheFileGarage</span>
+                        <span class="text-[10px] font-bold text-primary dark:text-indigo-400 font-mono">100% In-Browser Engine</span>
+                    </div>
+                </div>
+                <span class="hidden sm:inline text-slate-300 dark:text-slate-800 text-sm select-none">/</span>
+                <div class="hidden sm:flex items-center gap-2 text-xs font-semibold text-slate-600 dark:text-slate-300">
+                    <span class="text-slate-900 dark:text-white font-bold">Workspace Directory</span>
+                    <span class="px-2 py-0.5 rounded-full text-[10px] font-mono font-bold bg-primary/10 text-primary dark:text-indigo-300 border border-primary/20">v4.0 Clay</span>
+                </div>
+            </div>
+
+            <div class="flex items-center gap-2.5 shrink-0">
+                <div class="hidden lg:flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/80 dark:bg-[#121524]/80 border border-white/60 dark:border-white/10 text-[11px] font-bold text-slate-700 dark:text-slate-200 shadow-sm whitespace-nowrap">
+                    <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse shadow-[0_0_10px_rgba(16,185,129,0.9)]"></span>
+                    100% Client-Side Private
+                </div>
+                <button onclick="toggleTheme()" class="clay-pill w-10 h-10 shrink-0 flex items-center justify-center text-slate-700 dark:text-amber-400 transition" title="Toggle Light/Dark Theme">
+                    <i id="themeIcon" class="fa-solid fa-moon text-sm"></i>
+                </button>
+                <button class="clay-pill px-4 py-2 text-xs font-bold text-slate-800 dark:text-slate-100 flex items-center gap-1.5 shrink-0" onclick="location.href='index.html'">
+                    <i class="fa-solid fa-grid-2 text-primary"></i>
+                    <span class="hidden sm:inline">All Stations</span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Workspace Tab Navigation -->
+    <div class="max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 pt-6 relative z-10">
+        <div class="p-2 rounded-full bg-white/70 dark:bg-[#0c0e18]/80  border border-white/90 dark:border-white/10 flex items-center gap-1.5 overflow-x-auto shadow-[0_12px_32px_-6px_rgba(35,51,231,0.08)] dark:shadow-[0_12px_32px_-6px_rgba(0,0,0,0.8)]">
+            <button onclick="location.href='index.html'" class="workspace-tab-btn clay-tab flex-1 items-center justify-center gap-2 whitespace-nowrap">
+                <span class="text-base"><i class="fa-solid fa-folder-tree" aria-hidden="true"></i></span> Garage Directory
+            </button>
+            <button onclick="switchWorkspaceTab('tab1')" id="tabBtn-tab1" class="workspace-tab-btn clay-tab flex-1 items-center justify-center gap-2 whitespace-nowrap">
+                <span class="text-base"><i class="fa-solid fa-camera" aria-hidden="true"></i></span> Global Photo Studio
+            </button>
+            <button onclick="switchWorkspaceTab('tab2')" id="tabBtn-tab2" class="workspace-tab-btn clay-tab flex-1 items-center justify-center gap-2 whitespace-nowrap">
+                <span class="text-base"><i class="fa-solid fa-pen-nib" aria-hidden="true"></i></span> Signature Clean-Up
+            </button>
+            <button onclick="switchWorkspaceTab('tab3')" id="tabBtn-tab3" class="workspace-tab-btn clay-tab flex-1 items-center justify-center gap-2 whitespace-nowrap">
+                <span class="text-base"><i class="fa-solid fa-file-signature" aria-hidden="true"></i></span> Digital Self-Attestation
+            </button>
+            <button onclick="switchWorkspaceTab('tab4')" id="tabBtn-tab4" class="workspace-tab-btn clay-tab active-tab flex-1 items-center justify-center gap-2 whitespace-nowrap">
+                <span class="text-base"><i class="fa-solid fa-box-archive" aria-hidden="true"></i></span> Document &amp; PDF Toolkit
+            </button>
+        </div>
+    </div>
+
+    <!-- Section Header -->
+    <div class="max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 pt-6 relative z-10">
+        <div class="flex items-center justify-between gap-3 pb-4 border-b border-black/[0.06] dark:border-white/[0.08]">
+            <div class="flex items-center gap-3 min-w-0">
+                <div class="w-10 h-10 shrink-0 rounded-2xl bg-primary text-white flex items-center justify-center text-lg clay-token">
+                    <i class="fa-solid fa-file-pdf"></i>
+                </div>
+                <div class="min-w-0">
+                    <h2 class="text-xl font-bold heading-font text-slate-900 dark:text-white truncate">PDF &amp; Document Garage</h2>
+                    <p class="text-xs text-slate-500 dark:text-slate-400 font-medium truncate">Multi-JPG merge, deterministic portal compressor, and digital signature audit.</p>
+                </div>
+            </div>
+            <button class="clay-pill px-4 py-2 text-xs font-bold text-slate-600 dark:text-slate-300 flex items-center gap-2 shrink-0" onclick="location.href='index.html'">
+                <i class="fa-solid fa-arrow-left text-[10px]"></i>
+                <span class="hidden sm:inline">All Stations</span>
+            </button>
+        </div>
+    </div>
+
+    <!-- Main Content Area -->
+    <main class="flex-1 max-w-7xl w-full mx-auto p-4 sm:p-6 lg:p-8">
+    <!-- ===================== TAB 4: DOCUMENT & PDF TOOLKIT ===================== -->
+    <div id="panel-tab4" class="workspace-tab-panel active-panel grid-cols-1 lg:grid-cols-12 gap-8">
+        <div class="pdf-tool-grid lg:col-span-12 grid grid-cols-1 lg:grid-cols-2 gap-8 items-stretch">
+        <section class="flex items-stretch">
+            <div class="pdf-tool-card w-full flex-1 flex flex-col clay-card p-6 space-y-5">
+                <div>
+                    <div class="flex items-center justify-between mb-2">
+                        <div class="w-12 h-12 rounded-2xl bg-primary/10 text-primary dark:text-indigo-400 flex items-center justify-center text-xl clay-token">
+                            <i class="fa-solid fa-images"></i>
+                        </div>
+                        <span class="text-[10px] font-mono font-bold px-2.5 py-0.5 rounded-full bg-primary/10 text-primary dark:text-indigo-300">Aadhaar / ID Card</span>
+                    </div>
+                    <h2 class="text-xl font-bold text-slate-900 dark:text-white heading-font mt-1">Multi-JPG to PDF Merger</h2>
+                    <p class="text-sm text-slate-500 dark:text-slate-400 mt-1">Combine front &amp; back scans (ID cards, Aadhaar, Green Card, etc.) onto a single PDF page.</p>
+                </div>
+
+                <div id="multiJpgDropZone" class="relative w-full h-32 clay-inset flex flex-col items-center justify-center cursor-pointer">
+                    <i class="fa-solid fa-images text-2xl text-slate-400 mb-2"></i>
+                    <span class="text-xs font-bold text-slate-500 dark:text-slate-400">Drag &amp; drop one or more JPEGs or PNGs</span>
+                    <input type="file" id="multiJpgInput" accept="image/*" multiple class="hidden">
+                    <div id="multiJpgDragOverlay" class="hidden coffee-drag-overlay">
+                        <div class="animate-coffee mb-2 text-4xl"></div>
+                        <span class="coffee-message">Drop it like it's hot coffee!</span>
+                        <span class="coffee-submessage">Your files remain secure and processed locally</span>
+                    </div>
+                </div>
+
+                <div id="multiJpgThumbs" class="grid grid-cols-4 gap-2"></div>
+
+                <div class="grid grid-cols-2 gap-3">
+                    <div class="clay-dropdown relative" data-select-for="multiJpgLayout">
+                        <label class="block text-[10px] font-semibold text-slate-500 dark:text-slate-400 uppercase mb-1">Page Layout</label>
+                        <button type="button" class="clay-dropdown-btn bg-white dark:bg-slate-900 border border-slate-300 dark:border-slate-800 rounded-lg px-2.5 py-1.5 text-xs text-slate-900 dark:text-white focus:outline-none">
+                            <span class="clay-dropdown-label">Stacked (top / bottom)</span>
+                            <i class="fa-solid fa-chevron-down text-[10px] text-slate-400"></i>
+                        </button>
+                        <select id="multiJpgLayout" class="hidden">
+                            <option value="stack">Stacked (top / bottom)</option>
+                            <option value="side">Side by Side</option>
+                        </select>
+                        <div class="clay-dropdown-panel hidden">
+                            <button type="button" class="clay-dropdown-option selected" data-value="stack">Stacked (top / bottom)</button>
+                            <button type="button" class="clay-dropdown-option" data-value="side">Side by Side</button>
+                        </div>
+                    </div>
+                    <div class="clay-dropdown relative" data-select-for="multiJpgPageSize">
+                        <label class="block text-[10px] font-semibold text-slate-500 dark:text-slate-400 uppercase mb-1">Page Size</label>
+                        <button type="button" class="clay-dropdown-btn bg-white dark:bg-slate-900 border border-slate-300 dark:border-slate-800 rounded-lg px-2.5 py-1.5 text-xs text-slate-900 dark:text-white focus:outline-none">
+                            <span class="clay-dropdown-label">A4</span>
+                            <i class="fa-solid fa-chevron-down text-[10px] text-slate-400"></i>
+                        </button>
+                        <select id="multiJpgPageSize" class="hidden">
+                            <option value="a4">A4</option>
+                            <option value="letter">US Letter</option>
+                        </select>
+                        <div class="clay-dropdown-panel hidden">
+                            <button type="button" class="clay-dropdown-option selected" data-value="a4">A4</button>
+                            <button type="button" class="clay-dropdown-option" data-value="letter">US Letter</button>
+                        </div>
+                    </div>
+                </div>
+
+                <button id="multiJpgMergeBtn" onclick="mergeJpgsToPdf()" class="w-full clay-btn-primary py-3 text-xs uppercase tracking-wider flex items-center justify-center gap-2 cursor-pointer">
+                    <i class="fa-solid fa-file-circle-check"></i> Merge into 1-Page PDF
+                </button>
+                <div id="multiJpgSkeleton" class="hidden w-full h-10 rounded-xl skeleton"></div>
+                <a id="multiJpgDownloadBtn" download="merged-document.pdf" class="hidden w-full text-center clay-pill text-xs py-3 px-4 font-bold tracking-wider uppercase transition-all duration-150 items-center justify-center gap-2 text-emerald-600 dark:text-emerald-400">
+                    <i class="fa-solid fa-download"></i> Download Merged PDF
+                </a>
+                <button id="multiJpgClearBtn" onclick="clearMultiJpgFiles()" class="hidden w-full bg-slate-100 dark:bg-slate-950 border border-slate-300 dark:border-slate-700 text-slate-600 dark:text-slate-300 text-xs py-3 px-4 rounded-xl font-bold tracking-wider uppercase transition-all duration-150 hover:border-red-400 hover:text-red-500">
+                    <i class="fa-solid fa-eraser"></i> Clear Images
+                </button>
+            </div>
+        </section>
+
+        <section class="flex items-stretch">
+            <div class="pdf-tool-card w-full flex-1 flex flex-col clay-card p-6 space-y-5">
+                <div>
+                    <div class="flex items-center justify-between mb-2">
+                        <div class="w-12 h-12 rounded-2xl bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 flex items-center justify-center text-xl clay-token">
+                            <i class="fa-solid fa-compress"></i>
+                        </div>
+                        <span class="text-[10px] font-mono font-bold px-2.5 py-0.5 rounded-full bg-emerald-100 dark:bg-emerald-950 text-emerald-700 dark:text-emerald-300">Flate Stream</span>
+                    </div>
+                    <h2 class="text-xl font-bold text-slate-900 dark:text-white heading-font mt-1">PDF Compressor</h2>
+                    <p class="text-sm text-slate-500 dark:text-slate-400 mt-1">Shrink an existing PDF to fit strict portal upload limits.</p>
+                </div>
+
+                <div id="pdfCompressDropZone" class="relative w-full h-32 clay-inset flex flex-col items-center justify-center cursor-pointer">
+                    <i class="fa-solid fa-file-pdf text-2xl text-slate-400 mb-2"></i>
+                    <span class="text-xs font-bold text-slate-500 dark:text-slate-400">Drag &amp; drop a PDF file</span>
+                    <input type="file" id="pdfCompressInput" accept="application/pdf" class="hidden">
+                    <div id="pdfCompressDragOverlay" class="hidden coffee-drag-overlay">
+                        <div class="animate-coffee mb-2 text-4xl"></div>
+                        <span class="coffee-message">Drop it like it's hot coffee!</span>
+                        <span class="coffee-submessage">Your files remain secure and processed locally</span>
+                    </div>
+                </div>
+                <p id="pdfCompressOriginalSize" class="text-[11px] text-slate-400"></p>
+
+                <div>
+                    <label class="block text-[10px] font-semibold text-slate-500 dark:text-slate-400 uppercase mb-2">Target Size Preset</label>
+                    <div class="grid grid-cols-3 gap-2">
+                        <button onclick="setPdfCompressTarget(100)" id="pdfTarget100" class="pdf-target-btn clay-pill py-2 text-xs font-bold text-slate-600 dark:text-slate-400 transition">&lt; 100 KB</button>
+                        <button onclick="setPdfCompressTarget(500)" id="pdfTarget500" class="pdf-target-btn clay-pill py-2 text-xs font-bold text-slate-600 dark:text-slate-400 transition">&lt; 500 KB</button>
+                        <button onclick="setPdfCompressTarget(1024)" id="pdfTarget1024" class="pdf-target-btn clay-pill py-2 text-xs font-bold text-slate-600 dark:text-slate-400 transition">&lt; 1 MB</button>
+                    </div>
+                </div>
+
+                <button id="pdfCompressBtn" onclick="compressPdf()" class="w-full clay-btn-primary py-3 text-xs uppercase tracking-wider flex items-center justify-center gap-2 cursor-pointer">
+                    <i class="fa-solid fa-bolt"></i> Compress Document
+                </button>
+                <button id="pdfCompressClearBtn" onclick="clearPdfCompressFile()" class="hidden w-full bg-slate-100 dark:bg-slate-950 border border-slate-300 dark:border-slate-700 text-slate-600 dark:text-slate-300 text-xs py-3 px-4 rounded-xl font-bold tracking-wider uppercase transition-all duration-150 hover:border-red-400 hover:text-red-500">
+                    <i class="fa-solid fa-eraser"></i> Clear PDF
+                </button>
+                <div id="pdfCompressSkeleton" class="hidden w-full h-10 rounded-xl skeleton"></div>
+                <p id="pdfCompressResult" class="text-[11px] text-emerald-500 font-semibold hidden"></p>
+                <a id="pdfCompressDownloadBtn" download="compressed-document.pdf" class="hidden w-full text-center clay-pill text-xs py-3 px-4 font-bold tracking-wider uppercase transition-all duration-150 items-center justify-center gap-2 text-emerald-600 dark:text-emerald-400">
+                    <i class="fa-solid fa-download"></i> Download Compressed PDF
+                </a>
+            </div>
+        </section>
+        </div>
+        <section class="lg:col-span-12 space-y-6 flex items-stretch">
+            <div class="sig-verification-card w-full clay-card p-6 space-y-5">
+                <div>
+                    <div class="flex items-center justify-between mb-2">
+                        <div class="w-12 h-12 rounded-2xl bg-sky-500/10 text-sky-600 dark:text-sky-400 flex items-center justify-center text-xl clay-token">
+                            <i class="fa-solid fa-file-shield"></i>
+                        </div>
+                        <span class="text-[10px] font-mono font-bold px-2.5 py-0.5 rounded-full bg-sky-100 dark:bg-sky-950 text-sky-700 dark:text-sky-300">PKCS#7 Audit</span>
+                    </div>
+                    <h2 class="text-xl font-bold text-slate-900 dark:text-white heading-font mt-1">PDF Digital Signature Verification</h2>
+                    <p class="text-sm text-slate-500 dark:text-slate-400 mt-1">Validate a PDF signature and generate a separate verified display copy only when the configured validation policy passes.</p>
+                </div>
+
+                <div class="space-y-6">
+                    <div class="space-y-4 text-center max-w-2xl mx-auto w-full">
+                        <div id="sigVerifyDropZone" class="relative w-full h-32 clay-inset flex flex-col items-center justify-center cursor-pointer">
+                            <i class="fa-solid fa-file-shield text-2xl text-slate-400 mb-2"></i>
+                            <span class="text-xs font-bold text-slate-500 dark:text-slate-400">Drag &amp; drop a signed PDF</span>
+                            <input type="file" id="sigVerifyInput" accept="application/pdf" class="hidden">
+                            <div id="sigVerifyDragOverlay" class="hidden coffee-drag-overlay">
+                                <div class="animate-coffee mb-2 text-4xl"></div>
+                                <span class="coffee-message">Drop it like it's hot coffee!</span>
+                                <span class="coffee-submessage">Your files remain secure and processed locally</span>
+                            </div>
+                        </div>
+                        <p id="sigVerifyFileInfo" class="text-[11px] text-slate-400 hidden"></p>
+                        <button id="sigVerifyBtn" onclick="verifyPdfSignature()" class="w-full clay-btn-primary py-3 text-xs uppercase tracking-wider flex items-center justify-center gap-2 cursor-pointer">
+                            <i class="fa-solid fa-shield-halved"></i> Inspect Signature Layers
+                        </button>
+                        <button id="sigVerifyClearBtn" onclick="clearSigVerifyFile()" class="hidden w-full bg-slate-100 dark:bg-slate-950 border border-slate-300 dark:border-slate-700 text-slate-600 dark:text-slate-300 text-xs py-3 px-4 rounded-xl font-bold tracking-wider uppercase transition-all duration-150 hover:border-red-400 hover:text-red-500">
+                            <i class="fa-solid fa-eraser"></i> Clear PDF
+                        </button>
+                        <div id="sigVerifySkeleton" class="hidden w-full h-10 rounded-xl skeleton"></div>
+                        <p id="sigVerifyProgress" class="text-[11px] text-slate-400 hidden"></p>
+                    </div>
+
+                    <div id="sigVerifyPreviewPanel" class="hidden w-full min-w-0 bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800 rounded-xl p-3 sm:p-4 space-y-3">
+                        <div class="text-center">
+                            <h3 class="text-xs font-bold uppercase tracking-widest text-slate-500 dark:text-slate-400">Verified Display PDF Preview</h3>
+                            <p class="mt-1 text-[10px] text-slate-400">This is a separate visual/printing copy. The original signed PDF remains the authoritative cryptographic record.</p>
+                        </div>
+                        <div class="sig-pdf-viewer w-full rounded-lg border border-slate-200 dark:border-slate-800 bg-slate-200/70 dark:bg-slate-900/70 p-1 sm:p-2">
+                            <iframe id="sigVerifyPdfPreview" title="Verified display PDF preview" class="sig-verified-pdf-frame rounded-md border border-slate-200 dark:border-slate-800" aria-label="Verified display PDF"></iframe>
+                        </div>
+                    </div>
+
+                    <div class="text-center">
+                        <button id="sigVerifyPrintBtn" onclick="printVerifiedPdf()" class="hidden sig-print-button clay-pill text-xs py-3 px-5 font-bold tracking-wider uppercase transition-all duration-150 text-primary dark:text-indigo-300">
+                            <i class="fa-solid fa-print"></i> Print PDF
+                        </button>
+                    </div>
+
+                    <div id="sigVerifyResultPanel" class="hidden w-full bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800 rounded-xl p-4 space-y-3 text-center">
+                        <div class="flex items-center justify-center gap-2">
+                            <i id="sigVerifyStatusIcon" class="fa-solid text-lg"></i>
+                            <span id="sigVerifyStatusText" class="text-sm font-bold"></span>
+                        </div>
+                        <p id="sigVerifyStatusDetail" class="text-[11px] text-slate-500 dark:text-slate-400 break-words"></p>
+                        <p id="sigVerifySummary" class="text-[11px] text-slate-500 dark:text-slate-400 break-words"></p>
+                        <div id="sigVerifyStateGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2 text-left"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="sigVerifyDetailsSection" class="sig-details-section lg:col-span-12 hidden pt-2">
+            <div class="mb-5">
+                <span class="text-xs font-bold text-primary dark:text-indigo-400 uppercase tracking-widest">Signature details</span>
+                <h2 class="text-2xl font-bold text-slate-900 dark:text-white heading-font mt-1">What the uploaded PDF reports</h2>
+                <p class="text-sm text-slate-500 dark:text-slate-400 mt-2 max-w-3xl">These values are read from the verified PDF signature and its certificate. Fields that are not present in the document are left out rather than replaced with example information.</p>
+            </div>
+            <div id="sigVerifyDetailsGrid" class="sig-details-grid"></div>
+        </section>
+
+        <section class="sig-guidance-section lg:col-span-12 pt-4">
+            <div class="sig-guidance-grid">
+                <div class="sig-guidance-column clay-card p-6">
+                    <h2 class="text-2xl font-bold text-slate-900 dark:text-white heading-font mt-1">How this checker works</h2>
+                    <p class="text-sm text-slate-500 dark:text-slate-400 mt-2">The process is designed to separate a real signature check from the visual copy created for easier reading and printing.</p>
+                    <div class="mt-6 grid gap-6 sm:grid-cols-3 lg:grid-cols-1 xl:grid-cols-3">
+                        <div>
+                            <p class="text-sm font-bold text-slate-900 dark:text-white"><span class="text-primary dark:text-indigo-300 mr-2">01</span>Upload</p>
+                            <p class="text-sm leading-7 text-slate-500 dark:text-slate-400 mt-2">Choose the PDF. If it is protected, enter its password when asked so the signature can be inspected.</p>
+                        </div>
+                        <div>
+                            <p class="text-sm font-bold text-slate-900 dark:text-white"><span class="text-primary dark:text-indigo-300 mr-2">02</span>Validate</p>
+                            <p class="text-sm leading-7 text-slate-500 dark:text-slate-400 mt-2">We check the signed bytes, document changes, certificate data, chain, revocation, timestamps, and the configured trust policy.</p>
+                        </div>
+                        <div>
+                            <p class="text-sm font-bold text-slate-900 dark:text-white"><span class="text-primary dark:text-indigo-300 mr-2">03</span>Prepare a display copy</p>
+                            <p class="text-sm leading-7 text-slate-500 dark:text-slate-400 mt-2">Only after the required checks pass, a separate PDF is produced with the validated appearance embedded at the signature location. A failed check never receives a green-valid copy.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="sig-guidance-column clay-card p-6">
+                    <h2 class="text-2xl font-bold text-slate-900 dark:text-white heading-font mt-1">Manual trust review</h2>
+                    <p class="text-sm text-slate-500 dark:text-slate-400 mt-2">Most users do not need this step. It is useful only when a desktop PDF viewer cannot build trust for the issuing authority, even though the signature bytes and document integrity are valid.</p>
+                    <ol class="sig-step-list">
+                        <li>Open the original PDF in a desktop viewer that supports digital signatures.</li>
+                        <li>Click the signature panel (or right-click the signature) and open "Signature Properties", then click "Show Signer's Certificate".</li>
+                        <li>Open the signature panel or the signature properties for the relevant signature.</li>
+                        <li>View the signer’s certificate and inspect the certificate path or chain.</li>
+                        <li>Identify the highest certificate in the chain and confirm that the authority is one you trust.</li>
+                        <li>Open the "Trust" tab and click "Add to Trusted Certificates ... ".</li>
+                        <li>Tick "Use this certificate as a trusted root" and confirm with OK.</li>
+                        <li>Close the dialogs and click "Validate All" in the signature panel - the tick turns green on this computer.</li>
+                    </ol>
+                    <p class="text-sm leading-7 text-slate-500 dark:text-slate-400 mt-5">This changes trust settings on that particular computer and viewer; it does not rewrite the original PDF. TheFileGarage's display copy is intended to keep the validated result visible when the file is previewed or printed elsewhere.</p>
+                </div>
+            </div>
+        </section>
+    </div>
+    <!-- ===================== /TAB 4 ===================== -->
+
+    </main>
+    <script>
+        // State storage variables
+        let selectedCountry = "";
+        let selectedService = "";
+        let selectedPreset = null;
+        let isCustomConfigActive = false;
+        let activeTargetBg = "#ffffff"; // Track color dynamically
+        let activeTargetBgLabel = "Pure White";
+        let originalPhotoSrc = null; // Untouched upload, preserved so bg color can be re-applied/changed
+        let lastHeadTiltDeg = null; // Cache last computed (simulated) head tilt so repeated scans stay consistent per image
+        let baseImageSrc = null; // Current best-quality image (post bg-replacement if applied) that live compression previews are generated FROM
+        let lastFaceBox = null; // Approximate detected face bounding box in normalized [0,1] coords, used to size the crop guide reflection of real content
+
+        // UI Element References
+        const countryBtn = document.getElementById("countryBtn");
+        const countryPopover = document.getElementById("countryPopover");
+        const countrySearchInput = document.getElementById("countrySearchInput");
+        const countryList = document.getElementById("countryList");
+        const selectedCountryLabel = document.getElementById("selectedCountryLabel");
+
+        const serviceExamsBtn = document.getElementById("serviceExamsBtn");
+        const serviceVisaBtn = document.getElementById("serviceVisaBtn");
+        const serviceIdBtn = document.getElementById("serviceIdBtn");
+
+        const presetBtn = document.getElementById("presetBtn");
+        const presetPopover = document.getElementById("presetPopover");
+        const presetSearchInput = document.getElementById("presetSearchInput");
+        const presetList = document.getElementById("presetList");
+        const selectedPresetLabel = document.getElementById("selectedPresetLabel");
+
+        const statusAlert = document.getElementById("statusAlert");
+        const statusDesc = document.getElementById("statusDesc");
+        const specPanel = document.getElementById("specPanel");
+
+        // Canvas & AI Checker Panel Selectors
+        const canvasPresetBadge = document.getElementById("canvasPresetBadge");
+        const specDims = document.getElementById("specDims");
+        const specSize = document.getElementById("specSize");
+        const specBg = document.getElementById("specBg");
+        const checkSize = document.getElementById("checkSize");
+        const checkDim = document.getElementById("checkDim");
+        const checkFace = document.getElementById("checkFace");
+        const checkHead = document.getElementById("checkHead");
+        const checkBg = document.getElementById("checkBg");
+        const processBtn = document.getElementById("processBtn");
+        const userPhoto = document.getElementById("userPhoto");
+        const defaultUploadPrompt = document.getElementById("defaultUploadPrompt");
+        const autoFixBtn = document.getElementById("autoFixBtn");
+        const sizeSlider = document.getElementById("sizeSlider");
+        const kbValue = document.getElementById("kbValue");
+        
+        // Drag & Drop selectors
+        const dropZone = document.getElementById("dropZone");
+        const dragOverlay = document.getElementById("dragOverlay");
+        const fileInput = document.getElementById("fileInput");
+
+        // Crop Guide Selectors
+        const cropGuide = document.getElementById("cropGuide");
+        const cropGuideLabel = document.getElementById("cropGuideLabel");
+
+        // Custom Size Selectors
+        const customToggle = document.getElementById("customToggle");
+        const customInputsGrid = document.getElementById("customInputsGrid");
+        const customWidth = document.getElementById("customWidth");
+        const customHeight = document.getElementById("customHeight");
+        const customMaxSize = document.getElementById("customMaxSize");
+        const customBg = document.getElementById("customBg");
+        const customBgColorPicker = document.getElementById("customBgColorPicker");
+        const customBgColorPickerWrap = document.getElementById("customBgColorPickerWrap");
+        const customBgBtn = document.getElementById("customBgBtn");
+        const customBgPopover = document.getElementById("customBgPopover");
+        const customBgBtnText = document.getElementById("customBgBtnText");
+        const customBgSwatch = document.getElementById("customBgSwatch");
+        const customBgColorSwatchDisplay = document.getElementById("customBgColorSwatchDisplay");
+        const customBgColorHexLabel = document.getElementById("customBgColorHexLabel");
+        const customFormat = document.getElementById("customFormat");
+        const customFormatBtn = document.getElementById("customFormatBtn");
+        const customFormatPopover = document.getElementById("customFormatPopover");
+        const customFormatBtnText = document.getElementById("customFormatBtnText");
+        const customFormatSwatch = document.getElementById("customFormatSwatch");
+        // Theme Toggle Logic
+        function toggleTheme() {
+            const html = document.documentElement;
+            const themeIcon = document.getElementById("themeIcon");
+            if (html.classList.contains("dark")) {
+                html.classList.remove("dark");
+                themeIcon.className = "fa-solid fa-sun text-amber-500";
+                localStorage.setItem("theme", "light");
+            } else {
+                html.classList.add("dark");
+                themeIcon.className = "fa-solid fa-moon text-slate-300";
+                localStorage.setItem("theme", "dark");
+            }
+        }
+
+        // The <html> class was already set synchronously in <head> (see the blocking script
+        // right before the Tailwind CDN <script> tag) to prevent a dark->light flash on load.
+        // This just syncs the icon to match, now that themeIcon exists in the DOM.
+        (function initTheme() {
+            const themeIcon = document.getElementById("themeIcon");
+            if (document.documentElement.classList.contains("dark")) {
+                themeIcon.className = "fa-solid fa-moon text-slate-300";
+            } else {
+                themeIcon.className = "fa-solid fa-sun text-amber-500";
+            }
+        })();
+
+        window.addEventListener("DOMContentLoaded", () => {
+            populateCountries("");
+
+            // Trigger automatic biometric scanning routine whenever a real photo finishes loading
+            userPhoto.addEventListener("load", () => {
+                triggerBiometricScan();
+            });
+
+            // Country search open state
+            countryBtn.addEventListener("click", (e) => {
+                e.stopPropagation();
+                const wasOpen = !countryPopover.classList.contains("hidden") && !countryPopover.classList.contains("dropdown-popover-closing");
+                closeAllPopovers();
+                if (!wasOpen) {
+                    openPopover(countryPopover);
+                    countrySearchInput.focus();
+                }
+            });
+            countrySearchInput.addEventListener("input", (e) => {
+                populateCountries(e.target.value);
+            });
+
+            // Preset search open state
+            presetBtn.addEventListener("click", (e) => {
+                e.stopPropagation();
+                const wasOpen = !presetPopover.classList.contains("hidden") && !presetPopover.classList.contains("dropdown-popover-closing");
+                closeAllPopovers();
+                if (!wasOpen) {
+                    openPopover(presetPopover);
+                    presetSearchInput.focus();
+                }
+            });
+
+            presetSearchInput.addEventListener("input", (e) => {
+                populatePresets(e.target.value);
+            });
+
+            // Background Tone open state (Set Custom Sizing panel) — same animated popover pattern
+            customBgBtn.addEventListener("click", (e) => {
+                e.stopPropagation();
+                const wasOpen = !customBgPopover.classList.contains("hidden") && !customBgPopover.classList.contains("dropdown-popover-closing");
+                closeAllPopovers();
+                if (!wasOpen) {
+                    openPopover(customBgPopover);
+                }
+            });
+            document.querySelectorAll(".custom-bg-option").forEach((optBtn) => {
+                optBtn.addEventListener("click", (e) => {
+                    e.stopPropagation();
+                    selectCustomBgOption(optBtn.dataset.bgValue, optBtn.dataset.bgHex);
+                    closePopover(customBgPopover);
+                });
+            });
+
+            // Close lists upon clicking anywhere else on page
+            document.addEventListener("click", () => {
+                closeAllPopovers();
+            });
+
+            // File Compression Slider live value
+            let sliderDebounceTimer = null;
+            sizeSlider.addEventListener("input", (e) => {
+                const targetKB = parseInt(e.target.value);
+                kbValue.innerText = targetKB + " KB";
+                checkFileSizeCompliance(targetKB);
+
+                clearTimeout(sliderDebounceTimer);
+                sliderDebounceTimer = setTimeout(() => {
+                    const source = baseImageSrc || originalPhotoSrc || userPhoto.src;
+                    compressPreviewToKB(source, targetKB, (compressedUrl) => {
+                        userPhoto.src = compressedUrl; // triggers the load listener -> re-scans, so checks stay in sync
+                    });
+                }, 200);
+            });
+            // Click zone to open file browser
+            dropZone.addEventListener("click", () => {
+                fileInput.click();
+            });
+
+            fileInput.addEventListener("change", (e) => {
+                if (e.target.files && e.target.files[0]) {
+                    processUploadedFile(e.target.files[0]);
+                }
+            });
+
+            // Prevent the color picker click from bubbling and closing dropdowns/collapsing the panel
+            customBgColorPicker.addEventListener("click", (e) => e.stopPropagation());
+
+            // Process Image button - performs the real export pipeline (resize, background bake, compression)
+            processBtn.addEventListener("click", (e) => {
+                e.stopPropagation();
+                runProcessImage();
+            });
+
+            // Drag enter and drag over events - displaying the bouncing "Hot Coffee" layout!
+            dropZone.addEventListener("dragover", (e) => {
+                e.preventDefault();
+                dropZone.classList.add("border-orange-500", "ring-2", "ring-orange-500/20");
+                dragOverlay.classList.remove("hidden");
+            });
+
+            // Drag leave event
+            dropZone.addEventListener("dragleave", (e) => {
+                e.preventDefault();
+                dropZone.classList.remove("border-orange-500", "ring-2", "ring-orange-500/20");
+                dragOverlay.classList.add("hidden");
+            });
+
+            // Drop event
+            dropZone.addEventListener("drop", (e) => {
+                e.preventDefault();
+                dropZone.classList.remove("border-orange-500", "ring-2", "ring-orange-500/20");
+                dragOverlay.classList.add("hidden");
+
+                if (e.dataTransfer.files && e.dataTransfer.files[0]) {
+                    processUploadedFile(e.dataTransfer.files[0]);
+                }
+            });
+            customFormatBtn.addEventListener("click", (e) => {
+                e.stopPropagation();
+                const wasOpen = !customFormatPopover.classList.contains("hidden") && !customFormatPopover.classList.contains("dropdown-popover-closing");
+                closeAllPopovers();
+                if (!wasOpen) {
+                    openPopover(customFormatPopover);
+                }
+            });
+            document.querySelectorAll(".custom-format-option").forEach((optBtn) => {
+                optBtn.addEventListener("click", (e) => {
+                    e.stopPropagation();
+                    selectCustomFormatOption(optBtn.dataset.formatValue);
+                    closePopover(customFormatPopover);
+                });
+            });
+
+            function selectCustomFormatOption(value) {
+                customFormat.value = value;
+                customFormatBtnText.textContent = value;
+                applyCustomConfig();
+            }
+        });
+    </script>
+
+    <script>
+        // ================================================================
+        // TAB 4: DOCUMENT & PDF TOOLKIT
+        // ================================================================
+
+        // ---- Shared Hot Coffee drag/drop behavior for document upload zones ----
+        function attachCoffeeDropZone(dropZone, overlay, onFileDrop) {
+            let dragDepth = 0;
+            const hideOverlay = () => {
+                dragDepth = 0;
+                dropZone.classList.remove("border-orange-500", "ring-2", "ring-orange-500/20");
+                overlay.classList.add("hidden");
+            };
+            ["dragenter", "dragover", "dragleave", "drop"].forEach(eventName => {
+                dropZone.addEventListener(eventName, event => {
+                    event.preventDefault();
+                    event.stopPropagation();
+                    if (eventName === "dragenter") dragDepth++;
+                    if (eventName === "dragenter" || eventName === "dragover") {
+                        dropZone.classList.add("border-orange-500", "ring-2", "ring-orange-500/20");
+                        overlay.classList.remove("hidden");
+                    } else if (eventName === "dragleave") {
+                        dragDepth = Math.max(0, dragDepth - 1);
+                        if (dragDepth === 0) hideOverlay();
+                    } else if (eventName === "drop") {
+                        const files = Array.from(event.dataTransfer?.files || []);
+                        hideOverlay();
+                        if (files.length) onFileDrop(files);
+                    }
+                });
+            });
+        }
+
+        // ---- Multi-JPG to PDF Merger ----
+        let multiJpgFiles = [];
+        let multiJpgDownloadUrl = null;
+        let multiJpgThumbUrls = [];
+        const multiJpgDropZone = document.getElementById("multiJpgDropZone");
+        const multiJpgInput = document.getElementById("multiJpgInput");
+        multiJpgDropZone.addEventListener("click", () => multiJpgInput.click());
+        multiJpgInput.addEventListener("change", (e) => addMultiJpgFiles(Array.from(e.target.files)));
+        attachCoffeeDropZone(
+            multiJpgDropZone,
+            document.getElementById("multiJpgDragOverlay"),
+            files => addMultiJpgFiles(files.filter(file => file.type.startsWith("image/") || /\.(jpe?g|png)$/i.test(file.name)))
+        );
+
+        function addMultiJpgFiles(files) {
+            const validFiles = files.filter(file => file.type === "image/jpeg" || file.type === "image/png" || /\.(jpe?g|png)$/i.test(file.name));
+            if (!validFiles.length) return;
+            multiJpgFiles = multiJpgFiles.concat(validFiles);
+            if (multiJpgDownloadUrl) {
+                URL.revokeObjectURL(multiJpgDownloadUrl);
+                multiJpgDownloadUrl = null;
+            }
+            const download = document.getElementById("multiJpgDownloadBtn");
+            download.removeAttribute("href");
+            download.classList.add("hidden");
+            download.classList.remove("flex");
+            renderMultiJpgThumbs();
+        }
+
+        function renderMultiJpgThumbs() {
+            const wrap = document.getElementById("multiJpgThumbs");
+            const clearBtn = document.getElementById("multiJpgClearBtn");
+            multiJpgThumbUrls.forEach(url => URL.revokeObjectURL(url));
+            multiJpgThumbUrls = [];
+            wrap.innerHTML = "";
+            multiJpgFiles.forEach((file, idx) => {
+                const url = URL.createObjectURL(file);
+                multiJpgThumbUrls.push(url);
+                const cell = document.createElement("div");
+                cell.className = "relative aspect-square rounded-lg overflow-hidden border border-slate-200 dark:border-slate-800 group";
+                cell.innerHTML = `<img src="${url}" class="w-full h-full object-cover">
+                    <button onclick="removeMultiJpg(${idx})" class="absolute top-0.5 right-0.5 w-5 h-5 bg-red-500 text-white text-[10px] rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition"><i class="fa-solid fa-xmark"></i></button>`;
+                wrap.appendChild(cell);
+            });
+            clearBtn.classList.toggle("hidden", multiJpgFiles.length === 0);
+        }
+        function removeMultiJpg(idx) {
+            multiJpgFiles.splice(idx, 1);
+            if (multiJpgFiles.length === 0) {
+                multiJpgInput.value = "";
+                const download = document.getElementById("multiJpgDownloadBtn");
+                download.removeAttribute("href");
+                download.classList.add("hidden");
+                download.classList.remove("flex");
+                if (multiJpgDownloadUrl) {
+                    URL.revokeObjectURL(multiJpgDownloadUrl);
+                    multiJpgDownloadUrl = null;
+                }
+            }
+            renderMultiJpgThumbs();
+        }
+        function clearMultiJpgFiles() {
+            multiJpgFiles = [];
+            multiJpgInput.value = "";
+            multiJpgThumbUrls.forEach(url => URL.revokeObjectURL(url));
+            multiJpgThumbUrls = [];
+            document.getElementById("multiJpgThumbs").innerHTML = "";
+            document.getElementById("multiJpgClearBtn").classList.add("hidden");
+            const download = document.getElementById("multiJpgDownloadBtn");
+            download.removeAttribute("href");
+            download.classList.add("hidden");
+            download.classList.remove("flex");
+            if (multiJpgDownloadUrl) {
+                URL.revokeObjectURL(multiJpgDownloadUrl);
+                multiJpgDownloadUrl = null;
+            }
+        }
+
+        async function mergeJpgsToPdf() {
+            if (multiJpgFiles.length < 1) {
+                alert("Please select at least one image first.");
+                return;
+            }
+            const btn = document.getElementById("multiJpgMergeBtn");
+            const skeleton = document.getElementById("multiJpgSkeleton");
+            btn.classList.add("hidden");
+            skeleton.classList.remove("hidden");
+
+            try {
+                const layout = document.getElementById("multiJpgLayout").value;
+                const pageSizeKey = document.getElementById("multiJpgPageSize").value;
+                const pageDims = pageSizeKey === "a4" ? [595, 842] : [612, 792];
+                const { jsPDF } = window.jspdf;
+                const pdf = new jsPDF({ orientation: "portrait", unit: "pt", format: pageDims });
+                const margin = 30;
+                const usableW = pageDims[0] - margin * 2;
+                const usableH = pageDims[1] - margin * 2;
+                const images = await Promise.all(multiJpgFiles.map(fileToImage));
+
+                // Keep the existing front/back layout for one or two images. For larger
+                // selections, create additional pages in pairs so no image is clipped.
+                const pageGroups = [];
+                for (let i = 0; i < images.length; i += 2) pageGroups.push(images.slice(i, i + 2));
+                pageGroups.forEach((group, pageIndex) => {
+                    if (pageIndex > 0) pdf.addPage(pageDims);
+                    if (layout === "stack") {
+                        const gap = group.length > 1 ? 20 : 0;
+                        const slotH = (usableH - gap) / group.length;
+                        group.forEach((img, index) => {
+                            const scale = Math.min(usableW / img.width, slotH / img.height);
+                            const w = img.width * scale;
+                            const h = img.height * scale;
+                            const x = margin + (usableW - w) / 2;
+                            const y = margin + index * (slotH + gap) + (slotH - h) / 2;
+                            pdf.addImage(img.src, img.format, x, y, w, h);
+                        });
+                    } else {
+                        const gap = group.length > 1 ? 20 : 0;
+                        const slotW = (usableW - gap) / group.length;
+                        group.forEach((img, index) => {
+                            const scale = Math.min(slotW / img.width, usableH / img.height);
+                            const w = img.width * scale;
+                            const h = img.height * scale;
+                            const x = margin + index * (slotW + gap) + (slotW - w) / 2;
+                            const y = margin + (usableH - h) / 2;
+                            pdf.addImage(img.src, img.format, x, y, w, h);
+                        });
+                    }
+                });
+
+                const pdfBlob = pdf.output("blob");
+                if (multiJpgDownloadUrl) URL.revokeObjectURL(multiJpgDownloadUrl);
+                multiJpgDownloadUrl = URL.createObjectURL(pdfBlob);
+                const dlBtn = document.getElementById("multiJpgDownloadBtn");
+                dlBtn.href = multiJpgDownloadUrl;
+                dlBtn.classList.remove("hidden");
+                dlBtn.classList.add("flex");
+            } catch (err) {
+                alert("Could not merge these images: " + err.message);
+            } finally {
+                skeleton.classList.add("hidden");
+                btn.classList.remove("hidden");
+            }
+        }
+
+        function fileToImage(file) {
+            return new Promise((resolve, reject) => {
+                const reader = new FileReader();
+                reader.onload = (e) => {
+                    const img = new Image();
+                    img.onload = () => resolve({
+                        src: e.target.result,
+                        width: img.naturalWidth || img.width,
+                        height: img.naturalHeight || img.height,
+                        format: file.type === "image/png" ? "PNG" : "JPEG"
+                    });
+                    img.onerror = reject;
+                    img.src = e.target.result;
+                };
+
+                reader.readAsDataURL(file);
+            });
+        }
+
+        // ---- PDF Compressor ----
+        let pdfCompressFile = null;
+        let pdfCompressTargetKb = 500;
+        const pdfCompressDropZone = document.getElementById("pdfCompressDropZone");
+        const pdfCompressInput = document.getElementById("pdfCompressInput");
+        pdfCompressDropZone.addEventListener("click", () => pdfCompressInput.click());
+        pdfCompressInput.addEventListener("change", (e) => { if (e.target.files[0]) setPdfCompressFile(e.target.files[0]); });
+        attachCoffeeDropZone(
+            pdfCompressDropZone,
+            document.getElementById("pdfCompressDragOverlay"),
+            files => { if (files[0]) setPdfCompressFile(files[0]); }
+        );
+
+        function setPdfCompressFile(file) {
+            if (file.type !== "application/pdf" && !file.name.toLowerCase().endsWith(".pdf")) { alert("Please select a PDF file."); return; }
+            pdfCompressFile = file;
+            if (pdfCompressDownloadUrl) {
+                URL.revokeObjectURL(pdfCompressDownloadUrl);
+                pdfCompressDownloadUrl = null;
+            }
+            const resultEl = document.getElementById("pdfCompressResult");
+            const download = document.getElementById("pdfCompressDownloadBtn");
+            document.getElementById("pdfCompressOriginalSize").textContent = `Original size: ${sigFormatBytes(file.size)}`;
+            document.getElementById("pdfCompressClearBtn").classList.remove("hidden");
+            resultEl.textContent = "";
+            resultEl.classList.add("hidden");
+            download.removeAttribute("href");
+            download.classList.add("hidden");
+            download.classList.remove("flex");
+            download.innerHTML = '<i class="fa-solid fa-download"></i> Download Compressed PDF';
+        }
+
+        function clearPdfCompressFile() {
+            pdfCompressFile = null;
+            pdfCompressInput.value = "";
+            document.getElementById("pdfCompressOriginalSize").textContent = "";
+            document.getElementById("pdfCompressResult").textContent = "";
+            document.getElementById("pdfCompressResult").classList.add("hidden");
+            const download = document.getElementById("pdfCompressDownloadBtn");
+            download.removeAttribute("href");
+            download.classList.add("hidden");
+            download.classList.remove("flex");
+            download.innerHTML = '<i class="fa-solid fa-download"></i> Download Compressed PDF';
+            document.getElementById("pdfCompressClearBtn").classList.add("hidden");
+            if (pdfCompressDownloadUrl) {
+                URL.revokeObjectURL(pdfCompressDownloadUrl);
+                pdfCompressDownloadUrl = null;
+            }
+        }
+
+        function setPdfCompressTarget(kb) {
+            pdfCompressTargetKb = kb;
+            document.querySelectorAll(".pdf-target-btn").forEach(b => {
+                b.classList.remove("border-emerald-500", "bg-emerald-500/10", "text-emerald-600", "dark:text-emerald-400");
+                b.classList.add("border-slate-300", "dark:border-slate-700", "bg-slate-100", "dark:bg-slate-950", "text-slate-500", "dark:text-slate-400");
+            });
+            const map = { 100: "pdfTarget100", 500: "pdfTarget500", 1024: "pdfTarget1024" };
+            const activeBtn = document.getElementById(map[kb]);
+            activeBtn.classList.add("border-emerald-500", "bg-emerald-500/10", "text-emerald-600", "dark:text-emerald-400");
+            activeBtn.classList.remove("border-slate-300", "dark:border-slate-700", "bg-slate-100", "dark:bg-slate-950", "text-slate-500", "dark:text-slate-400");
+        }
+        setPdfCompressTarget(500);
+
+        /* Claymorphic custom dropdowns (Merger box: Page Layout / Page Size).
+           Keeps the underlying <select> in sync so existing read logic
+           (element.value) keeps working unchanged. */
+        document.querySelectorAll(".clay-dropdown").forEach(dropdown => {
+            const btn = dropdown.querySelector(".clay-dropdown-btn");
+            const label = dropdown.querySelector(".clay-dropdown-label");
+            const panel = dropdown.querySelector(".clay-dropdown-panel");
+            const select = document.getElementById(dropdown.dataset.selectFor);
+            const options = dropdown.querySelectorAll(".clay-dropdown-option");
+
+            const closeDropdown = () => {
+                dropdown.classList.remove("open");
+                panel.classList.add("hidden");
+            };
+            const openDropdown = () => {
+                document.querySelectorAll(".clay-dropdown.open").forEach(other => {
+                    if (other !== dropdown) {
+                        other.classList.remove("open");
+                        other.querySelector(".clay-dropdown-panel").classList.add("hidden");
+                    }
+                });
+                dropdown.classList.add("open");
+                panel.classList.remove("hidden");
+            };
+
+            btn.addEventListener("click", (event) => {
+                event.stopPropagation();
+                dropdown.classList.contains("open") ? closeDropdown() : openDropdown();
+            });
+
+            options.forEach(option => {
+                option.addEventListener("click", (event) => {
+                    event.stopPropagation();
+                    options.forEach(o => o.classList.remove("selected"));
+                    option.classList.add("selected");
+                    label.textContent = option.textContent.trim();
+                    select.value = option.dataset.value;
+                    select.dispatchEvent(new Event("change", { bubbles: true }));
+                    closeDropdown();
+                });
+            });
+        });
+        document.addEventListener("click", () => {
+            document.querySelectorAll(".clay-dropdown.open").forEach(dropdown => {
+                dropdown.classList.remove("open");
+                dropdown.querySelector(".clay-dropdown-panel").classList.add("hidden");
+            });
+        });
+
+        /**
+         * Structure-preserving, best-effort PDF compression. PDF-Lib reserializes
+         * the existing objects with Flate/object-stream compression; it does not
+         * rasterize pages or replace text/vector content with images. The original
+         * is retained whenever the candidate is not meaningfully smaller.
+         */
+        let pdfCompressDownloadUrl = null;
+        async function compressPdf() {
+            if (!pdfCompressFile) { alert("Upload a PDF first."); return; }
+            if (!window.PDFLib) { alert("PDF engine failed to load — check your network settings."); return; }
+
+            const btn = document.getElementById("pdfCompressBtn");
+            const skeleton = document.getElementById("pdfCompressSkeleton");
+            const resultEl = document.getElementById("pdfCompressResult");
+            const dlBtn = document.getElementById("pdfCompressDownloadBtn");
+            btn.classList.add("hidden");
+            skeleton.classList.remove("hidden");
+            resultEl.classList.add("hidden");
+            dlBtn.classList.add("hidden");
+            dlBtn.classList.remove("flex");
+
+            try {
+                const originalBytes = new Uint8Array(await pdfCompressFile.arrayBuffer());
+                const originalSize = originalBytes.length;
+                const originalKb = (originalSize / 1024).toFixed(1);
+                const targetBytes = pdfCompressTargetKb * 1024;
+
+                if (originalSize <= targetBytes) {
+                    const originalBlob = new Blob([originalBytes], { type: "application/pdf" });
+                    resultEl.textContent = `Original: ${originalKb} KB · Result: ${originalKb} KB · Saved: 0 B (0.0%). This PDF is already sufficiently compressed; no further compression was applied.`;
+                    resultEl.classList.remove("hidden");
+                    if (pdfCompressDownloadUrl) URL.revokeObjectURL(pdfCompressDownloadUrl);
+                    pdfCompressDownloadUrl = URL.createObjectURL(originalBlob);
+                    dlBtn.href = pdfCompressDownloadUrl;
+                    dlBtn.download = pdfCompressFile.name.replace(/\.pdf$/i, "") + "-original.pdf";
+                    dlBtn.innerHTML = '<i class="fa-solid fa-download"></i> Download Original PDF';
+                    dlBtn.classList.remove("hidden");
+                    dlBtn.classList.add("flex");
+                    return;
+                }
+
+                const pdfDoc = await PDFLib.PDFDocument.load(originalBytes, {
+                    updateMetadata: false,
+                    throwOnInvalidObject: false
+                });
+                const candidateBytes = await pdfDoc.save({
+                    useObjectStreams: true,
+                    addDefaultPage: false,
+                    updateFieldAppearances: false,
+                    objectsPerTick: 50
+                });
+                const candidateSize = candidateBytes.length;
+                const savedBytes = originalSize - candidateSize;
+                const reduction = originalSize === 0 ? 0 : (savedBytes / originalSize) * 100;
+                let candidateValid = false;
+                try {
+                    const validationDoc = await PDFLib.PDFDocument.load(candidateBytes, { throwOnInvalidObject: false });
+                    candidateValid = validationDoc.getPageCount() === pdfDoc.getPageCount();
+                } catch (_) {
+                    candidateValid = false;
+                }
+                const meaningful = candidateValid && savedBytes >= 1024 && reduction >= 1 && candidateBytes[0] === 0x25 && candidateBytes[1] === 0x50;
+                const outputBytes = meaningful ? candidateBytes : originalBytes;
+                const outputSize = outputBytes.length;
+                const actualSaved = originalSize - outputSize;
+                const actualReduction = originalSize === 0 ? 0 : (actualSaved / originalSize) * 100;
+                const outputBlob = new Blob([outputBytes], { type: "application/pdf" });
+
+                if (meaningful) {
+                    resultEl.textContent = `Original: ${originalKb} KB · Result: ${(outputSize / 1024).toFixed(1)} KB · Saved: ${sigFormatBytes(actualSaved)} (${actualReduction.toFixed(1)}%). ${outputSize <= targetBytes ? "Target reached." : "Best-effort compression applied; the selected target could not be reached without rasterizing or risking readability."}`;
+                } else {
+                    resultEl.textContent = `Original: ${originalKb} KB · Result: ${originalKb} KB · Saved: 0 B (0.0%). This PDF is already sufficiently compressed; no further compression was applied.`;
+                }
+                resultEl.classList.remove("hidden");
+
+                if (pdfCompressDownloadUrl) URL.revokeObjectURL(pdfCompressDownloadUrl);
+                pdfCompressDownloadUrl = URL.createObjectURL(outputBlob);
+                dlBtn.href = pdfCompressDownloadUrl;
+                dlBtn.download = pdfCompressFile.name.replace(/\.pdf$/i, "") + (meaningful ? "-compressed.pdf" : "-original.pdf");
+                dlBtn.innerHTML = meaningful
+                    ? '<i class="fa-solid fa-download"></i> Download Compressed PDF'
+                    : '<i class="fa-solid fa-download"></i> Download Original PDF';
+                dlBtn.classList.remove("hidden");
+                dlBtn.classList.add("flex");
+            } catch (err) {
+                resultEl.textContent = "Could not safely compress this PDF: " + (err.message || err);
+                resultEl.classList.remove("hidden");
+            } finally {
+                skeleton.classList.add("hidden");
+                btn.classList.remove("hidden");
+            }
+        }
+    </script>
+
+    <script>
+        // ================================================================
+        // TAB 4: PDF DIGITAL SIGNATURE VERIFICATION
+        // ================================================================
+        const SIG_VERIFY_API_URL = "https://doc-tool-bj5b.onrender.com/api/pdf/signature/verify";
+        let sigVerifyFile = null;
+        let sigVerifyDisplayPdfUrl = null;
+        let sigVerifyVerifiedResult = null;
+        let sigVerifyInProgress = false;
+        const sigVerifyDropZone = document.getElementById("sigVerifyDropZone");
+        const sigVerifyInput = document.getElementById("sigVerifyInput");
+        const sigVerifyBtn = document.getElementById("sigVerifyBtn");
+        const sigVerifyFileInfo = document.getElementById("sigVerifyFileInfo");
+
+        sigVerifyDropZone.addEventListener("click", () => sigVerifyInput.click());
+        sigVerifyInput.addEventListener("change", event => { if (event.target.files[0]) setSigVerifyFile(event.target.files[0]); });
+        attachCoffeeDropZone(
+            sigVerifyDropZone,
+            document.getElementById("sigVerifyDragOverlay"),
+            files => {
+                const file = files.find(item => item.type === "application/pdf" || item.name.toLowerCase().endsWith(".pdf"));
+                if (file) setSigVerifyFile(file); else alert("Please drop a PDF file.");
+            }
+        );
+
+        function sigFormatBytes(bytes) {
+            if (bytes < 1024) return bytes + " B";
+            if (bytes < 1024 * 1024) return (bytes / 1024).toFixed(1) + " KB";
+            return (bytes / (1024 * 1024)).toFixed(2) + " MB";
+        }
+        function setSigVerifyFile(file) {
+            sigVerifyFile = file;
+            sigVerifyFileInfo.textContent = `${file.name} — ${sigFormatBytes(file.size)}`;
+            sigVerifyFileInfo.classList.remove("hidden");
+            document.getElementById("sigVerifyClearBtn").classList.remove("hidden");
+            hideSigVerifyResult();
+        }
+        function hideSigVerifyResult() {
+            sigVerifyVerifiedResult = null;
+            document.getElementById("sigVerifyResultPanel").classList.add("hidden");
+            document.getElementById("sigVerifyPreviewPanel").classList.add("hidden");
+            document.getElementById("sigVerifyPrintBtn").classList.add("hidden");
+            document.getElementById("sigVerifyDetailsSection").classList.add("hidden");
+            document.getElementById("sigVerifyDetailsGrid").innerHTML = "";
+            const previewFrame = document.getElementById("sigVerifyPdfPreview");
+            previewFrame.removeAttribute("src");
+            if (sigVerifyDisplayPdfUrl) {
+                URL.revokeObjectURL(sigVerifyDisplayPdfUrl);
+                sigVerifyDisplayPdfUrl = null;
+            }
+        }
+        function clearSigVerifyFile() {
+            sigVerifyFile = null;
+            sigVerifyInput.value = "";
+            sigVerifyFileInfo.textContent = "";
+            sigVerifyFileInfo.classList.add("hidden");
+            document.getElementById("sigVerifyClearBtn").classList.add("hidden");
+            document.getElementById("sigVerifyProgress").textContent = "";
+            document.getElementById("sigVerifyProgress").classList.add("hidden");
+            hideSigVerifyResult();
+        }
+
+        function htmlEscape(value) {
+            return String(value ?? "—").replace(/[&<>"']/g, char => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[char]));
+        }
+        function detailValue(value) { return htmlEscape(value === null || value === undefined || value === "" ? "Not reported" : value); }
+        function timestampState(timestamp) {
+            if (!timestamp || timestamp.trustedTimestampPresent !== true) return "NOT_PRESENT";
+            return timestamp.cryptographicStatus === "VALID" ? "PRESENT_AND_VALID" : "PRESENT_AND_INVALID";
+        }
+        function hasSigValue(value) {
+            return value !== null && value !== undefined && String(value).trim() !== "" && String(value).trim().toLowerCase() !== "not reported";
+        }
+        function rawSigValue(...values) {
+            return values.find(hasSigValue) || null;
+        }
+        function formatSigDate(value) {
+            if (!hasSigValue(value)) return null;
+            const text = String(value).trim();
+            const parsed = new Date(text);
+            if (Number.isNaN(parsed.getTime())) return text;
+            try {
+                return new Intl.DateTimeFormat(undefined, { dateStyle: "medium", timeStyle: "short" }).format(parsed);
+            } catch (_) {
+                return text;
+            }
+        }
+        function parseSigDate(value) {
+            if (!hasSigValue(value)) return null;
+            const parsed = new Date(String(value).trim());
+            return Number.isNaN(parsed.getTime()) ? null : parsed;
+        }
+        function certificateExpiryNote(detail) {
+            const validUntil = parseSigDate(detail.certificateValidUntil);
+            if (!validUntil || validUntil >= new Date()) return null;
+            const validFrom = parseSigDate(detail.certificateValidFrom);
+            const signedOn = parseSigDate(rawSigValue(detail.signingTime, detail.cmsSigningTime));
+            const wasValidWhenSigned = validFrom && signedOn && signedOn >= validFrom && signedOn <= validUntil;
+            if (wasValidWhenSigned && detail.cryptographicStatus === "CRYPTOGRAPHICALLY_VALID") {
+                return "The certificate is now expired, but the signed time falls within its reported validity period. The certificate’s current expiry is therefore shown separately from the cryptographic signature result.";
+            }
+            return "The certificate is reported as expired by the uploaded PDF.";
+        }
+        function compactIssuerName(value) {
+            if (!hasSigValue(value)) return null;
+            const match = String(value).match(/(?:^|,)\s*CN=([^,]+)/i);
+            return match ? match[1].trim() : String(value).trim();
+        }
+        function displaySerial(value) {
+            return hasSigValue(value) ? String(value).trim().toUpperCase() : null;
+        }
+        function revocationDetailValue(detail) {
+            const status = rawSigValue(detail.revocationStatus);
+            const message = rawSigValue(detail.revocationMessage);
+            const method = rawSigValue(detail.revocationMethod);
+            if (!status && !message) return null;
+            return [status, message, method ? `Method: ${method}` : null].filter(Boolean).join(" — ");
+        }
+        function renderSignatureDetails(details) {
+            const section = document.getElementById("sigVerifyDetailsSection");
+            const grid = document.getElementById("sigVerifyDetailsGrid");
+            if (!details.length) {
+                section.classList.add("hidden");
+                grid.innerHTML = "";
+                return;
+            }
+            const item = (label, value) => hasSigValue(value)
+                ? `<div class="sig-detail-item"><div class="sig-detail-label">${htmlEscape(label)}</div><div class="sig-detail-value">${htmlEscape(value)}</div></div>`
+                : "";
+            grid.innerHTML = details.map((detail, index) => {
+                const signerName = rawSigValue(detail.signerName, detail.certificateSubject);
+                const signer = signerName && hasSigValue(detail.signerEmail)
+                    ? `${signerName} · ${detail.signerEmail}`
+                    : signerName;
+                const signedOn = formatSigDate(rawSigValue(detail.signingTime, detail.cmsSigningTime));
+                const certificateValidity = [
+                    hasSigValue(detail.certificateValidFrom) ? `From ${formatSigDate(detail.certificateValidFrom) || detail.certificateValidFrom}` : null,
+                    hasSigValue(detail.certificateValidUntil) ? `until ${formatSigDate(detail.certificateValidUntil) || detail.certificateValidUntil}` : null
+                ].filter(Boolean).join(" ");
+                const expiryNote = certificateExpiryNote(detail);
+                const entries = [
+                    item("Signer", signer),
+                    item("Issuing CA", compactIssuerName(detail.certificateIssuer)),
+                    item("Signed on", signedOn),
+                    item("Certificate serial", displaySerial(detail.certificateSerialNumber)),
+                    item("Revocation status", revocationDetailValue(detail)),
+                    item("Certificate status", detail.certificateStatus),
+                    item("Certificate validity", certificateValidity),
+                    item("Certificate note", expiryNote),
+                    item("Signature", detail.cryptographicStatus),
+                    item("Document integrity", detail.modificationStatus),
+                    item("Trust", detail.trustStatus),
+                    item("Timestamp", detail.timestamp?.trustedTimestampPresent === true ? rawSigValue(detail.timestamp.timestampTime, detail.timestamp.cryptographicStatus) : null)
+                ].join("");
+                return `<div class="contents"><div class="sm:col-span-2 lg:col-span-3 text-[10px] font-bold uppercase tracking-widest text-slate-500 dark:text-slate-400 pt-2">Signature ${index + 1}</div>${entries}</div>`;
+            }).join("");
+            section.classList.remove("hidden");
+        }
+        function renderSigVerifyResult(result) {
+            const panel = document.getElementById("sigVerifyResultPanel");
+            const details = result.signatures || [];
+            renderSignatureDetails(details);
+            const allCryptoValid = details.length > 0 && details.every(detail => detail.cryptographicStatus === "CRYPTOGRAPHICALLY_VALID");
+            const allIntegrityOkay = details.length > 0 && details.every(detail => detail.modificationStatus === "NO_MODIFICATION_DETECTED");
+            const icon = document.getElementById("sigVerifyStatusIcon");
+            const statusText = document.getElementById("sigVerifyStatusText");
+            const statusDetail = document.getElementById("sigVerifyStatusDetail");
+            const displayReady = Boolean(result.verifiedDisplayPdf);
+            if (allCryptoValid && allIntegrityOkay) {
+                icon.className = "fa-solid fa-circle-check text-lg text-emerald-500";
+                statusText.className = "text-sm font-bold text-emerald-500";
+                statusText.textContent = displayReady ? "Signature valid" : "Signature cryptographically valid";
+                statusDetail.textContent = `${details.map(detail => `Digitally signed by ${detail.signerName || detail.certificateSubject || "Signer not reported"}`).join(" · ")}. Certificate trust, revocation, timestamp, and LTV/DSS are reported independently below.`;
+            } else if (result.status === "NO_SIGNATURE" || details.length === 0) {
+                icon.className = "fa-solid fa-file-circle-question text-lg text-slate-400";
+                statusText.className = "text-sm font-bold text-slate-400";
+                statusText.textContent = "No Digital Signature Found";
+                statusDetail.textContent = result.message || "No digital signature was found in this PDF.";
+            } else {
+                icon.className = "fa-solid fa-circle-xmark text-lg text-red-500";
+                statusText.className = "text-sm font-bold text-red-500";
+                statusText.textContent = "Signature Verification Requires Attention";
+                statusDetail.textContent = result.message || "The signature could not be validated.";
+            }
+            const notice = result.displayCopyNotice ? ` ${result.displayCopyNotice}` : "";
+            document.getElementById("sigVerifySummary").textContent = result.signatureCount
+                ? `${result.signatureCount} signature${result.signatureCount === 1 ? "" : "s"} analyzed.${notice}`
+                : (result.message || "The PDF contained no signature dictionaries.");
+            const stateGrid = document.getElementById("sigVerifyStateGrid");
+            stateGrid.innerHTML = details.map((detail, index) => {
+                const state = (label, value) => `<div class="min-w-0 rounded-lg border border-slate-200 dark:border-slate-800 bg-white/60 dark:bg-slate-900/60 px-3 py-2"><dt class="text-[9px] uppercase tracking-wide font-semibold text-slate-400">${htmlEscape(label)}</dt><dd class="mt-1 text-[11px] text-slate-700 dark:text-slate-300 break-words overflow-wrap-anywhere">${detailValue(value)}</dd></div>`;
+                const timestamp = detail.timestamp || {};
+                const ltv = detail.ltv || {};
+                const signer = detail.signerEmail
+                    ? `${detail.signerName || detail.certificateSubject || "Not reported"} (${detail.signerEmail})`
+                    : (detail.signerName || detail.certificateSubject || "Not reported");
+                const signatureState = detail.cryptographicStatus === "CRYPTOGRAPHICALLY_VALID"
+                    ? "VALID"
+                    : (detail.cryptographicStatus || "NOT REPORTED");
+                const certificate = [
+                    detail.certificateStatus || "Not reported",
+                    `Subject: ${detail.certificateSubject || "Not reported"}`,
+                    `Issuer: ${detail.certificateIssuer || "Not reported"}`,
+                    detail.certificateSerialNumber ? `Serial: ${detail.certificateSerialNumber}` : null,
+                    detail.certificateValidFrom && detail.certificateValidUntil
+                        ? `Valid ${detail.certificateValidFrom} to ${detail.certificateValidUntil}`
+                        : null
+                ].filter(Boolean).join(" · ");
+                const chain = detail.chainStatus || "NOT REPORTED";
+                const trust = detail.trustStatus || "NOT REPORTED";
+                const revocation = detail.revocationStatus || "NOT REPORTED";
+                const timestampValue = timestamp.trustedTimestampPresent === true
+                    ? `${timestamp.cryptographicStatus || "PRESENT"}${timestamp.timestampTime ? ` · ${timestamp.timestampTime}` : ""}${timestamp.authoritySubject ? ` · ${timestamp.authoritySubject}` : ""}`
+                    : "NOT PRESENT — PDF signing time is shown separately";
+                const ltvValue = ltv.status
+                    ? `${ltv.status}${ltv.dssPresent === true ? ` · DSS${ltv.vriEntries ? ` / VRI ${ltv.vriEntries}` : ""} · OCSP ${ltv.embeddedOcspResponses || 0} · CRL ${ltv.embeddedCrls || 0}` : ""}`
+                    : "NOT REPORTED";
+                return `<div class="contents"><div class="sm:col-span-2 lg:col-span-3 text-[10px] font-bold uppercase tracking-widest text-slate-500 dark:text-slate-400 pt-2">Signature ${index + 1}</div>${state("Signer", signer)}${state("Signature", signatureState)}${state("Document Integrity", detail.modificationStatus)}${state("Certificate", certificate)}${state("Certificate Chain", chain)}${state("Trust", trust)}${state("Revocation", revocation)}${state("Timestamp", timestampValue)}${state("LTV/DSS", ltvValue)}</div>`;
+            }).join("");
+            panel.classList.remove("hidden");
+        }
+        function verifiedDisplayPdfUrlFromBase64(base64) {
+            const binary = atob(base64);
+            const bytes = new Uint8Array(binary.length);
+            for (let index = 0; index < binary.length; index++) bytes[index] = binary.charCodeAt(index);
+            return URL.createObjectURL(new Blob([bytes], { type: "application/pdf" }));
+        }
+        function showVerifiedDisplayPdf(result) {
+            if (!result || !result.verifiedDisplayPdf) return false;
+            if (sigVerifyDisplayPdfUrl) URL.revokeObjectURL(sigVerifyDisplayPdfUrl);
+            sigVerifyDisplayPdfUrl = verifiedDisplayPdfUrlFromBase64(result.verifiedDisplayPdf);
+            sigVerifyVerifiedResult = result;
+            const previewPanel = document.getElementById("sigVerifyPreviewPanel");
+            const previewFrame = document.getElementById("sigVerifyPdfPreview");
+            previewFrame.src = sigVerifyDisplayPdfUrl;
+            previewPanel.classList.remove("hidden");
+            document.getElementById("sigVerifyPrintBtn").classList.remove("hidden");
+            return true;
+        }
+        function printVerifiedPdf() {
+            if (!sigVerifyVerifiedResult || !sigVerifyDisplayPdfUrl) {
+                alert("Please verify a PDF first.");
+                return;
+            }
+            const printWindow = window.open(sigVerifyDisplayPdfUrl, "_blank");
+            if (!printWindow) {
+                alert("Please allow pop-ups to print the verified display PDF.");
+                return;
+            }
+            let printRequested = false;
+            const requestPrint = () => {
+                if (printRequested || printWindow.closed) return;
+                printRequested = true;
+                printWindow.focus();
+                try { printWindow.print(); } catch (_) { /* The browser PDF viewer owns the dialog lifecycle. */ }
+            };
+            printWindow.addEventListener("load", () => setTimeout(requestPrint, 250), { once: true });
+            setTimeout(requestPrint, 1000);
+        }
+        async function verifyPdfSignature() {
+            if (!sigVerifyFile) {
+                alert("Please select a PDF file first.");
+                return;
+            }
+            if (sigVerifyInProgress) return;
+            const skeleton = document.getElementById("sigVerifySkeleton");
+            const progress = document.getElementById("sigVerifyProgress");
+            const fileBeingVerified = sigVerifyFile;
+            sigVerifyInProgress = true;
+            sigVerifyBtn.setAttribute("aria-busy", "true");
+            skeleton.classList.remove("hidden");
+            progress.textContent = "Uploading PDF and checking each signature layer…";
+            progress.classList.remove("hidden");
+            hideSigVerifyResult();
+            try {
+                let password = null;
+                while (true) {
+                    const formData = new FormData();
+                    if (sigVerifyFile !== fileBeingVerified) return;
+                    formData.append("file", fileBeingVerified, fileBeingVerified.name);
+                    if (password !== null) formData.append("password", password);
+                    const response = await fetch(SIG_VERIFY_API_URL, { method: "POST", body: formData });
+                    let body = null;
+                    try { body = await response.json(); } catch (_) { }
+                    if (body && body.status === "PASSWORD_REQUIRED") {
+                        password = prompt("This PDF is password protected. Enter the password:");
+                        if (password === null) {
+                            return;
+                        }
+                        progress.textContent = "Retrying PDF verification with the supplied password…";
+                        continue;
+                    }
+                    if (!response.ok) {
+                        renderSigVerifyResult({ status: "VALIDATION_ERROR", message: body?.message || `Server returned HTTP ${response.status}.` });
+                        return;
+                    }
+                    if (sigVerifyFile !== fileBeingVerified) return;
+                    renderSigVerifyResult(body || { status: "VALIDATION_ERROR", message: "The verification response was empty." });
+                    if (body && body.status !== "VALIDATION_ERROR" && body.status !== "PASSWORD_REQUIRED") {
+                        showVerifiedDisplayPdf(body);
+                    }
+                    return;
+                }
+            } catch (error) {
+                renderSigVerifyResult({ status: "VALIDATION_ERROR", message: "Could not reach the verification backend: " + error.message });
+            } finally {
+                sigVerifyInProgress = false;
+                sigVerifyBtn.removeAttribute("aria-busy");
+                progress.classList.add("hidden");
+                skeleton.classList.add("hidden");
+            }
+        }
+    </script>
+
+</html>

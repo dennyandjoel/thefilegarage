@@ -113,11 +113,11 @@
 <!-- Sub-Nav Pill Strip (3D Clay switcher for all 4 workbench tools) -->
 <div class="max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 pt-5 pb-3 relative z-10">
 <div class="p-2 rounded-full bg-white/70 dark:bg-[#0c0e18]/80  border border-white/90 dark:border-white/10 flex items-center gap-1.5 overflow-x-auto shadow-[0_12px_32px_-6px_rgba(35,51,231,0.08)] dark:shadow-[0_12px_32px_-6px_rgba(0,0,0,0.8)]">
-<button class="clay-tab active flex-1 justify-center whitespace-nowrap" id="tabNav-hub" onclick="location.href='index.html'">
+<button class="clay-tab flex-1 justify-center whitespace-nowrap" id="tabNav-hub" onclick="location.href='index.html'">
 <span class="text-base"><i class="fa-solid fa-folder-tree" aria-hidden="true"></i></span>
 <span class="">Garage Directory</span>
 </button>
-<button class="clay-tab flex-1 justify-center whitespace-nowrap" id="tabNav-photo" onclick="location.href='photostudio.html'">
+<button class="clay-tab active flex-1 justify-center whitespace-nowrap" id="tabNav-photo" onclick="location.href='photostudio.html'">
 <span class="text-base"><i class="fa-solid fa-camera" aria-hidden="true"></i></span>
 <span class="">1. Biometric Photo Studio</span>
 </button>
@@ -137,169 +137,238 @@
 </div>
 <!-- Main Workspace Container -->
 <main class="flex-1 max-w-7xl w-full mx-auto p-4 sm:p-6 lg:p-8 relative z-10 flex flex-col justify-center">
-<section class="space-y-8" id="view-hub">
-<!-- 3D Clay Hero Banner -->
-<div class="clay-card p-8 sm:p-12 relative overflow-hidden">
-<div class="relative z-10 max-w-3xl space-y-6">
-<div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/90 dark:bg-white/10 text-primary dark:text-indigo-300 text-xs font-extrabold border border-white dark:border-white/15 shadow-[0_4px_16px_rgba(35,51,231,0.12)]">
-<span class="text-amber-500"></span> Hot Coffee Drag &amp; Drop · Instant Client-Side Wasm
-                    </div>
-<h1 class="text-3xl sm:text-5xl lg:text-6xl font-black heading-font tracking-tight text-slate-900 dark:text-white leading-[1.08]">
-                        Precision file tuning for strict portals and official documents.
-                    </h1>
-<p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed max-w-2xl font-medium">
-                        Every biometric face alignment, signature extraction, document attestation stamp, and PDF shrinkage executes strictly in your local browser memory. Zero upload latency, 100% privacy.
-                    </p>
-<div class="pt-2 flex flex-wrap items-center gap-4">
-<button class="clay-btn-primary px-7 py-3.5 text-xs uppercase tracking-wider flex items-center gap-2.5" onclick="switchMainTab('photo')">
-<span class="">Open Biometric Studio</span>
-<i class="fa-solid fa-arrow-right text-[11px]"></i>
-</button>
-<button class="clay-pill px-6 py-3.5 text-xs font-bold text-slate-800 dark:text-slate-200 flex items-center gap-2" onclick="switchMainTab('pdf')">
-<i class="fa-solid fa-shield-check text-primary"></i>
-<span class="">Audit Signed PDF</span>
-</button>
-</div>
-</div>
-<div class="absolute -right-8 -bottom-10 opacity-[0.05] dark:opacity-[0.07] pointer-events-none text-primary dark:text-indigo-400 transform rotate-12">
-<i class="fa-solid fa-cubes-stacked text-[20rem]"></i>
-</div>
-</div>
-<!-- Service Workbenches Directory (4 Tactile Clay Cards) -->
-<div class="space-y-4">
+<section class="space-y-6" id="view-photo">
 <div class="flex items-center justify-between pb-3 border-b border-black/[0.06] dark:border-white/[0.08]">
-<div class="flex items-center gap-2.5">
-<span class="text-lg font-black heading-font text-slate-900 dark:text-white">Tactile Tool Workbenches</span>
-<span class="text-xs font-mono font-bold px-2.5 py-0.5 rounded-full bg-primary/10 text-primary dark:text-indigo-300">4 Stations</span>
-</div>
-<span class="text-xs font-medium text-slate-400">Strict Government Conformance</span>
-</div>
-<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-<!-- Workbench 1: Biometric Photo Studio -->
-<div class="clay-card p-6 flex flex-col justify-between cursor-pointer group" onclick="switchMainTab('photo')">
-<div class="space-y-4">
-<div class="flex items-center justify-between">
-<div class="w-14 h-14 rounded-2xl bg-teal-500 text-white flex items-center justify-center clay-token text-xl group-hover:scale-110 transition-transform shadow-[0_10px_24px_rgba(20,184,166,0.35)]">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-2xl bg-teal-500 text-white flex items-center justify-center text-lg clay-token">
 <i class="fa-solid fa-camera"></i>
 </div>
-<span class="text-[10px] font-mono font-bold px-3 py-1 rounded-full bg-teal-50 dark:bg-teal-950/40 text-teal-700 dark:text-teal-300 border border-teal-200 dark:border-teal-800/40">Station 01</span>
-</div>
-<h3 class="text-lg font-bold text-slate-900 dark:text-white heading-font group-hover:text-primary dark:group-hover:text-indigo-400 transition-colors">
-                                Biometric Photo Studio
-                            </h3>
-<p class="text-xs text-slate-600 dark:text-slate-400 leading-relaxed font-medium">
-                                Strict country specs (India, US, UK, Canada, Schengen), face centering crop guide, backdrop swap, and exact KB clamping.
-                            </p>
-<div class="spec-reveal text-[10px] font-mono font-bold text-teal-600 dark:text-teal-400 flex items-center gap-1.5">
-<i class="fa-solid fa-bolt text-[9px]"></i><span>Max 50KB · Processed in &lt;1s</span>
+<div>
+<h2 class="text-xl font-bold heading-font text-slate-900 dark:text-white">Biometric Photo Studio</h2>
+<p class="text-xs text-slate-500 dark:text-slate-400 font-medium">AI face alignment, background neutralizing, dimension clamping, and strict portal specs.</p>
 </div>
 </div>
-<div class="mt-6 pt-4 border-t border-black/[0.06] dark:border-white/[0.08] flex items-center justify-between text-xs font-bold text-teal-600 dark:text-teal-400">
-<span class="">Open Photo Studio</span>
-<i class="fa-solid fa-arrow-right text-[11px] transform group-hover:translate-x-1.5 transition-transform"></i>
+<button class="clay-pill px-4 py-2 text-xs text-slate-600 dark:text-slate-300 flex items-center gap-2" onclick="switchMainTab('hub')">
+<i class="fa-solid fa-arrow-left text-[10px]"></i> All Stations
+                </button>
+</div>
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-stretch">
+<!-- Left Configuration Column -->
+<div class="lg:col-span-5 space-y-5 flex flex-col">
+<div class="clay-card p-6 space-y-4 flex-1">
+<div class="border-b border-black/[0.05] dark:border-white/[0.08] pb-3 flex items-center justify-between">
+<div>
+<span class="text-[10px] font-mono text-primary dark:text-indigo-400 font-bold uppercase tracking-wider">Parameters</span>
+<h3 class="text-base font-bold heading-font text-slate-900 dark:text-white">Target Portal Standards</h3>
+</div>
+<span class="hot-coffee-badge text-[10px] font-bold px-2.5 py-0.5 rounded-full flex items-center gap-1">
+<i class="fa-solid fa-bolt"></i> Auto-Audit
+                            </span>
+</div>
+<!-- 1. Country Selector with Live Search -->
+<div class="space-y-1.5">
+<label class="text-[11px] font-bold text-slate-700 dark:text-slate-300 uppercase tracking-wide flex items-center justify-between">
+<span class="">1. Country Jurisdiction</span>
+<span class="text-[10px] text-slate-400 font-mono">Live Search</span>
+</label>
+<div class="relative">
+<i class="fa-solid fa-magnifying-glass absolute left-3.5 top-3 text-slate-400 text-xs"></i>
+<select class="w-full bg-[#f4f6fb] dark:bg-[#131724] border border-black/[0.08] dark:border-white/[0.08] rounded-2xl pl-9 pr-4 py-2.5 text-xs text-slate-900 dark:text-white font-semibold focus:ring-2 focus:ring-primary focus:outline-none" id="countrySelect" onchange="onSelectCountryChange(this.value)">
+<option value="india"> India (UPSC, JEE, NEET, Passport, PAN)</option>
+<option value="united_states"> United States (US Visa 2x2, Passport, SAT, DV Lottery)</option>
+<option value="united_kingdom"> United Kingdom (UK Visa 35x45mm, DVLA License)</option>
+<option value="canada"> Canada (Study Permit, PR Card 50x70mm, Express Entry)</option>
+<option value="australia"> Australia (Subclass 500, Visa 35x45mm, Passport)</option>
+<option value="germany"> Germany (Schengen Visa 35x45mm, National D-Visa)</option>
+<option value="china"> China (Tourist L-Visa 33x48mm, Gaokao Exam)</option>
+<option value="japan"> Japan (Certificate of Eligibility, JLPT, Tourist)</option>
+</select>
 </div>
 </div>
-<!-- Workbench 2: Signature Clean-Up -->
-<div class="clay-card p-6 flex flex-col justify-between cursor-pointer group" onclick="switchMainTab('signature')">
-<div class="space-y-4">
+<!-- 2. Document Category -->
+<div class="space-y-1.5">
+<label class="text-[11px] font-bold text-slate-700 dark:text-slate-300 uppercase tracking-wide">2. Service Category</label>
+<div class="grid grid-cols-3 gap-2">
+<button class="clay-pill py-2.5 px-2 text-xs font-bold text-primary dark:text-indigo-400 border-primary/40 flex items-center justify-center gap-1.5" id="srvBtn-exams" onclick="filterServiceType('exams')">
+<i class="fa-solid fa-graduation-cap"></i> Exams
+                                </button>
+<button class="clay-pill py-2.5 px-2 text-xs font-medium text-slate-600 dark:text-slate-400 flex items-center justify-center gap-1.5" id="srvBtn-visa" onclick="filterServiceType('visa')">
+<i class="fa-solid fa-passport"></i> Visa / Pass
+                                </button>
+<button class="clay-pill py-2.5 px-2 text-xs font-medium text-slate-600 dark:text-slate-400 flex items-center justify-center gap-1.5" id="srvBtn-identity" onclick="filterServiceType('identity')">
+<i class="fa-solid fa-id-card"></i> ID / License
+                                </button>
+</div>
+</div>
+<!-- 3. Target Requirement Preset Picker -->
+<div class="space-y-1.5">
+<label class="text-[11px] font-bold text-slate-700 dark:text-slate-300 uppercase tracking-wide">3. Government / Form Preset</label>
+<select class="w-full bg-[#f4f6fb] dark:bg-[#131724] border border-black/[0.08] dark:border-white/[0.08] rounded-2xl px-4 py-2.5 text-xs text-slate-900 dark:text-white font-semibold focus:ring-2 focus:ring-primary focus:outline-none" id="presetSelect" onchange="onPresetSelected(this.value)"><option value="0">UPSC Civil Services (350x450px, 20-50KB)</option><option value="1">JEE Mains / Advanced (80% Face, 10-200KB)</option><option value="2">NEET UG Entrance (With Name &amp; Date Bar, 10-200KB)</option><option value="3">GATE Entrance Exam (Square 400x400, 20-200KB)</option></select>
+</div>
+<!-- Custom Sizing & Format Toggle -->
+<div class="p-4 rounded-2xl bg-[#eef3ff]/60 dark:bg-[#101320] border border-primary/15 space-y-3">
 <div class="flex items-center justify-between">
-<div class="w-14 h-14 rounded-2xl bg-primary text-white flex items-center justify-center clay-token text-xl group-hover:scale-110 transition-transform shadow-[0_10px_24px_rgba(35,51,231,0.35)]">
-<i class="fa-solid fa-pen-nib"></i>
+<span class="text-xs font-bold text-slate-800 dark:text-slate-200 flex items-center gap-2">
+<i class="fa-solid fa-sliders text-primary"></i> Manual Dimensions &amp; Format
+                                </span>
+<input class="w-4 h-4 accent-primary rounded cursor-pointer" id="customDimToggle" onchange="toggleManualDimensions(this.checked)" type="checkbox">
 </div>
-<span class="text-[10px] font-mono font-bold px-3 py-1 rounded-full bg-indigo-50 dark:bg-indigo-950/40 text-primary dark:text-indigo-300 border border-indigo-200 dark:border-indigo-800/40">Station 02</span>
-</div>
-<h3 class="text-lg font-bold text-slate-900 dark:text-white heading-font group-hover:text-primary dark:group-hover:text-indigo-400 transition-colors">
-                                Signature Vector Clean-Up
-                            </h3>
-<p class="text-xs text-slate-600 dark:text-slate-400 leading-relaxed font-medium">
-                                Remove paper noise, adjust ink color (Royal blue, black, custom), straighten, crop, and export transparent PNGs with KB control.
-                            </p>
-<div class="spec-reveal text-[10px] font-mono font-bold text-primary dark:text-indigo-400 flex items-center gap-1.5">
-<i class="fa-solid fa-bolt text-[9px]"></i><span>Max 20KB · Processed in &lt;2s</span>
-</div>
-</div>
-<div class="mt-6 pt-4 border-t border-black/[0.06] dark:border-white/[0.08] flex items-center justify-between text-xs font-bold text-primary dark:text-indigo-400">
-<span class="">Clean Signature</span>
-<i class="fa-solid fa-arrow-right text-[11px] transform group-hover:translate-x-1.5 transition-transform"></i>
-</div>
-</div>
-<!-- Workbench 3: Digital Self-Attestation -->
-<div class="clay-card p-6 flex flex-col justify-between cursor-pointer group" onclick="switchMainTab('attest')">
-<div class="space-y-4">
-<div class="flex items-center justify-between">
-<div class="w-14 h-14 rounded-2xl bg-amber-500 text-white flex items-center justify-center clay-token text-xl group-hover:scale-110 transition-transform shadow-[0_10px_24px_rgba(217,119,6,0.35)]">
-<i class="fa-solid fa-stamp"></i>
-</div>
-<span class="text-[10px] font-mono font-bold px-3 py-1 rounded-full bg-amber-50 dark:bg-amber-950/40 text-amber-700 dark:text-amber-300 border border-amber-200 dark:border-amber-800/40">Station 03</span>
-</div>
-<h3 class="text-lg font-bold text-slate-900 dark:text-white heading-font group-hover:text-primary dark:group-hover:text-indigo-400 transition-colors">
-                                Digital Self-Attestation
-                            </h3>
-<p class="text-xs text-slate-600 dark:text-slate-400 leading-relaxed font-medium">
-                                Drag &amp; drop signature overlay, customizable self-attestation tag, and automatic today's date onto legal ID scans or PDFs.
-                            </p>
-<div class="spec-reveal text-[10px] font-mono font-bold text-amber-600 dark:text-amber-400 flex items-center gap-1.5">
-<i class="fa-solid fa-bolt text-[9px]"></i><span>PDF &amp; JPG · Processed in &lt;2s</span>
-</div>
-</div>
-<div class="mt-6 pt-4 border-t border-black/[0.06] dark:border-white/[0.08] flex items-center justify-between text-xs font-bold text-amber-600 dark:text-amber-400">
-<span class="">Attest Document</span>
-<i class="fa-solid fa-arrow-right text-[11px] transform group-hover:translate-x-1.5 transition-transform"></i>
-</div>
-</div>
-<!-- Workbench 4: PDF & Document Toolkit -->
-<div class="clay-card p-6 flex flex-col justify-between cursor-pointer group" onclick="switchMainTab('pdf')">
-<div class="space-y-4">
-<div class="flex items-center justify-between">
-<div class="w-14 h-14 rounded-2xl bg-sky-600 text-white flex items-center justify-center clay-token text-xl group-hover:scale-110 transition-transform shadow-[0_10px_24px_rgba(2,132,199,0.35)]">
-<i class="fa-solid fa-file-pdf"></i>
-</div>
-<span class="text-[10px] font-mono font-bold px-3 py-1 rounded-full bg-sky-50 dark:bg-sky-950/40 text-sky-700 dark:text-sky-300 border border-sky-200 dark:border-sky-800/40">Station 04</span>
-</div>
-<h3 class="text-lg font-bold text-slate-900 dark:text-white heading-font group-hover:text-primary dark:group-hover:text-indigo-400 transition-colors">
-                                PDF &amp; Document Toolkit
-                            </h3>
-<p class="text-xs text-slate-600 dark:text-slate-400 leading-relaxed font-medium">
-                                Multi-JPG merge into 1-page PDF (Aadhaar / ID Card front+back), targeted PDF compressor, and cryptographic signature audit.
-                            </p>
-<div class="spec-reveal text-[10px] font-mono font-bold text-blue-600 dark:text-blue-400 flex items-center gap-1.5">
-<i class="fa-solid fa-bolt text-[9px]"></i><span>Max 1MB · Processed in &lt;3s</span>
-</div>
-</div>
-<div class="mt-6 pt-4 border-t border-black/[0.06] dark:border-white/[0.08] flex items-center justify-between text-xs font-bold text-blue-600 dark:text-blue-400">
-<span class="">Launch Doc Tools</span>
-<i class="fa-solid fa-arrow-right text-[11px] transform group-hover:translate-x-1.5 transition-transform"></i>
-</div>
-</div>
-</div>
-</div>
-<!-- Bottom Clay Feature Highlights -->
-<div class="grid grid-cols-1 md:grid-cols-3 gap-5 pt-2">
-<div class="clay-card p-5 flex items-start gap-4">
-<div class="w-12 h-12 rounded-2xl bg-primary/10 text-primary dark:text-indigo-400 flex items-center justify-center shrink-0 text-xl clay-token">
-<i class="fa-solid fa-microchip"></i>
+<div class="grid grid-cols-2 gap-3 opacity-40 pointer-events-none transition-opacity" id="customDimInputs">
+<div>
+<label class="text-[10px] font-mono font-bold text-slate-500">Width (px)</label>
+<input class="w-full bg-white dark:bg-[#1a1e30] border border-black/[0.08] dark:border-white/[0.1] px-3 py-1.5 rounded-xl text-xs font-bold" id="manualW" type="number" value="600">
 </div>
 <div>
-<h4 class="text-sm font-bold text-slate-900 dark:text-white heading-font">Pure Client-Side Wasm</h4>
-<p class="text-xs text-slate-600 dark:text-slate-400 mt-1 leading-normal font-medium">Photos and sensitive PDFs never touch any server. Completely compliant with GDPR and legal confidentiality.</p>
+<label class="text-[10px] font-mono font-bold text-slate-500">Height (px)</label>
+<input class="w-full bg-white dark:bg-[#1a1e30] border border-black/[0.08] dark:border-white/[0.1] px-3 py-1.5 rounded-xl text-xs font-bold" id="manualH" type="number" value="600">
+</div>
+<div class="col-span-2">
+<label class="text-[10px] font-mono font-bold text-slate-500">Output Image Format</label>
+<select class="w-full bg-white dark:bg-[#1a1e30] border border-black/[0.08] dark:border-white/[0.1] px-3 py-1.5 rounded-xl text-xs font-bold mt-0.5" id="photoExportFormat">
+<option value="jpeg">JPEG (Universal Government Standard)</option>
+<option value="png">PNG (Lossless High Detail)</option>
+<option value="bmp">BMP (Raw Bitmap)</option>
+<option value="tiff">TIFF (Archival Print Spec)</option>
+</select>
 </div>
 </div>
-<div class="clay-card p-5 flex items-start gap-4">
-<div class="w-12 h-12 rounded-2xl bg-amber-500/10 text-amber-600 dark:text-amber-400 flex items-center justify-center shrink-0 text-xl clay-token">
-<i class="fa-solid fa-mug-hot"></i>
+</div>
+<!-- Background Tone Selector (8 tones + custom) -->
+<div class="space-y-1.5">
+<label class="text-[11px] font-bold text-slate-700 dark:text-slate-300 uppercase tracking-wide">Backdrop Replacement Tone</label>
+<div class="grid grid-cols-4 gap-1.5">
+<button class="clay-pill py-2 text-[11px] font-bold flex items-center justify-center gap-1" onclick="setPhotoBgColor('#ffffff', 'Pure White')">
+<span class="w-2.5 h-2.5 rounded-full border border-slate-300 bg-white"></span> White
+                                </button>
+<button class="clay-pill py-2 text-[11px] font-medium flex items-center justify-center gap-1" onclick="setPhotoBgColor('#e2e8f0', 'Light Gray')">
+<span class="w-2.5 h-2.5 rounded-full bg-slate-300"></span> Gray
+                                </button>
+<button class="clay-pill py-2 text-[11px] font-medium flex items-center justify-center gap-1" onclick="setPhotoBgColor('#bfdbfe', 'Light Blue')">
+<span class="w-2.5 h-2.5 rounded-full bg-blue-300"></span> Lt.Blue
+                                </button>
+<button class="clay-pill py-2 text-[11px] font-medium flex items-center justify-center gap-1" onclick="setPhotoBgColor('#fef3c7', 'Cream')">
+<span class="w-2.5 h-2.5 rounded-full bg-amber-100"></span> Cream
+                                </button>
+<button class="clay-pill py-2 text-[11px] font-medium flex items-center justify-center gap-1" onclick="setPhotoBgColor('#dc2626', 'Red')">
+<span class="w-2.5 h-2.5 rounded-full bg-red-600"></span> Red
+                                </button>
+<button class="clay-pill py-2 text-[11px] font-medium flex items-center justify-center gap-1" onclick="setPhotoBgColor('#1e3a8a', 'Dark Blue')">
+<span class="w-2.5 h-2.5 rounded-full bg-blue-900"></span> Dk.Blue
+                                </button>
+<button class="clay-pill py-2 text-[11px] font-medium flex items-center justify-center gap-1" onclick="setPhotoBgColor('transparent', 'Transparent')">
+<i class="fa-solid fa-border-none text-[10px]"></i> Alpha
+                                </button>
+<label class="clay-pill py-2 text-[11px] font-medium flex items-center justify-center gap-1 cursor-pointer">
+<input class="w-3.5 h-3.5 rounded border-0 bg-transparent cursor-pointer" onchange="setPhotoBgColor(this.value, 'Custom Hex')" type="color" value="#ffffff"> Custom
+                                </label>
+</div>
+</div>
+<!-- Name & Date Caption Bar (Mandatory for Indian Exams like NEET) -->
+<div class="p-3.5 rounded-2xl bg-[#f4f6fb] dark:bg-[#131724] border border-black/[0.06] dark:border-white/[0.08] space-y-2">
+<div class="flex items-center justify-between">
+<span class="text-xs font-bold text-slate-800 dark:text-slate-200 flex items-center gap-1.5">
+<i class="fa-solid fa-font text-teal-600"></i> Bottom Name &amp; Date Bar
+                                </span>
+<input class="w-4 h-4 accent-teal-600 rounded cursor-pointer" id="captionBarToggle" onchange="toggleCaptionBar(this.checked)" type="checkbox">
+</div>
+<div class="grid grid-cols-2 gap-2 hidden" id="captionInputs">
+<input class="bg-white dark:bg-[#1c2033] border border-black/[0.08] dark:border-white/[0.1] rounded-xl px-2.5 py-1.5 text-xs font-semibold" id="captionName" placeholder="Full Name" type="text" value="JOHNATHAN DOE">
+<input class="bg-white dark:bg-[#1c2033] border border-black/[0.08] dark:border-white/[0.1] rounded-xl px-2.5 py-1.5 text-xs font-semibold" id="captionDate" type="date">
+</div>
+</div>
+</div>
+</div>
+<!-- Right Live Preview Canvas & AI Compliance Pre-Flight -->
+<div class="lg:col-span-7 space-y-5 flex flex-col">
+<div class="clay-card p-6 grid grid-cols-1 md:grid-cols-12 gap-6 flex-1">
+<!-- Canvas Viewport with Dimension-Aware Crop Guide -->
+<div class="md:col-span-7 flex flex-col items-center justify-center space-y-4">
+<div class="relative w-64 h-80 clay-inset flex flex-col items-center justify-center overflow-hidden cursor-pointer group" id="dropZone">
+<!-- Hot Coffee Drag Overlay (Part 1 Spec - strictly hidden initially) -->
+<div class="coffee-drag-overlay hidden" id="dragOverlay">
+<div class="w-14 h-14 rounded-full bg-white/20 flex items-center justify-center mb-2 shadow-inner">
+<span class="text-4xl filter drop-shadow animate-coffee"></span>
+</div>
+<p class="coffee-message">Drop it like it's hot coffee!</p>
+<p class="coffee-submessage">Instant local client-side processing</p>
+</div>
+<img alt="Portrait Preview" class="hidden absolute inset-0 w-full h-full object-contain" id="studioPhotoImg">
+<!-- Dimension-aware face centering crop guide overlay -->
+
+<!-- Scanning laser beam indicator -->
+<div class="hidden absolute left-0 right-0 h-1 bg-teal-500  z-20 pointer-events-none animate-bounce" id="studioLaser"></div>
+<!-- Empty State Prompt with Hot Coffee overlay -->
+<div class="text-center p-6 space-y-3 pointer-events-none" id="studioPrompt">
+<div class="w-14 h-14 rounded-2xl bg-teal-500/10 text-teal-600 dark:text-teal-400 mx-auto flex items-center justify-center text-2xl clay-token">
+<i class="fa-solid fa-cloud-arrow-up"></i>
 </div>
 <div>
-<h4 class="text-sm font-bold text-slate-900 dark:text-white heading-font">"Hot Coffee" Drag &amp; Drop</h4>
-<p class="text-xs text-slate-600 dark:text-slate-400 mt-1 leading-normal font-medium">Visual high-fidelity dropzones across all 4 stations with live mime validation and instant canvas binding.</p>
+<p class="text-xs font-bold text-slate-900 dark:text-white">Drop Portrait Photo Here</p>
+<p class="text-[11px] text-slate-400 mt-0.5">or click to browse JPG/PNG</p>
+</div>
+
+</div>
+<input accept="image/*" class="hidden" id="studioFileInput" type="file">
+</div>
+<!-- Target Compression Slider (KB clamping) -->
+<div class="w-full space-y-2 p-3.5 rounded-2xl bg-[#f4f6fb] dark:bg-[#131724] border border-black/[0.06] dark:border-white/[0.08]">
+<div class="flex justify-between text-xs font-bold text-slate-700 dark:text-slate-300">
+<span class="">Target Export Limit (KB Clamping)</span>
+<span class="font-mono font-bold text-primary dark:text-indigo-400" id="studioKbReadout">50 KB</span>
+</div>
+<input class="w-full accent-primary h-2 bg-slate-200 dark:bg-slate-700 rounded-lg cursor-pointer" id="studioKbSlider" max="500" min="10" oninput="document.getElementById('studioKbReadout').innerText = this.value + ' KB'" type="range" value="50">
+<div class="flex justify-between text-[10px] font-mono text-slate-400">
+<span class="">10 KB</span>
+<span class="">Strict Exam Bounds</span>
+<span class="">500 KB</span>
 </div>
 </div>
-<div class="clay-card p-5 flex items-start gap-4">
-<div class="w-12 h-12 rounded-2xl bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 flex items-center justify-center shrink-0 text-xl clay-token">
-<i class="fa-solid fa-qrcode"></i>
 </div>
+<!-- AI Pre-Flight Compliance Panel -->
+<div class="md:col-span-5 flex flex-col justify-between space-y-4">
 <div>
-<h4 class="text-sm font-bold text-slate-900 dark:text-white heading-font">Mobile Relay Pairing</h4>
-<p class="text-xs text-slate-600 dark:text-slate-400 mt-1 leading-normal font-medium">Sign smoothly with your finger or stylus on any smartphone; ink transmits live to your workstation.</p>
+<div class="flex items-center justify-between pb-2.5 border-b border-black/[0.06] dark:border-white/[0.08]">
+<h4 class="text-xs font-black uppercase tracking-wider text-slate-900 dark:text-white">AI Pre-Flight Audit</h4>
+<span class="text-[10px] font-mono font-bold px-2.5 py-0.5 rounded-full bg-emerald-100 dark:bg-emerald-950/60 text-emerald-700 dark:text-emerald-300 border border-emerald-500/30">
+                                        Portal Ready
+                                    </span>
+</div>
+<div class="mt-3.5 space-y-2 text-xs">
+<div class="flex justify-between items-center p-2.5 rounded-xl bg-[#f4f6fb] dark:bg-[#131724]">
+<span class="text-slate-500 dark:text-slate-400 font-medium">Target Size</span>
+<span class="font-mono font-bold text-primary dark:text-indigo-400" id="resTargetKb">Under 50 KB</span>
+</div>
+<div class="flex justify-between items-center p-2.5 rounded-xl bg-[#f4f6fb] dark:bg-[#131724]">
+<span class="text-slate-500 dark:text-slate-400 font-medium">Dimensions</span>
+<span class="font-mono font-bold text-slate-900 dark:text-white" id="resDims">350 × 450 px</span>
+</div>
+<div class="flex justify-between items-center p-2.5 rounded-xl bg-[#f4f6fb] dark:bg-[#131724]">
+<span class="text-slate-500 dark:text-slate-400 font-medium">Face Detected</span>
+<span class="font-bold text-emerald-600 dark:text-emerald-400 flex items-center gap-1" id="resFace">
+<i class="fa-solid fa-circle-check"></i> Center OK
+                                        </span>
+</div>
+<div class="flex justify-between items-center p-2.5 rounded-xl bg-[#f4f6fb] dark:bg-[#131724]">
+<span class="text-slate-500 dark:text-slate-400 font-medium">Head Orientation</span>
+<span class="font-bold text-emerald-600 dark:text-emerald-400 flex items-center gap-1" id="resTilt">
+<i class="fa-solid fa-circle-check"></i> 0° (Level)
+                                        </span>
+</div>
+<div class="flex justify-between items-center p-2.5 rounded-xl bg-[#f4f6fb] dark:bg-[#131724]">
+<span class="text-slate-500 dark:text-slate-400 font-medium">Backdrop Color</span>
+<span class="font-bold text-slate-800 dark:text-slate-200" id="resBg">Pure White</span>
+</div>
+</div>
+</div>
+<div class="space-y-2.5 pt-2">
+<button class="w-full clay-pill py-3 px-4 text-xs font-bold text-slate-800 dark:text-slate-100 flex items-center justify-center gap-2" onclick="runStudioAutoFix()">
+<i class="fa-solid fa-wand-magic-sparkles text-amber-500"></i> AI One-Click Auto-Fix
+                                </button>
+<button class="w-full clay-btn-primary py-3.5 px-4 text-xs uppercase tracking-wider flex items-center justify-center gap-2" onclick="downloadProcessedPhoto()">
+<i class="fa-solid fa-cloud-arrow-down text-sm"></i> Process Image / Export
+                                </button>
+</div>
+</div>
 </div>
 </div>
 </div>

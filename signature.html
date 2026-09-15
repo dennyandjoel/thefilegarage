@@ -113,7 +113,7 @@
 <!-- Sub-Nav Pill Strip (3D Clay switcher for all 4 workbench tools) -->
 <div class="max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 pt-5 pb-3 relative z-10">
 <div class="p-2 rounded-full bg-white/70 dark:bg-[#0c0e18]/80  border border-white/90 dark:border-white/10 flex items-center gap-1.5 overflow-x-auto shadow-[0_12px_32px_-6px_rgba(35,51,231,0.08)] dark:shadow-[0_12px_32px_-6px_rgba(0,0,0,0.8)]">
-<button class="clay-tab active flex-1 justify-center whitespace-nowrap" id="tabNav-hub" onclick="location.href='index.html'">
+<button class="clay-tab flex-1 justify-center whitespace-nowrap" id="tabNav-hub" onclick="location.href='index.html'">
 <span class="text-base"><i class="fa-solid fa-folder-tree" aria-hidden="true"></i></span>
 <span class="">Garage Directory</span>
 </button>
@@ -121,7 +121,7 @@
 <span class="text-base"><i class="fa-solid fa-camera" aria-hidden="true"></i></span>
 <span class="">1. Biometric Photo Studio</span>
 </button>
-<button class="clay-tab flex-1 justify-center whitespace-nowrap" id="tabNav-signature" onclick="location.href='signature.html'">
+<button class="clay-tab active flex-1 justify-center whitespace-nowrap" id="tabNav-signature" onclick="location.href='signature.html'">
 <span class="text-base"><i class="fa-solid fa-pen-nib" aria-hidden="true"></i></span>
 <span class="">2. Signature Clean-Up</span>
 </button>
@@ -137,169 +137,185 @@
 </div>
 <!-- Main Workspace Container -->
 <main class="flex-1 max-w-7xl w-full mx-auto p-4 sm:p-6 lg:p-8 relative z-10 flex flex-col justify-center">
-<section class="space-y-8" id="view-hub">
-<!-- 3D Clay Hero Banner -->
-<div class="clay-card p-8 sm:p-12 relative overflow-hidden">
-<div class="relative z-10 max-w-3xl space-y-6">
-<div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/90 dark:bg-white/10 text-primary dark:text-indigo-300 text-xs font-extrabold border border-white dark:border-white/15 shadow-[0_4px_16px_rgba(35,51,231,0.12)]">
-<span class="text-amber-500"></span> Hot Coffee Drag &amp; Drop · Instant Client-Side Wasm
-                    </div>
-<h1 class="text-3xl sm:text-5xl lg:text-6xl font-black heading-font tracking-tight text-slate-900 dark:text-white leading-[1.08]">
-                        Precision file tuning for strict portals and official documents.
-                    </h1>
-<p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed max-w-2xl font-medium">
-                        Every biometric face alignment, signature extraction, document attestation stamp, and PDF shrinkage executes strictly in your local browser memory. Zero upload latency, 100% privacy.
-                    </p>
-<div class="pt-2 flex flex-wrap items-center gap-4">
-<button class="clay-btn-primary px-7 py-3.5 text-xs uppercase tracking-wider flex items-center gap-2.5" onclick="switchMainTab('photo')">
-<span class="">Open Biometric Studio</span>
-<i class="fa-solid fa-arrow-right text-[11px]"></i>
-</button>
-<button class="clay-pill px-6 py-3.5 text-xs font-bold text-slate-800 dark:text-slate-200 flex items-center gap-2" onclick="switchMainTab('pdf')">
-<i class="fa-solid fa-shield-check text-primary"></i>
-<span class="">Audit Signed PDF</span>
-</button>
-</div>
-</div>
-<div class="absolute -right-8 -bottom-10 opacity-[0.05] dark:opacity-[0.07] pointer-events-none text-primary dark:text-indigo-400 transform rotate-12">
-<i class="fa-solid fa-cubes-stacked text-[20rem]"></i>
-</div>
-</div>
-<!-- Service Workbenches Directory (4 Tactile Clay Cards) -->
-<div class="space-y-4">
+<section class="space-y-6" id="view-signature">
 <div class="flex items-center justify-between pb-3 border-b border-black/[0.06] dark:border-white/[0.08]">
-<div class="flex items-center gap-2.5">
-<span class="text-lg font-black heading-font text-slate-900 dark:text-white">Tactile Tool Workbenches</span>
-<span class="text-xs font-mono font-bold px-2.5 py-0.5 rounded-full bg-primary/10 text-primary dark:text-indigo-300">4 Stations</span>
-</div>
-<span class="text-xs font-medium text-slate-400">Strict Government Conformance</span>
-</div>
-<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-<!-- Workbench 1: Biometric Photo Studio -->
-<div class="clay-card p-6 flex flex-col justify-between cursor-pointer group" onclick="switchMainTab('photo')">
-<div class="space-y-4">
-<div class="flex items-center justify-between">
-<div class="w-14 h-14 rounded-2xl bg-teal-500 text-white flex items-center justify-center clay-token text-xl group-hover:scale-110 transition-transform shadow-[0_10px_24px_rgba(20,184,166,0.35)]">
-<i class="fa-solid fa-camera"></i>
-</div>
-<span class="text-[10px] font-mono font-bold px-3 py-1 rounded-full bg-teal-50 dark:bg-teal-950/40 text-teal-700 dark:text-teal-300 border border-teal-200 dark:border-teal-800/40">Station 01</span>
-</div>
-<h3 class="text-lg font-bold text-slate-900 dark:text-white heading-font group-hover:text-primary dark:group-hover:text-indigo-400 transition-colors">
-                                Biometric Photo Studio
-                            </h3>
-<p class="text-xs text-slate-600 dark:text-slate-400 leading-relaxed font-medium">
-                                Strict country specs (India, US, UK, Canada, Schengen), face centering crop guide, backdrop swap, and exact KB clamping.
-                            </p>
-<div class="spec-reveal text-[10px] font-mono font-bold text-teal-600 dark:text-teal-400 flex items-center gap-1.5">
-<i class="fa-solid fa-bolt text-[9px]"></i><span>Max 50KB · Processed in &lt;1s</span>
-</div>
-</div>
-<div class="mt-6 pt-4 border-t border-black/[0.06] dark:border-white/[0.08] flex items-center justify-between text-xs font-bold text-teal-600 dark:text-teal-400">
-<span class="">Open Photo Studio</span>
-<i class="fa-solid fa-arrow-right text-[11px] transform group-hover:translate-x-1.5 transition-transform"></i>
-</div>
-</div>
-<!-- Workbench 2: Signature Clean-Up -->
-<div class="clay-card p-6 flex flex-col justify-between cursor-pointer group" onclick="switchMainTab('signature')">
-<div class="space-y-4">
-<div class="flex items-center justify-between">
-<div class="w-14 h-14 rounded-2xl bg-primary text-white flex items-center justify-center clay-token text-xl group-hover:scale-110 transition-transform shadow-[0_10px_24px_rgba(35,51,231,0.35)]">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-2xl bg-primary text-white flex items-center justify-center text-lg clay-token">
 <i class="fa-solid fa-pen-nib"></i>
 </div>
-<span class="text-[10px] font-mono font-bold px-3 py-1 rounded-full bg-indigo-50 dark:bg-indigo-950/40 text-primary dark:text-indigo-300 border border-indigo-200 dark:border-indigo-800/40">Station 02</span>
-</div>
-<h3 class="text-lg font-bold text-slate-900 dark:text-white heading-font group-hover:text-primary dark:group-hover:text-indigo-400 transition-colors">
-                                Signature Vector Clean-Up
-                            </h3>
-<p class="text-xs text-slate-600 dark:text-slate-400 leading-relaxed font-medium">
-                                Remove paper noise, adjust ink color (Royal blue, black, custom), straighten, crop, and export transparent PNGs with KB control.
-                            </p>
-<div class="spec-reveal text-[10px] font-mono font-bold text-primary dark:text-indigo-400 flex items-center gap-1.5">
-<i class="fa-solid fa-bolt text-[9px]"></i><span>Max 20KB · Processed in &lt;2s</span>
+<div>
+<h2 class="text-xl font-bold heading-font text-slate-900 dark:text-white">Signature Vector Clean-Up</h2>
+<p class="text-xs text-slate-500 dark:text-slate-400 font-medium">Convert camera snapshots or digital ink into crisp transparent PNGs with custom tones.</p>
 </div>
 </div>
-<div class="mt-6 pt-4 border-t border-black/[0.06] dark:border-white/[0.08] flex items-center justify-between text-xs font-bold text-primary dark:text-indigo-400">
-<span class="">Clean Signature</span>
-<i class="fa-solid fa-arrow-right text-[11px] transform group-hover:translate-x-1.5 transition-transform"></i>
+<button class="clay-pill px-4 py-2 text-xs text-slate-600 dark:text-slate-300 flex items-center gap-2" onclick="switchMainTab('hub')">
+<i class="fa-solid fa-arrow-left text-[10px]"></i> All Stations
+                </button>
+</div>
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-stretch">
+<!-- Left Source Controls & Parameters -->
+<div class="lg:col-span-5 space-y-5 flex flex-col">
+<div class="clay-card p-6 space-y-4 flex-1">
+<div class="border-b border-black/[0.05] dark:border-white/[0.08] pb-3 flex items-center justify-between">
+<span class="text-[10px] font-mono text-primary dark:text-indigo-400 font-bold uppercase tracking-wider">Input Source</span>
+<span class="hot-coffee-badge text-[10px] font-bold px-2.5 py-0.5 rounded-full">Ink Vectorizer</span>
+</div>
+<!-- Source Mode Switch (Upload, Draw, Mobile Relay) -->
+<div class="grid grid-cols-3 gap-2">
+<button class="clay-pill py-2.5 px-2 text-xs font-bold text-primary dark:text-indigo-400 border-primary/40 flex items-center justify-center gap-1.5" id="sigMode-upload" onclick="switchSigInputMode('upload')">
+<i class="fa-solid fa-upload"></i> Upload File
+                            </button>
+<button class="clay-pill py-2.5 px-2 text-xs font-medium text-slate-600 dark:text-slate-400 flex items-center justify-center gap-1.5" id="sigMode-draw" onclick="switchSigInputMode('draw')">
+<i class="fa-solid fa-pen"></i> Draw Pad
+                            </button>
+<button class="clay-pill py-2.5 px-2 text-xs font-medium text-slate-600 dark:text-slate-400 flex items-center justify-center gap-1.5" id="sigMode-mobile" onclick="switchSigInputMode('mobile')">
+<i class="fa-solid fa-qrcode"></i> Mobile Relay
+                            </button>
+</div>
+<!-- 1. Upload Panel with Hot Coffee Dropzone -->
+<div class="space-y-2" id="sigPanel-upload">
+<div class="clay-inset h-32 flex flex-col items-center justify-center cursor-pointer text-center p-4 relative" id="sigDropZone">
+<!-- Hot Coffee Drag Overlay (Part 2 Spec - strictly hidden initially) -->
+<div class="coffee-drag-overlay hidden" id="sigDragOverlay">
+<div class="w-12 h-12 rounded-full bg-white/20 flex items-center justify-center mb-1 shadow-inner">
+<span class="text-3xl filter drop-shadow animate-coffee"></span>
+</div>
+<p class="coffee-message">Drop it like it's hot coffee!</p>
+<p class="coffee-submessage">Instant local client-side processing</p>
+</div>
+<i class="fa-solid fa-file-signature text-2xl text-primary mb-1"></i>
+<span class="text-xs font-bold text-slate-800 dark:text-slate-200">Drag Snapshot or Paper Photo</span>
+<span class="text-[10px] text-slate-400 mt-0.5">JPG, PNG from phone camera</span>
+
+<input accept="image/*" class="hidden" id="sigFileInputField" type="file">
 </div>
 </div>
-<!-- Workbench 3: Digital Self-Attestation -->
-<div class="clay-card p-6 flex flex-col justify-between cursor-pointer group" onclick="switchMainTab('attest')">
-<div class="space-y-4">
-<div class="flex items-center justify-between">
-<div class="w-14 h-14 rounded-2xl bg-amber-500 text-white flex items-center justify-center clay-token text-xl group-hover:scale-110 transition-transform shadow-[0_10px_24px_rgba(217,119,6,0.35)]">
-<i class="fa-solid fa-stamp"></i>
-</div>
-<span class="text-[10px] font-mono font-bold px-3 py-1 rounded-full bg-amber-50 dark:bg-amber-950/40 text-amber-700 dark:text-amber-300 border border-amber-200 dark:border-amber-800/40">Station 03</span>
-</div>
-<h3 class="text-lg font-bold text-slate-900 dark:text-white heading-font group-hover:text-primary dark:group-hover:text-indigo-400 transition-colors">
-                                Digital Self-Attestation
-                            </h3>
-<p class="text-xs text-slate-600 dark:text-slate-400 leading-relaxed font-medium">
-                                Drag &amp; drop signature overlay, customizable self-attestation tag, and automatic today's date onto legal ID scans or PDFs.
-                            </p>
-<div class="spec-reveal text-[10px] font-mono font-bold text-amber-600 dark:text-amber-400 flex items-center gap-1.5">
-<i class="fa-solid fa-bolt text-[9px]"></i><span>PDF &amp; JPG · Processed in &lt;2s</span>
+<!-- 2. Draw Pad Panel -->
+<div class="hidden space-y-2" id="sigPanel-draw">
+<canvas class="w-full h-32 bg-white dark:bg-[#121524] rounded-2xl border border-black/[0.08] dark:border-white/[0.08] cursor-crosshair touch-none shadow-inner" height="150" id="sigLocalDrawPad" width="400"></canvas>
+<div class="flex justify-between items-center text-xs">
+<span class="text-slate-400 font-medium text-[10px]">Use finger, mouse or stylus</span>
+<button class="text-red-500 font-bold hover:underline text-[11px]" onclick="clearSigDrawPad()">Clear Canvas</button>
 </div>
 </div>
-<div class="mt-6 pt-4 border-t border-black/[0.06] dark:border-white/[0.08] flex items-center justify-between text-xs font-bold text-amber-600 dark:text-amber-400">
-<span class="">Attest Document</span>
-<i class="fa-solid fa-arrow-right text-[11px] transform group-hover:translate-x-1.5 transition-transform"></i>
+<!-- 3. Mobile QR Relay Panel (wired to Firebase Firestore realtime relay) -->
+<div class="hidden space-y-3 text-center p-5 bg-[#f4f6fb] dark:bg-[#131724] rounded-2xl" id="sigPanel-mobile">
+<div class="w-32 h-32 bg-white p-2.5 rounded-2xl mx-auto flex items-center justify-center border border-black/[0.08] shadow-md" id="sigMobileQr">
+<i class="fa-solid fa-qrcode text-6xl text-slate-900"></i>
 </div>
+<p class="text-xs font-bold text-slate-900 dark:text-white" id="sigMobileStatus">Generating QR code…</p>
+<p class="text-[11px] text-slate-500 dark:text-slate-400">Scan with your phone camera. Draw your signature there — it syncs here instantly over Firestore.</p>
+<button class="clay-pill px-4 py-1.5 text-[11px] font-bold text-slate-700 dark:text-slate-200" onclick="refreshMobileSignatureSession()">
+<i class="fa-solid fa-rotate-right mr-1"></i> New QR Code
+</button>
 </div>
-<!-- Workbench 4: PDF & Document Toolkit -->
-<div class="clay-card p-6 flex flex-col justify-between cursor-pointer group" onclick="switchMainTab('pdf')">
-<div class="space-y-4">
-<div class="flex items-center justify-between">
-<div class="w-14 h-14 rounded-2xl bg-sky-600 text-white flex items-center justify-center clay-token text-xl group-hover:scale-110 transition-transform shadow-[0_10px_24px_rgba(2,132,199,0.35)]">
-<i class="fa-solid fa-file-pdf"></i>
-</div>
-<span class="text-[10px] font-mono font-bold px-3 py-1 rounded-full bg-sky-50 dark:bg-sky-950/40 text-sky-700 dark:text-sky-300 border border-sky-200 dark:border-sky-800/40">Station 04</span>
-</div>
-<h3 class="text-lg font-bold text-slate-900 dark:text-white heading-font group-hover:text-primary dark:group-hover:text-indigo-400 transition-colors">
-                                PDF &amp; Document Toolkit
-                            </h3>
-<p class="text-xs text-slate-600 dark:text-slate-400 leading-relaxed font-medium">
-                                Multi-JPG merge into 1-page PDF (Aadhaar / ID Card front+back), targeted PDF compressor, and cryptographic signature audit.
-                            </p>
-<div class="spec-reveal text-[10px] font-mono font-bold text-blue-600 dark:text-blue-400 flex items-center gap-1.5">
-<i class="fa-solid fa-bolt text-[9px]"></i><span>Max 1MB · Processed in &lt;3s</span>
-</div>
-</div>
-<div class="mt-6 pt-4 border-t border-black/[0.06] dark:border-white/[0.08] flex items-center justify-between text-xs font-bold text-blue-600 dark:text-blue-400">
-<span class="">Launch Doc Tools</span>
-<i class="fa-solid fa-arrow-right text-[11px] transform group-hover:translate-x-1.5 transition-transform"></i>
+<!-- Ink Tone Selection (Royal Blue, Black, Custom RGB/Hex) -->
+<div class="space-y-2 pt-1">
+<label class="text-[11px] font-bold text-slate-700 dark:text-slate-300 uppercase tracking-wide">Target Ink Color Tone</label>
+<div class="flex items-center gap-2">
+<button class="clay-pill px-3.5 py-2 text-xs font-bold flex items-center gap-2" onclick="setSigInkTone('#0033cc')">
+<span class="w-3 h-3 rounded-full bg-blue-700 shadow-sm"></span> Royal Blue
+                                </button>
+<button class="clay-pill px-3.5 py-2 text-xs font-bold flex items-center gap-2" onclick="setSigInkTone('#0f172a')">
+<span class="w-3 h-3 rounded-full bg-slate-900 shadow-sm"></span> Black Ink
+                                </button>
+<div class="flex items-center gap-2 ml-auto">
+<input class="w-7 h-7 rounded-lg cursor-pointer border-0 bg-transparent" id="sigCustomColor" onchange="setSigInkTone(this.value)" type="color" value="#2333e7">
+<span class="text-[11px] font-mono font-bold text-slate-500">Custom</span>
 </div>
 </div>
 </div>
+<!-- Sliders: Contrast, Brightness, Straighten, Boldness, Despeckle -->
+<div class="space-y-3 pt-2">
+<div class="space-y-1">
+<div class="flex justify-between text-xs font-bold text-slate-700 dark:text-slate-300">
+<span class="">Paper Contrast / Background Whiteness</span>
+<span class="font-mono text-primary" id="sigContrastVal">130%</span>
 </div>
-<!-- Bottom Clay Feature Highlights -->
-<div class="grid grid-cols-1 md:grid-cols-3 gap-5 pt-2">
-<div class="clay-card p-5 flex items-start gap-4">
-<div class="w-12 h-12 rounded-2xl bg-primary/10 text-primary dark:text-indigo-400 flex items-center justify-center shrink-0 text-xl clay-token">
-<i class="fa-solid fa-microchip"></i>
+<input class="w-full accent-primary h-1.5 bg-slate-200 dark:bg-slate-700 rounded-lg cursor-pointer" max="200" min="80" oninput="document.getElementById('sigContrastVal').innerText = this.value + '%'" type="range" value="130">
+</div>
+<div class="space-y-1">
+<div class="flex justify-between text-xs font-bold text-slate-700 dark:text-slate-300">
+<span class="">Threshold &amp; Despeckle Filter</span>
+<span class="font-mono text-primary" id="sigDespeckleVal">Aggressive</span>
+</div>
+<input class="w-full accent-primary h-1.5 bg-slate-200 dark:bg-slate-700 rounded-lg cursor-pointer" max="4" min="1" oninput="document.getElementById('sigDespeckleVal').innerText = ['Low','Medium','Aggressive','Ultra'][this.value-1]" type="range" value="3">
+</div>
+<div class="grid grid-cols-2 gap-3">
+<div>
+<label class="text-[10px] font-bold text-slate-500 uppercase">Straighten Tilt</label>
+<div class="flex items-center gap-1.5 mt-1">
+<input class="w-full accent-primary h-1.5 bg-slate-200 dark:bg-slate-700 rounded-lg" id="sigRotate" max="15" min="-15" type="range" value="0">
+</div>
 </div>
 <div>
-<h4 class="text-sm font-bold text-slate-900 dark:text-white heading-font">Pure Client-Side Wasm</h4>
-<p class="text-xs text-slate-600 dark:text-slate-400 mt-1 leading-normal font-medium">Photos and sensitive PDFs never touch any server. Completely compliant with GDPR and legal confidentiality.</p>
+<label class="text-[10px] font-bold text-slate-500 uppercase">Stroke Weight</label>
+<select class="w-full bg-[#f4f6fb] dark:bg-[#131724] border border-black/[0.08] dark:border-white/[0.1] rounded-xl px-2.5 py-1 text-xs font-semibold mt-1">
+<option>Fine Hairline (0.8px)</option>
+<option selected="">Natural Ballpoint (1.5px)</option>
+<option>Bold Fountain (2.5px)</option>
+</select>
 </div>
 </div>
-<div class="clay-card p-5 flex items-start gap-4">
-<div class="w-12 h-12 rounded-2xl bg-amber-500/10 text-amber-600 dark:text-amber-400 flex items-center justify-center shrink-0 text-xl clay-token">
-<i class="fa-solid fa-mug-hot"></i>
+<!-- Size preset & Auto-crop -->
+<div class="pt-1 flex items-center justify-between">
+<label class="flex items-center gap-2 text-xs font-bold text-slate-700 dark:text-slate-300 cursor-pointer">
+<input checked="" class="w-4 h-4 accent-primary rounded cursor-pointer" id="sigAutoCrop" type="checkbox">
+<span class="">Tight Auto-Crop Borders</span>
+</label>
+<select class="bg-[#f4f6fb] dark:bg-[#131724] border border-black/[0.08] dark:border-white/[0.1] rounded-xl px-2 py-1 text-[11px] font-semibold">
+<option>Bank Mandate (140x60)</option>
+<option>Passport / Visa Spec</option>
+<option>Standard Form Box</option>
+<option>Original Ratio</option>
+</select>
+</div>
+</div>
+</div>
+</div>
+<!-- Right Interactive Before/After Comparison Slider -->
+<div class="lg:col-span-7 space-y-5 flex flex-col">
+<div class="clay-card p-6 space-y-4 flex-1">
+<div class="flex items-center justify-between border-b border-black/[0.05] dark:border-white/[0.08] pb-3">
+<span class="text-[10px] font-mono uppercase tracking-wider text-slate-400 font-bold">Interactive Vector Inspection</span>
+<span class="text-[10px] font-mono font-bold px-2.5 py-0.5 rounded-full bg-primary/10 text-primary dark:text-indigo-300">
+                                Real-Time Alpha Channel
+                            </span>
+</div>
+<!-- Before / After Viewer Container with Checkerboard -->
+<div class="h-64 rounded-2xl p-4 checker-bg relative overflow-hidden border border-black/[0.08] dark:border-white/[0.08] flex items-center justify-center" id="sigComparisonBox">
+<canvas class="max-w-full max-h-full drop-shadow-md" height="200" id="sigPreviewCanvas" width="450"></canvas>
+<span class="text-xs text-slate-500 font-bold" id="sigPlaceholderNote">Draw or upload above to inspect clean vector PNG</span>
+</div>
+<!-- Export Options Strip: Format, File Size Slider -->
+<div class="p-4 rounded-2xl bg-[#f4f6fb] dark:bg-[#131724] border border-black/[0.06] dark:border-white/[0.08] space-y-3">
+<div class="grid grid-cols-2 gap-4 items-center">
+<div>
+<label class="text-[10px] font-bold uppercase text-slate-500">Export Format</label>
+<select class="w-full bg-white dark:bg-[#1e2338] border border-black/[0.08] dark:border-white/[0.1] rounded-xl px-3 py-1.5 text-xs font-bold mt-1" id="sigExportFormat">
+<option value="png">PNG (Transparent Vectorized)</option>
+<option value="webp">WebP (Compressed Alpha)</option>
+<option value="jpeg">JPEG (Solid White Backdrop)</option>
+</select>
 </div>
 <div>
-<h4 class="text-sm font-bold text-slate-900 dark:text-white heading-font">"Hot Coffee" Drag &amp; Drop</h4>
-<p class="text-xs text-slate-600 dark:text-slate-400 mt-1 leading-normal font-medium">Visual high-fidelity dropzones across all 4 stations with live mime validation and instant canvas binding.</p>
+<div class="flex justify-between text-xs font-bold text-slate-700 dark:text-slate-300">
+<span class="">Target Weight</span>
+<span class="font-mono text-primary" id="sigTargetKb">20 KB</span>
+</div>
+<input class="w-full accent-primary h-1.5 bg-slate-200 dark:bg-slate-700 rounded-lg cursor-pointer mt-1" max="100" min="5" oninput="document.getElementById('sigTargetKb').innerText = this.value + ' KB'" type="range" value="20">
 </div>
 </div>
-<div class="clay-card p-5 flex items-start gap-4">
-<div class="w-12 h-12 rounded-2xl bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 flex items-center justify-center shrink-0 text-xl clay-token">
-<i class="fa-solid fa-qrcode"></i>
 </div>
-<div>
-<h4 class="text-sm font-bold text-slate-900 dark:text-white heading-font">Mobile Relay Pairing</h4>
-<p class="text-xs text-slate-600 dark:text-slate-400 mt-1 leading-normal font-medium">Sign smoothly with your finger or stylus on any smartphone; ink transmits live to your workstation.</p>
+<!-- Download & Clipboard Actions -->
+<div class="grid grid-cols-2 gap-3 pt-1">
+<button class="clay-pill py-3 px-4 text-xs font-bold text-slate-800 dark:text-slate-200 flex items-center justify-center gap-2" onclick="copyCleanSignature()">
+<i class="fa-solid fa-copy text-primary"></i> Copy to Clipboard
+                            </button>
+<button class="clay-btn-primary py-3 px-4 text-xs uppercase tracking-wider flex items-center justify-center gap-2" onclick="downloadCleanSignature()">
+<i class="fa-solid fa-download"></i> Download Signature PNG
+                            </button>
+</div>
 </div>
 </div>
 </div>
