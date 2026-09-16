@@ -74,10 +74,7 @@
 <div id="ambientCursorLight"></div>
 <!-- Toast notification stack (replaces alert() popups) -->
 <div id="toastStack"></div>
-<!-- Ambient Clay Floating Glows -->
-<div class="clay-mesh-blob w-96 h-96 -top-20 -left-20 bg-primary-fixed-dim/60 "></div>
-<div class="clay-mesh-blob w-[32rem] h-[32rem] top-1/3 -right-24 bg-primary-fixed/70"></div>
-<div class="clay-mesh-blob w-96 h-96 bottom-10 left-1/4 bg-tertiary-fixed/40"></div>
+
 <!-- Glassmorphic Top Navbar -->
 <header class="glass-bar sticky top-0 z-50 px-4 sm:px-8 py-3.5 transition-colors">
 <div class="max-w-7xl mx-auto flex items-center justify-between gap-3 relative z-10">
@@ -86,18 +83,18 @@
 <img alt="TheFileGarage Logo" class="w-10 h-10 rounded-2xl object-contain  group-hover:scale-105 transition-transform" src="https://lh3.googleusercontent.com/aida/AEtjO1W3oZ7ciG2AHPbXsf1aUgfScmikHtI_i2PxJSYjKOgY-59tLsT6wj_liggvZCZncIuHUBMcikjXTXEdxEufEvi72utf6P3iWWYM-SnNPgRwFBD4_TUBZBXXGz_D2hoc9kRJlDja4m9Ut4t8flDM1HOVwo-f_Qbk9N4mSDJzHL3aZYIdQTHmxk1_FidqgtTP6YBVS3Mgcjg-vD_67Kg_UW95A2YrNAnIOc-mOPRhPsmm1L0W0arv2HjTy2uK">
 <div class="text-left">
 <span class="text-base font-extrabold text-[#1a1a1a] dark:text-white tracking-tight heading-font block leading-none">TheFileGarage</span>
-<span class="text-[10px] font-bold text-primary dark:text-primary ">Your Document Workshop</span>
+<span class="text-[10px] font-bold text-[#1736F5] dark:text-[#1736F5] ">Your Document Workshop</span>
 </div>
 </button>
 <span class="text-[#808080] dark:text-[#1a1a1a] text-sm select-none">/</span>
 <div class="hidden sm:flex items-center gap-2 text-xs font-semibold text-[#808080] dark:text-[#808080]">
 <span class="text-[#1a1a1a] dark:text-white font-bold" id="breadcrumbCurrent">Home</span>
-<span class="px-2 py-0.5 rounded-full text-[10px] font-mono font-bold bg-primary/10 text-primary dark:text-primary border border-primary/20"></span>
+<span class="px-2 py-0.5 rounded-full text-[10px] font-mono font-bold bg-primary/10 text-[#1736F5] dark:text-[#1736F5] border border-primary/20"></span>
 </div>
 </div>
 <div class="flex items-center gap-2.5">
 
-<button class="clay-pill w-10 h-10 flex items-center justify-center text-[#1a1a1a] dark:text-amber-400 transition" id="themeToggleBtn" onclick="toggleGlobalTheme()" title="Toggle Light / Pure Black Dark mode">
+<button class="clay-pill w-10 h-10 flex items-center justify-center text-[#1a1a1a] dark:text-[#FFC709] transition" id="themeToggleBtn" onclick="toggleGlobalTheme()" title="Toggle Light / Pure Black Dark mode">
 <i class="fa-solid fa-moon text-sm" id="themeToggleIcon"></i>
 </button>
 
@@ -134,7 +131,7 @@
 <section class="space-y-6" id="view-attest">
 <div class="flex items-center justify-between pb-3 border-b border-black/[0.06] dark:border-white/[0.08]">
 <div class="flex items-center gap-3">
-<div class="w-10 h-10 rounded-2xl bg-amber-500 text-white flex items-center justify-center text-lg clay-token">
+<div class="w-10 h-10 rounded-2xl bg-[#1736F5] text-white flex items-center justify-center text-lg clay-token">
 <i class="fa-solid fa-stamp"></i>
 </div>
 <div>
@@ -151,7 +148,7 @@
 <div class="col-span-5 space-y-5 flex flex-col">
 <div class="clay-card p-6 space-y-4 flex-1">
 <div class="border-b border-black/[0.05] dark:border-white/[0.08] pb-3 flex items-center justify-between">
-<span class="text-[10px] font-mono text-amber-600 dark:text-amber-400 font-bold uppercase tracking-wider">Stamp Controls</span>
+<span class="text-[10px] font-mono text-[#1736F5] dark:text-[#FFC709] font-bold uppercase tracking-wider">Stamp Controls</span>
 <span class="hot-coffee-badge text-[10px] font-bold px-2.5 py-0.5 rounded-full">PDF &amp; JPG Stamping</span>
 </div>
 <!-- 1. Document Upload Dropzone -->
@@ -281,7 +278,7 @@ Uses the last signature cleaned in the Signature Workshop. If nothing shows up o
 <!-- Draggable & Resizable Signature Overlay Stamp -->
 <div class="absolute bottom-12 right-24 p-2 flex flex-col items-center select-none cursor-move" id="attestInteractiveStamp">
 <img alt="Signature" class="hidden max-h-10 mb-1 object-contain" id="attestSignatureImg"/>
-<span class="text-sm font-extrabold text-blue-700 dark:text-primary font-serif italic" id="previewSignerDisplay">Johnathan Doe</span>
+<span class="text-sm font-extrabold text-blue-700 dark:text-[#1736F5] font-serif italic" id="previewSignerDisplay">Johnathan Doe</span>
 <span class="text-[10px] font-bold text-[#1a1a1a] dark:text-[#DEDEDE] mt-0.5" id="previewAttestTag">Self-Attested for Official Verification</span>
 <span class="text-[9px] font-mono text-[#808080]" id="previewDateDisplay">Date: 2026-09-12</span>
 <img alt="Handwritten self-attestation" class="hidden max-h-10 mt-0.5 object-contain" id="attestHandwrittenImg"/>
@@ -453,8 +450,8 @@ Uses the last signature cleaned in the Signature Workshop. If nothing shows up o
             ["exams", "visa", "identity"].forEach(k => {
                 const btn = document.getElementById("srvBtn-" + k);
                 if (btn) {
-                    btn.classList.toggle("text-primary", k === cat);
-                    btn.classList.toggle("dark:text-primary", k === cat);
+                    btn.classList.toggle("text-[#1736F5]", k === cat);
+                    btn.classList.toggle("dark:text-[#1736F5]", k === cat);
                     btn.classList.toggle("border-primary/40", k === cat);
                     btn.classList.toggle("font-bold", k === cat);
                     btn.classList.toggle("text-[#808080]", k !== cat);
@@ -968,8 +965,8 @@ Uses the last signature cleaned in the Signature Workshop. If nothing shows up o
                 const pnl = document.getElementById("sigPanel-" + m);
                 if (btn) {
                     btn.classList.toggle("border-primary/40", m === mode);
-                    btn.classList.toggle("text-primary", m === mode);
-                    btn.classList.toggle("dark:text-primary", m === mode);
+                    btn.classList.toggle("text-[#1736F5]", m === mode);
+                    btn.classList.toggle("dark:text-[#1736F5]", m === mode);
                     btn.classList.toggle("font-bold", m === mode);
                     btn.classList.toggle("text-[#808080]", m !== mode);
                 }
