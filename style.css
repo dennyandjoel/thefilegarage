@@ -1,13 +1,13 @@
 body {
             font-family: "Baloo 2", -apple-system, BlinkMacSystemFont, sans-serif;
-            background-color: #FBF7F1;
-            color: #2B2620;
+            background-color: #DEDEDE;
+            color: #1a1a1a;
             letter-spacing: -0.015em;
             transition: background-color 0.3s ease, color 0.3s ease;
         }
         .dark body {
-            background-color: #1a1510;
-            color: #f5f0ea;
+            background-color: #1a1a1a;
+            color: #DEDEDE;
         }
         .heading-font {
             font-family: "Baloo 2", sans-serif;
@@ -41,12 +41,12 @@ body {
         }
         @keyframes borderPulse {
             0%, 100% {
-                border-color: rgba(249, 115, 22, 0.4);
-                box-shadow: 0 0 0 0px rgba(249, 115, 22, 0.2);
+                border-color: rgba(23, 54, 245, 0.4);
+                box-shadow: 0 0 0 0px rgba(23, 54, 245, 0.2);
             }
             50% {
-                border-color: rgba(249, 115, 22, 0.8);
-                box-shadow: 0 0 15px 4px rgba(249, 115, 22, 0.3);
+                border-color: rgba(23, 54, 245, 0.8);
+                box-shadow: 0 0 15px 4px rgba(23, 54, 245, 0.3);
             }
         }
         .animate-coffee {
@@ -66,18 +66,18 @@ body {
             padding: 1rem;
             text-align: center;
             pointer-events: none;
-            border: 4px dashed rgb(251 146 60);
+            border: 4px dashed #1736F5;
             border-radius: 0.75rem;
-            background: rgb(234 88 12 / 0.92);
+            background: rgba(23, 54, 245, 0.15);
         }
         .dark .coffee-drag-overlay {
-            background: rgb(124 45 18 / 0.96);
+            background: rgba(23, 54, 245, 0.25);
         }
         .coffee-drag-overlay.hidden {
             display: none !important;
         }
         .coffee-drag-overlay .coffee-message {
-            color: white;
+            color: #1736F5;
             font-size: 0.875rem;
             font-weight: 800;
             letter-spacing: 0.04em;
@@ -86,7 +86,7 @@ body {
         }
         .coffee-drag-overlay .coffee-submessage {
             margin-top: 0.25rem;
-            color: rgb(254 215 170);
+            color: #808080;
             font-size: 0.6875rem;
             font-weight: 500;
             line-height: 1.4;
@@ -96,128 +96,132 @@ body {
         .clay-card {
             background: #ffffff;
             border-radius: 1.5rem;
-            border: 3px solid #2B2620;
+            border: 3px solid #808080;
             box-shadow:
-                0 6px 0 #2B2620;
+                0 6px 0 #808080;
             transition: all 0.15s cubic-bezier(0.34, 1.56, 0.64, 1);
         }
         .clay-card:hover {
             transform: translateY(-2px);
             box-shadow:
-                0 8px 0 #2B2620;
+                0 8px 0 #808080;
         }
         .clay-card:active {
             transform: translateY(2px);
             box-shadow:
-                0 2px 0 #2B2620;
+                0 2px 0 #808080;
         }
         .dark .clay-card {
-            background: #2a2420;
-            border: 3px solid #F0A030;
+            background: #2a2a2a;
+            border: 3px solid #808080;
             box-shadow:
-                0 6px 0 #1a1510;
+                0 6px 0 #808080;
         }
         .dark .clay-card:hover {
             transform: translateY(-2px);
             box-shadow:
-                0 8px 0 #1a1510;
+                0 8px 0 #808080;
         }
         .dark .clay-card:active {
             transform: translateY(2px);
             box-shadow:
-                0 2px 0 #1a1510;
+                0 2px 0 #808080;
         }
 
         /* Duolingo-style Primary Button - Chunky and Playful */
         .clay-btn-primary {
-            background: #F0A030;
-            color: #2B2620;
+            background: #FFC709;
+            color: #1a1a1a;
             border-radius: 1rem;
             font-weight: 700;
             letter-spacing: -0.01em;
             box-shadow:
-                0 5px 0 #c87d1a;
-            border: 3px solid #2B2620;
+                0 5px 0 #808080;
+            border: 3px solid #808080;
             transition: all 0.1s ease;
         }
         .clay-btn-primary:hover {
             transform: translateY(-3px);
             box-shadow:
-                0 8px 0 #c87d1a;
+                0 8px 0 #1736F5;
+            background: #1736F5;
+            color: #ffffff;
+            border-color: #1736F5;
         }
         .clay-btn-primary:active {
             transform: translateY(2px);
             box-shadow:
-                0 2px 0 #c87d1a;
+                0 2px 0 #808080;
         }
 
         /* Duolingo-style Secondary Pill */
         .clay-pill {
             background: #ffffff;
-            border: 3px solid #2B2620;
-            color: #2B2620;
+            border: 3px solid #808080;
+            color: #1a1a1a;
             border-radius: 1rem;
             font-weight: 600;
             box-shadow:
-                0 4px 0 #2B2620;
+                0 4px 0 #808080;
             transition: all 0.1s ease;
         }
         .clay-pill:hover {
-            background: #F0A030;
-            color: #2B2620;
+            background: #1736F5;
+            color: #ffffff;
+            border-color: #1736F5;
             transform: translateY(-2px);
             box-shadow:
-                0 6px 0 #c87d1a;
+                0 6px 0 #1736F5;
         }
         .clay-pill:active {
             transform: translateY(2px);
             box-shadow:
-                0 2px 0 #2B2620;
+                0 2px 0 #808080;
         }
         .dark .clay-pill {
-            background: #2a2420;
-            border: 3px solid #F0A030;
-            color: #F0A030;
+            background: #2a2a2a;
+            border: 3px solid #808080;
+            color: #DEDEDE;
             box-shadow:
-                0 4px 0 #c87d1a;
+                0 4px 0 #808080;
         }
         .dark .clay-pill:hover {
-            background: #F0A030;
-            color: #2B2620;
-            border-color: #F0A030;
+            background: #1736F5;
+            color: #ffffff;
+            border-color: #1736F5;
             box-shadow:
-                0 6px 0 #c87d1a;
+                0 6px 0 #1736F5;
         }
         .dark .clay-pill:active {
             transform: translateY(2px);
             box-shadow:
-                0 2px 0 #c87d1a;
+                0 2px 0 #808080;
         }
 
         /* Duolingo-style Inset Well / Dropzone */
         .clay-inset {
-            background: #f5f0ea;
+            background: #DEDEDE;
             border-radius: 1.5rem;
-            border: 3px dashed #F0A030;
+            border: 3px dashed #FFC709;
             box-shadow:
-                inset 0 3px 0 rgba(43, 38, 32, 0.1);
+                inset 0 3px 0 rgba(128, 128, 128, 0.1);
             transition: all 0.15s ease;
         }
         .clay-inset:hover, .clay-inset.dragover {
-            border-color: #c87d1a;
-            background: #e8e3dd;
+            border-color: #1736F5;
+            background: #f5f5f5;
             border-style: solid;
             transform: scale(1.02);
         }
         .dark .clay-inset {
-            background: #2a2420;
-            border: 3px dashed #F0A030;
+            background: #2a2a2a;
+            border: 3px dashed #FFC709;
             box-shadow:
                 inset 0 3px 0 rgba(0, 0, 0, 0.3);
         }
         .dark .clay-inset:hover, .dark .clay-inset.dragover {
-            border-color: #c87d1a;
-            background: #342e28;
+            border-color: #1736F5;
+            background: #3a3a3a;
             border-style: solid;
             transform: scale(1.02);
         }
@@ -225,11 +229,11 @@ body {
         /* Solid Navigation Bar - No Glass */
         .glass-bar {
             background: #ffffff;
-            border-bottom: 3px solid #2B2620;
+            border-bottom: 3px solid #808080;
         }
         .dark .glass-bar {
-            background: #2a2420;
-            border-bottom: 3px solid #F0A030;
+            background: #2a2a2a;
+            border-bottom: 3px solid #808080;
         }
 
         /* Duolingo-style Navigation Tabs */
@@ -238,7 +242,7 @@ body {
             font-size: 13px;
             font-weight: 700;
             padding: 0.55rem 1.15rem;
-            color: #2B2620;
+            color: #1a1a1a;
             display: inline-flex;
             align-items: center;
             gap: 0.5rem;
@@ -246,58 +250,58 @@ body {
             background: transparent;
         }
         .clay-tab:hover {
-            color: #F0A030;
-            background: #f5f0ea;
+            color: #1736F5;
+            background: #DEDEDE;
         }
         .dark .clay-tab {
-            color: #F0A030;
+            color: #DEDEDE;
         }
         .dark .clay-tab:hover {
             color: #ffffff;
-            background: #3a3430;
+            background: #3a3a3a;
         }
         .clay-tab.active {
-            background: #F0A030;
-            color: #2B2620;
+            background: #FFC709;
+            color: #1a1a1a;
             box-shadow:
-                0 4px 0 #c87d1a;
-            border: 3px solid #2B2620;
+                0 4px 0 #808080;
+            border: 3px solid #808080;
         }
         .dark .clay-tab.active {
-            background: #F0A030;
-            color: #2B2620;
+            background: #FFC709;
+            color: #1a1a1a;
             box-shadow:
-                0 4px 0 #c87d1a;
-            border: 3px solid #1a1510;
+                0 4px 0 #808080;
+            border: 3px solid #808080;
         }
 
         /* Duolingo-style Token Badges */
         .clay-token {
             border-radius: 1.25rem;
             box-shadow:
-                0 4px 0 rgba(0, 0, 0, 0.15);
-            border: 3px solid rgba(0, 0, 0, 0.2);
+                0 4px 0 rgba(128, 128, 128, 0.3);
+            border: 3px solid #808080;
         }
 
         /* Hot Coffee decorative glow overlay */
         .hot-coffee-badge {
             background: #fff;
-            color: #9a3412;
-            box-shadow: inset 0 1px 1px #fff, 0 4px 10px rgba(234, 88, 12, 0.2);
+            color: #1736F5;
+            box-shadow: inset 0 1px 1px #fff, 0 4px 10px rgba(23, 54, 245, 0.2);
         }
         .dark .hot-coffee-badge {
             background: #fff;
-            color: #fdba74;
+            color: #FFC709;
             box-shadow: inset 0 1px 1px rgba(255,255,255,0.1), 0 4px 12px rgba(0,0,0,0.6);
         }
 
         /* Transparency checkerboard background */
         .checker-bg {
-            background-color: #eef2f7;
+            background-color: #DEDEDE;
             background-size: 16px 16px;
         }
         .dark .checker-bg {
-            background-color: #eef2f7;
+            background-color: #DEDEDE;
             background-size: 16px 16px;
         }
 
@@ -338,22 +342,19 @@ body {
             gap: 0.7rem;
             font-size: 0.8rem;
             font-weight: 600;
-            color: #0b1c30;
-            border: 1px solid rgba(67, 83, 255, 0.12);
+            color: #1a1a1a;
+            border: 3px solid #808080;
             box-shadow:
-                8px 12px 28px -6px rgba(35, 51, 231, 0.18),
-                -4px -4px 14px rgba(255, 255, 255, 0.9),
-                inset 1px 1.5px 2px rgba(255, 255, 255, 1);
+                0 6px 0 #808080;
             transform: translateX(120%);
             animation: toastIn 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
         }
         .dark .toast-item {
-            background: #141724;
-            color: #eceaff;
-            border: 1px solid rgba(255, 255, 255, 0.08);
+            background: #2a2a2a;
+            color: #DEDEDE;
+            border: 3px solid #808080;
             box-shadow:
-                8px 12px 28px -6px rgba(0, 0, 0, 0.8),
-                inset 1px 1.5px 2px rgba(255, 255, 255, 0.08);
+                0 6px 0 #808080;
         }
         .toast-item.leaving {
             animation: toastOut 0.3s cubic-bezier(0.4, 0, 1, 1) forwards;
@@ -368,12 +369,12 @@ body {
             justify-content: center;
             font-size: 0.8rem;
         }
-        .toast-item.success .toast-icon { background: rgba(16, 185, 129, 0.12); color: #059669; }
-        .dark .toast-item.success .toast-icon { background: rgba(16, 185, 129, 0.15); color: #34d399; }
+        .toast-item.success .toast-icon { background: rgba(255, 199, 9, 0.2); color: #FFC709; }
+        .dark .toast-item.success .toast-icon { background: rgba(255, 199, 9, 0.2); color: #FFC709; }
         .toast-item.error .toast-icon { background: rgba(239, 68, 68, 0.12); color: #dc2626; }
         .dark .toast-item.error .toast-icon { background: rgba(239, 68, 68, 0.15); color: #f87171; }
-        .toast-item.info .toast-icon { background: rgba(67, 83, 255, 0.12); color: #2333e7; }
-        .dark .toast-item.info .toast-icon { background: rgba(67, 83, 255, 0.15); color: #818cf8; }
+        .toast-item.info .toast-icon { background: rgba(23, 54, 245, 0.2); color: #1736F5; }
+        .dark .toast-item.info .toast-icon { background: rgba(23, 54, 245, 0.2); color: #1736F5; }
         @keyframes toastIn {
             to { transform: translateX(0); }
         }
@@ -386,7 +387,7 @@ body {
         select {
             appearance: none;
             -webkit-appearance: none;
-            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20' fill='none' stroke='%23757688' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M5 7l5 5 5-5'/%3E%3C/svg%3E");
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20' fill='none' stroke='%23808080' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M5 7l5 5 5-5'/%3E%3C/svg%3E");
             background-repeat: no-repeat;
             background-position: right 0.65rem center;
             background-size: 0.9em;
@@ -395,122 +396,125 @@ body {
         }
         select option {
             background-color: #ffffff;
-            color: #0b1c30;
+            color: #1a1a1a;
         }
         .dark select {
-            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20' fill='none' stroke='%238c97b5' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M5 7l5 5 5-5'/%3E%3C/svg%3E");
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20' fill='none' stroke='%23DEDEDE' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M5 7l5 5 5-5'/%3E%3C/svg%3E");
         }
         .dark select option {
-            background-color: #0c0e18;
-            color: #eceaff;
-        }
-        select option:checked,
-        select option:hover {
-            background-color: #4353ff;
-            color: #ffffff;
+            background-color: #2a2a2a;
+            color: #DEDEDE;
         }
 
-        /* Custom claymorphic dropdown (replaces the raw browser <select> popup for
-           the Merger box) so the open menu matches the surrounding clay UI. */
-        .clay-dropdown-btn {
+        /* Photo Station custom-dimension fields */
+        .sig-verification-card, .sig-details-section, .sig-guidance-section { display: contents; }
+        .sig-guidance-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+        }
+        .sig-guidance-column { display: flex; flex-direction: column; gap: 1rem; }
+        .sig-step-list { counter-reset: step; padding-left: 0; list-style: none; display: flex; flex-direction: column; gap: 1.25rem; }
+        .sig-step-list li { counter-increment: step; position: relative; padding-left: 2.5rem; line-height: 1.55; font-size: 0.875rem; font-weight: 500; color: #808080; }
+        .dark .sig-step-list li { color: #808080; }
+        .sig-step-list li::before {
+            content: counter(step);
+            position: absolute;
+            left: 0;
+            top: -0.15rem;
+            width: 1.6rem;
+            height: 1.6rem;
+            background: #FFC709;
+            color: #1a1a1a;
+            border-radius: 50%;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.75rem;
+            font-weight: 700;
+            border: 2px solid #808080;
+            box-shadow: 0 3px 0 #808080;
+        }
+
+        /* PDF Tool Grid: ensure equal heights for side-by-side tool cards,
+           aligned with Signature/Attest single-column side-by-side layout. */
+        .pdf-tool-grid {
+            display: grid;
+        }
+        .pdf-tool-card {
             display: flex;
+            flex-direction: column;
+        }
+
+        /* Custom dropdown styling for clay-dropdowns */
+        .clay-dropdown {
+            position: relative;
+        }
+        .clay-dropdown-btn {
             width: 100%;
+            text-align: left;
+            display: flex;
             align-items: center;
             justify-content: space-between;
-            gap: 0.5rem;
-            cursor: pointer;
+            position: relative;
+            padding-right: 2rem;
         }
-        .clay-dropdown-btn .fa-chevron-down {
-            transition: transform 0.2s ease;
-        }
-        .clay-dropdown.open .clay-dropdown-btn .fa-chevron-down {
-            transform: rotate(180deg);
+        .clay-dropdown-btn::after {
+            content: '';
+            position: absolute;
+            right: 0.65rem;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 0;
+            height: 0;
+            border-left: 4px solid transparent;
+            border-right: 4px solid transparent;
+            border-top: 5px solid currentColor;
         }
         .clay-dropdown-panel {
             position: absolute;
+            top: calc(100% + 0.25rem);
             left: 0;
             right: 0;
-            top: calc(100% + 0.5rem);
-            z-index: 40;
-            padding: 0.4rem;
-            border-radius: 1rem;
             background: #ffffff;
-            border: 1px solid rgba(67, 83, 255, 0.2);
-            box-shadow:
-                0 18px 40px -8px rgba(35, 51, 231, 0.28),
-                inset 1.5px 2px 2px rgba(255, 255, 255, 1);
+            border: 2px solid #808080;
+            border-radius: 0.75rem;
+            box-shadow: 0 6px 0 #808080;
+            z-index: 50;
+            max-height: 200px;
+            overflow-y: auto;
         }
         .dark .clay-dropdown-panel {
-            background: #1b2038;
-            border: 1px solid rgba(67, 83, 255, 0.35);
-            box-shadow:
-                0 18px 44px -6px rgba(0, 0, 0, 0.85),
-                inset 1.5px 1.5px 2px rgba(255, 255, 255, 0.1);
+            background: #2a2a2a;
+            border-color: #808080;
         }
-        .clay-dropdown-option {
-            display: block;
-            width: 100%;
-            text-align: left;
-            padding: 0.5rem 0.65rem;
-            border-radius: 0.65rem;
+        .clay-dropdown-panel div {
+            padding: 0.5rem 0.75rem;
+            cursor: pointer;
             font-size: 0.75rem;
             font-weight: 600;
-            color: #454556;
-            cursor: pointer;
-            transition: all 0.15s ease;
+            color: #1a1a1a;
+            transition: background 0.1s ease;
         }
-        .dark .clay-dropdown-option {
-            color: #c7cbe6;
+        .dark .clay-dropdown-panel div {
+            color: #DEDEDE;
         }
-        .clay-dropdown-option:hover,
-        .clay-dropdown-option.selected {
-            background: #2333e7;
+        .clay-dropdown-panel div:hover {
+            background: #FFC709;
+            color: #1a1a1a;
+        }
+        .clay-dropdown-panel div.selected {
+            background: #1736F5;
             color: #ffffff;
         }
-        .clay-dropdown-option + .clay-dropdown-option {
-            margin-top: 0.2rem;
+
+        /* Active Workspace Tab Panels */
+        .workspace-tab-panel {
+            display: none;
+            opacity: 0;
+            transition: opacity 0.2s ease;
         }
-
-/* Beaver-Inspired Duolingo Color System */
-:root {
-  --tfg-primary: #F0A030;
-  --tfg-primary-strong: #c87d1a;
-  --tfg-surface: #ffffff;
-  --tfg-canvas: #FBF7F1;
-  --tfg-ink: #2B2620;
-  --tfg-muted: #6b615a;
-  --tfg-outline: #2B2620;
-  --tfg-teal: #1B9C85;
-  --tfg-navy: #2E4374;
-  --tfg-radius: 1rem;
-}
-
-*, *::before, *::after { box-sizing: border-box; }
-html { min-width: 320px; }
-body { min-height: 100vh; }
-button, input, select, textarea { font: inherit; }
-button, [role="button"] { -webkit-tap-highlight-color: transparent; }
-:focus-visible { outline: 3px solid #62fae3; outline-offset: 3px; }
-
-.clay-card, .clay-btn-primary, .clay-btn-secondary, .clay-tab,
-.clay-token, .clay-inset, .clay-dropdown-panel, .clay-dropdown-option {
-  background-image: none !important;
-}
-.clay-btn-primary { background-color: var(--tfg-primary) !important; color: var(--tfg-ink) !important; }
-.clay-btn-primary:hover { background-color: var(--tfg-primary-strong) !important; }
-.clay-btn-secondary { background-color: #fff !important; }
-.dark .clay-btn-secondary { background-color: #2a2420 !important; }
-.clay-tab { background-color: transparent; }
-.clay-tab.active { background-color: var(--tfg-primary) !important; color: var(--tfg-ink) !important; }
-.dark .clay-tab.active { background-color: var(--tfg-primary) !important; color: var(--tfg-ink) !important; }
-
-/* Drop feedback remains vivid and functional, without blur or decorative glow. */
-.coffee-drag-overlay { background: rgb(234 88 12 / 0.96) !important; }
-.dark .coffee-drag-overlay { background: rgb(124 45 18 / 0.98) !important; }
-
-@media (prefers-reduced-motion: reduce) {
-  *, *::before, *::after { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; scroll-behavior: auto !important; transition-duration: 0.01ms !important; }
-}
-
-/* Legacy decorative ambient nodes remain in markup for compatibility but are not rendered. */
-.clay-mesh-blob, #ambientCursorLight { display: none !important; }
+        .workspace-tab-panel.active-panel {
+            display: grid;
+            opacity: 1;
+        }

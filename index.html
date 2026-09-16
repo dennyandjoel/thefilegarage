@@ -23,27 +23,27 @@
             theme: {
                 extend: {
                     colors: {
-                        primary: "#F0A030",
-                        "primary-container": "#c87d1a",
-                        "primary-fixed-dim": "#f5d6a8",
-                        secondary: "#F0A030",
-                        "secondary-container": "#c87d1a",
-                        "secondary-fixed": "#f5d6a8",
-                        tertiary: "#2E4374",
-                        "tertiary-fixed": "#7a9bcf",
-                        "tertiary-fixed-dim": "#5b7db3",
-                        surface: "#FBF7F1",
-                        "surface-bright": "#ffffff",
-                        "surface-dim": "#e8e3dd",
-                        "surface-container-lowest": "#ffffff",
-                        "surface-container-low": "#f5f0ea",
-                        "surface-container": "#f0ebe5",
-                        "surface-container-high": "#e8e3dd",
-                        "surface-container-highest": "#e0dbd5",
-                        "on-surface": "#2B2620",
-                        "on-surface-variant": "#6b615a",
-                        outline: "#2B2620",
-                        "outline-variant": "#9d8f85",
+                        primary: '#FFC709',
+                        'primary-container': '#e6b308',
+                        'primary-fixed-dim': '#ffdb5c',
+                        secondary: '#1736F5',
+                        'secondary-container': '#0d24b8',
+                        'secondary-fixed': '#5c77f7',
+                        tertiary: '#808080',
+                        'tertiary-fixed': '#a0a0a0',
+                        'tertiary-fixed-dim': '#909090',
+                        surface: '#DEDEDE',
+                        'surface-bright': '#ffffff',
+                        'surface-dim': '#c0c0c0',
+                        'surface-container-lowest': '#ffffff',
+                        'surface-container-low': '#f0f0f0',
+                        'surface-container': '#e8e8e8',
+                        'surface-container-high': '#d0d0d0',
+                        'surface-container-highest': '#c8c8c8',
+                        'on-surface': '#1a1a1a',
+                        'on-surface-variant': '#808080',
+                        outline: '#808080',
+                        'outline-variant': '#a0a0a0',
                     },
                     borderRadius: {
                         DEFAULT: "1rem",
@@ -85,19 +85,19 @@
 <button class="flex items-center gap-2.5 group p-1 -ml-1 rounded-2xl  transition-all" onclick="location.href='index.html'">
 <img alt="TheFileGarage Logo" class="w-10 h-10 rounded-2xl object-contain  group-hover:scale-105 transition-transform" src="https://lh3.googleusercontent.com/aida/AEtjO1W3oZ7ciG2AHPbXsf1aUgfScmikHtI_i2PxJSYjKOgY-59tLsT6wj_liggvZCZncIuHUBMcikjXTXEdxEufEvi72utf6P3iWWYM-SnNPgRwFBD4_TUBZBXXGz_D2hoc9kRJlDja4m9Ut4t8flDM1HOVwo-f_Qbk9N4mSDJzHL3aZYIdQTHmxk1_FidqgtTP6YBVS3Mgcjg-vD_67Kg_UW95A2YrNAnIOc-mOPRhPsmm1L0W0arv2HjTy2uK">
 <div class="text-left">
-<span class="text-base font-extrabold text-[#2B2620] dark:text-white tracking-tight heading-font block leading-none">TheFileGarage</span>
+<span class="text-base font-extrabold text-[#1a1a1a] dark:text-white tracking-tight heading-font block leading-none">TheFileGarage</span>
 <span class="text-[10px] font-bold text-primary dark:text-primary ">Your Document Workshop</span>
 </div>
 </button>
-<span class="text-[#9d8f85] dark:text-[#2B2620] text-sm select-none">/</span>
-<div class="hidden sm:flex items-center gap-2 text-xs font-semibold text-[#6b615a] dark:text-[#9d8f85]">
-<span class="text-[#2B2620] dark:text-white font-bold" id="breadcrumbCurrent">Home</span>
+<span class="text-[#808080] dark:text-[#1a1a1a] text-sm select-none">/</span>
+<div class="hidden sm:flex items-center gap-2 text-xs font-semibold text-[#808080] dark:text-[#808080]">
+<span class="text-[#1a1a1a] dark:text-white font-bold" id="breadcrumbCurrent">Home</span>
 <span class="px-2 py-0.5 rounded-full text-[10px] font-mono font-bold bg-primary/10 text-primary dark:text-primary border border-primary/20"></span>
 </div>
 </div>
 <div class="flex items-center gap-2.5">
 
-<button class="clay-pill w-10 h-10 flex items-center justify-center text-[#2B2620] dark:text-amber-400 transition" id="themeToggleBtn" onclick="toggleGlobalTheme()" title="Toggle Light / Pure Black Dark mode">
+<button class="clay-pill w-10 h-10 flex items-center justify-center text-[#1a1a1a] dark:text-amber-400 transition" id="themeToggleBtn" onclick="toggleGlobalTheme()" title="Toggle Light / Pure Black Dark mode">
 <i class="fa-solid fa-moon text-sm" id="themeToggleIcon"></i>
 </button>
 
@@ -106,7 +106,7 @@
 </header>
 <!-- Sub-Nav Pill Strip (3D Clay switcher for all 4 workbench tools) -->
 <div class="max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 pt-5 pb-3 relative z-10">
-<div class="p-2 rounded-2xl bg-white dark:bg-[#2a2420] border-3 border-[#2B2620] dark:border-[#F0A030] flex items-center gap-1.5 overflow-x-auto" style="box-shadow: 0 5px 0 #2B2620;">
+<div class="p-2 rounded-2xl bg-white dark:bg-[#2a2a2a] border-3 border-[#808080] flex items-center gap-1.5 overflow-x-auto" style="box-shadow: 0 5px 0 #808080;">
 <button class="clay-tab active flex-1 justify-center whitespace-nowrap" id="tabNav-hub" onclick="location.href='index.html'">
 <span class="text-base"><i class="fa-solid fa-folder-tree" aria-hidden="true"></i></span>
 <span class="">Garage Directory</span>
@@ -135,11 +135,11 @@
 <!-- 3D Clay Hero Banner -->
 <div class="clay-card p-8 sm:p-12 relative overflow-hidden">
 <div class="relative z-10 max-w-3xl space-y-6">
-<div class="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-primary text-[#2B2620] text-sm font-extrabold border-3 border-[#2B2620]" style="box-shadow: 0 4px 0 #c87d1a;">📁 Drop Your Files Here</div>
-<h1 class="text-3xl sm:text-5xl lg:text-6xl font-black heading-font tracking-tight text-[#2B2620] dark:text-white leading-[1.08]">
+<div class="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-primary text-[#1a1a1a] text-sm font-extrabold border-3 border-[#808080]" style="box-shadow: 0 4px 0 #c87d1a;">📁 Drop Your Files Here</div>
+<h1 class="text-3xl sm:text-5xl lg:text-6xl font-black heading-font tracking-tight text-[#1a1a1a] dark:text-white leading-[1.08]">
                         Get your documents ready for applications and forms.
                     </h1>
-<p class="text-sm sm:text-base text-[#6b615a] dark:text-[#9d8f85] leading-relaxed max-w-2xl font-medium">
+<p class="text-sm sm:text-base text-[#808080] dark:text-[#808080] leading-relaxed max-w-2xl font-medium">
                         Fix passport photos, clean signatures, stamp documents, and compress PDFs. All processing happens on your device.
                     </p>
 <div class="pt-2 flex flex-wrap items-center gap-4">
@@ -147,7 +147,7 @@
 <span class="">Start Photo Tool</span>
 <i class="fa-solid fa-arrow-right text-[11px]"></i>
 </button>
-<button class="clay-pill px-6 py-3.5 text-xs font-bold text-[#2B2620] dark:text-[#f5f0ea] flex items-center gap-2" onclick="switchMainTab('pdf')">
+<button class="clay-pill px-6 py-3.5 text-xs font-bold text-[#1a1a1a] dark:text-[#DEDEDE] flex items-center gap-2" onclick="switchMainTab('pdf')">
 <i class="fa-solid fa-shield-check text-primary"></i>
 <span class="">Check PDF</span>
 </button>
@@ -159,10 +159,10 @@
 <div class="space-y-4">
 <div class="flex items-center justify-between pb-3 border-b border-black/[0.06] dark:border-white/[0.08]">
 <div class="flex items-center gap-2.5">
-<span class="text-lg font-black heading-font text-[#2B2620] dark:text-white">Your Tools</span>
+<span class="text-lg font-black heading-font text-[#1a1a1a] dark:text-white">Your Tools</span>
 
 </div>
-<span class="text-xs font-medium text-[#9d8f85]"></span>
+<span class="text-xs font-medium text-[#808080]"></span>
 </div>
 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
 <!-- Workbench 1: Biometric Photo Studio -->
@@ -174,10 +174,10 @@
 </div>
 
 </div>
-<h3 class="text-lg font-bold text-[#2B2620] dark:text-white heading-font ">
+<h3 class="text-lg font-bold text-[#1a1a1a] dark:text-white heading-font ">
                                 Biometric Photo Studio
                             </h3>
-<p class="text-xs text-[#6b615a] dark:text-[#9d8f85] leading-relaxed font-medium">
+<p class="text-xs text-[#808080] dark:text-[#808080] leading-relaxed font-medium">
                                 Perfect passport photos for any country. Resize, center face, change background, compress.
                             </p>
 
@@ -196,10 +196,10 @@
 </div>
 
 </div>
-<h3 class="text-lg font-bold text-[#2B2620] dark:text-white heading-font ">
+<h3 class="text-lg font-bold text-[#1a1a1a] dark:text-white heading-font ">
                                 Signature Vector Clean-Up
                             </h3>
-<p class="text-xs text-[#6b615a] dark:text-[#9d8f85] leading-relaxed font-medium">
+<p class="text-xs text-[#808080] dark:text-[#808080] leading-relaxed font-medium">
                                 Clean up scanned signatures. Remove background, adjust colors, crop perfectly.
                             </p>
 
@@ -218,10 +218,10 @@
 </div>
 
 </div>
-<h3 class="text-lg font-bold text-[#2B2620] dark:text-white heading-font ">
+<h3 class="text-lg font-bold text-[#1a1a1a] dark:text-white heading-font ">
                                 Digital Self-Attestation
                             </h3>
-<p class="text-xs text-[#6b615a] dark:text-[#9d8f85] leading-relaxed font-medium">
+<p class="text-xs text-[#808080] dark:text-[#808080] leading-relaxed font-medium">
                                 Drag &amp; drop signature overlay, customizable self-attestation tag, and automatic today's date onto legal ID scans or PDFs.
                             </p>
 
@@ -240,10 +240,10 @@
 </div>
 
 </div>
-<h3 class="text-lg font-bold text-[#2B2620] dark:text-white heading-font ">
+<h3 class="text-lg font-bold text-[#1a1a1a] dark:text-white heading-font ">
                                 PDF &amp; Document Toolkit
                             </h3>
-<p class="text-xs text-[#6b615a] dark:text-[#9d8f85] leading-relaxed font-medium">
+<p class="text-xs text-[#808080] dark:text-[#808080] leading-relaxed font-medium">
                                 Merge images into PDF, compress files, verify signatures.
                             </p>
 
@@ -378,7 +378,7 @@
             if (isDark) {
                 html.classList.remove("dark");
                 html.classList.add("light");
-                icon.className = "fa-solid fa-moon text-[#2B2620] text-sm";
+                icon.className = "fa-solid fa-moon text-[#1a1a1a] text-sm";
                 localStorage.setItem("theme", "light");
             } else {
                 html.classList.add("dark");
@@ -422,7 +422,7 @@
                     btn.classList.toggle("dark:text-primary", k === cat);
                     btn.classList.toggle("border-primary/40", k === cat);
                     btn.classList.toggle("font-bold", k === cat);
-                    btn.classList.toggle("text-[#6b615a]", k !== cat);
+                    btn.classList.toggle("text-[#808080]", k !== cat);
                 }
             });
             refreshPresetOptions();
@@ -752,8 +752,8 @@
                     btn.classList.toggle("dark:text-amber-300", m === mode);
                     btn.classList.toggle("border-amber-400/50", m === mode);
                     btn.classList.toggle("font-bold", m === mode);
-                    btn.classList.toggle("text-[#6b615a]", m !== mode);
-                    btn.classList.toggle("dark:text-[#9d8f85]", m !== mode);
+                    btn.classList.toggle("text-[#808080]", m !== mode);
+                    btn.classList.toggle("dark:text-[#808080]", m !== mode);
                     btn.classList.toggle("font-medium", m !== mode);
                 }
                 if (pnl) pnl.classList.toggle("hidden", m !== mode);
@@ -783,8 +783,8 @@
                     btn.classList.toggle("dark:text-amber-300", m === mode);
                     btn.classList.toggle("border-amber-400/50", m === mode);
                     btn.classList.toggle("font-bold", m === mode);
-                    btn.classList.toggle("text-[#6b615a]", m !== mode);
-                    btn.classList.toggle("dark:text-[#9d8f85]", m !== mode);
+                    btn.classList.toggle("text-[#808080]", m !== mode);
+                    btn.classList.toggle("dark:text-[#808080]", m !== mode);
                     btn.classList.toggle("font-medium", m !== mode);
                 }
                 if (pnl) pnl.classList.toggle("hidden", m !== mode);
@@ -936,7 +936,7 @@
                     btn.classList.toggle("text-primary", m === mode);
                     btn.classList.toggle("dark:text-primary", m === mode);
                     btn.classList.toggle("font-bold", m === mode);
-                    btn.classList.toggle("text-[#6b615a]", m !== mode);
+                    btn.classList.toggle("text-[#808080]", m !== mode);
                 }
                 if (pnl) pnl.classList.toggle("hidden", m !== mode);
             });
