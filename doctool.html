@@ -79,7 +79,7 @@
 <!-- Ambient cursor-reactive light (dark mode only) -->
 <div id="ambientCursorLight"></div>
 <!-- Ambient Clay Floating Glows -->
-<div class="clay-mesh-blob w-96 h-96 -top-20 -left-20 bg-primary-fixed-dim/60 animate-pulse"></div>
+<div class="clay-mesh-blob w-96 h-96 -top-20 -left-20 bg-primary-fixed-dim/60 "></div>
 <div class="clay-mesh-blob w-[32rem] h-[32rem] top-1/3 -right-24 bg-secondary-fixed/70"></div>
 <div class="clay-mesh-blob w-96 h-96 bottom-10 left-1/4 bg-tertiary-fixed/40"></div>
 
@@ -88,40 +88,37 @@
         <div class="max-w-7xl mx-auto flex items-center justify-between gap-3 relative z-10">
             <div class="flex items-center gap-3 min-w-0">
                 <div class="flex items-center gap-2.5 p-1 -ml-1 min-w-0">
-                    <div class="w-10 h-10 shrink-0 rounded-2xl bg-primary flex items-center justify-center clay-token drop-shadow-[0_4px_8px_rgba(35,51,231,0.03)]">
+                    <div class="w-10 h-10 shrink-0 rounded-2xl bg-primary flex items-center justify-center clay-token ">
                         <i class="fa-solid fa-warehouse text-white text-lg"></i>
                     </div>
                     <div class="text-left min-w-0">
                         <span class="text-base font-extrabold text-slate-900 dark:text-white tracking-tight heading-font block leading-none truncate">TheFileGarage</span>
-                        <span class="text-[10px] font-bold text-primary dark:text-indigo-400 font-mono">100% In-Browser Engine</span>
+                        <span class="text-[10px] font-bold text-primary dark:text-indigo-400 font-mono">Your Document Workshop</span>
                     </div>
                 </div>
                 <span class="hidden sm:inline text-slate-300 dark:text-slate-800 text-sm select-none">/</span>
                 <div class="hidden sm:flex items-center gap-2 text-xs font-semibold text-slate-600 dark:text-slate-300">
-                    <span class="text-slate-900 dark:text-white font-bold">Workspace Directory</span>
-                    <span class="px-2 py-0.5 rounded-full text-[10px] font-mono font-bold bg-primary/10 text-primary dark:text-indigo-300 border border-primary/20">v4.0 Clay</span>
+                    <span class="text-slate-900 dark:text-white font-bold">Home</span>
+                    <span class="px-2 py-0.5 rounded-full text-[10px] font-mono font-bold bg-primary/10 text-primary dark:text-indigo-300 border border-primary/20"></span>
                 </div>
             </div>
 
             <div class="flex items-center gap-2.5 shrink-0">
                 <div class="hidden lg:flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/80 dark:bg-[#121524]/80 border border-white/60 dark:border-white/10 text-[11px] font-bold text-slate-700 dark:text-slate-200 shadow-sm whitespace-nowrap">
-                    <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse shadow-[0_0_10px_rgba(16,185,129,0.9)]"></span>
+                    
                     100% Client-Side Private
                 </div>
                 <button onclick="toggleTheme()" class="clay-pill w-10 h-10 shrink-0 flex items-center justify-center text-slate-700 dark:text-amber-400 transition" title="Toggle Light/Dark Theme">
                     <i id="themeIcon" class="fa-solid fa-moon text-sm"></i>
                 </button>
-                <button class="clay-pill px-4 py-2 text-xs font-bold text-slate-800 dark:text-slate-100 flex items-center gap-1.5 shrink-0" onclick="location.href='index.html'">
-                    <i class="fa-solid fa-grid-2 text-primary"></i>
-                    <span class="hidden sm:inline">All Stations</span>
-                </button>
+                
             </div>
         </div>
     </header>
 
     <!-- Workspace Tab Navigation -->
     <div class="max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 pt-6 relative z-10">
-        <div class="p-2 rounded-full bg-white/70 dark:bg-[#0c0e18]/80  border border-white/90 dark:border-white/10 flex items-center gap-1.5 overflow-x-auto shadow-[0_12px_32px_-6px_rgba(35,51,231,0.08)] dark:shadow-[0_12px_32px_-6px_rgba(0,0,0,0.8)]">
+        <div class="p-2 rounded-2xl bg-white dark:bg-[#2a2420] border-3 border-[#2B2620] dark:border-[#F0A030] flex items-center gap-1.5 overflow-x-auto" style="box-shadow: 0 5px 0 #2B2620;">
             <button onclick="location.href='index.html'" class="workspace-tab-btn clay-tab flex-1 items-center justify-center gap-2 whitespace-nowrap">
                 <span class="text-base"><i class="fa-solid fa-folder-tree" aria-hidden="true"></i></span> Garage Directory
             </button>
@@ -152,10 +149,7 @@
                     <p class="text-xs text-slate-500 dark:text-slate-400 font-medium truncate">Multi-JPG merge, deterministic portal compressor, and digital signature audit.</p>
                 </div>
             </div>
-            <button class="clay-pill px-4 py-2 text-xs font-bold text-slate-600 dark:text-slate-300 flex items-center gap-2 shrink-0" onclick="location.href='index.html'">
-                <i class="fa-solid fa-arrow-left text-[10px]"></i>
-                <span class="hidden sm:inline">All Stations</span>
-            </button>
+            
         </div>
     </div>
 
@@ -182,8 +176,8 @@
                     <span class="text-xs font-bold text-slate-500 dark:text-slate-400">Drag &amp; drop one or more JPEGs or PNGs</span>
                     <input type="file" id="multiJpgInput" accept="image/*" multiple class="hidden">
                     <div id="multiJpgDragOverlay" class="hidden coffee-drag-overlay">
-                        <div class="animate-coffee mb-2 text-4xl"></div>
-                        <span class="coffee-message">Drop it like it's hot coffee!</span>
+                        <div class=" mb-2 text-4xl"></div>
+                        <span class="coffee-message">Drop Your File Here!</span>
                         <span class="coffee-submessage">Your files remain secure and processed locally</span>
                     </div>
                 </div>
@@ -254,8 +248,8 @@
                     <span class="text-xs font-bold text-slate-500 dark:text-slate-400">Drag &amp; drop a PDF file</span>
                     <input type="file" id="pdfCompressInput" accept="application/pdf" class="hidden">
                     <div id="pdfCompressDragOverlay" class="hidden coffee-drag-overlay">
-                        <div class="animate-coffee mb-2 text-4xl"></div>
-                        <span class="coffee-message">Drop it like it's hot coffee!</span>
+                        <div class=" mb-2 text-4xl"></div>
+                        <span class="coffee-message">Drop Your File Here!</span>
                         <span class="coffee-submessage">Your files remain secure and processed locally</span>
                     </div>
                 </div>
@@ -304,8 +298,8 @@
                             <span class="text-xs font-bold text-slate-500 dark:text-slate-400">Drag &amp; drop a signed PDF</span>
                             <input type="file" id="sigVerifyInput" accept="application/pdf" class="hidden">
                             <div id="sigVerifyDragOverlay" class="hidden coffee-drag-overlay">
-                                <div class="animate-coffee mb-2 text-4xl"></div>
-                                <span class="coffee-message">Drop it like it's hot coffee!</span>
+                                <div class=" mb-2 text-4xl"></div>
+                                <span class="coffee-message">Drop Your File Here!</span>
                                 <span class="coffee-submessage">Your files remain secure and processed locally</span>
                             </div>
                         </div>

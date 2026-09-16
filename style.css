@@ -309,18 +309,7 @@ body {
             transform: scale(0.96) translateY(0);
         }
 
-        /* Hover spec-reveal strip on workbench cards */
-        .spec-reveal {
-            max-height: 0;
-            opacity: 0;
-            overflow: hidden;
-            transition: max-height 0.3s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.25s ease, margin-top 0.3s ease;
-        }
-        .group:hover .spec-reveal {
-            max-height: 2.5rem;
-            opacity: 1;
-            margin-top: 0.5rem;
-        }
+        /* Removed spec-reveal hover animations for cleaner Duolingo style */
 
         /* Toast notifications — replaces alert() popups */
         #toastStack {
