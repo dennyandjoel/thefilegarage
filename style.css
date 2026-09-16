@@ -163,11 +163,11 @@ body {
             transition: all 0.1s ease;
         }
         .clay-pill:hover {
-            background: #1B9C85;
-            color: #ffffff;
+            background: #F0A030;
+            color: #2B2620;
             transform: translateY(-2px);
             box-shadow:
-                0 6px 0 #156e5e;
+                0 6px 0 #c87d1a;
         }
         .clay-pill:active {
             transform: translateY(2px);
@@ -182,16 +182,16 @@ body {
                 0 4px 0 #c87d1a;
         }
         .dark .clay-pill:hover {
-            background: #1B9C85;
-            color: #ffffff;
-            border-color: #1B9C85;
+            background: #F0A030;
+            color: #2B2620;
+            border-color: #F0A030;
             box-shadow:
-                0 6px 0 #156e5e;
+                0 6px 0 #c87d1a;
         }
         .dark .clay-pill:active {
             transform: translateY(2px);
             box-shadow:
-                0 2px 0 #156e5e;
+                0 2px 0 #c87d1a;
         }
 
         /* Duolingo-style Inset Well / Dropzone */
@@ -204,7 +204,7 @@ body {
             transition: all 0.15s ease;
         }
         .clay-inset:hover, .clay-inset.dragover {
-            border-color: #1B9C85;
+            border-color: #c87d1a;
             background: #e8e3dd;
             border-style: solid;
             transform: scale(1.02);
@@ -216,7 +216,7 @@ body {
                 inset 0 3px 0 rgba(0, 0, 0, 0.3);
         }
         .dark .clay-inset:hover, .dark .clay-inset.dragover {
-            border-color: #1B9C85;
+            border-color: #c87d1a;
             background: #342e28;
             border-style: solid;
             transform: scale(1.02);
