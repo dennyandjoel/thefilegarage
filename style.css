@@ -1,17 +1,18 @@
 body {
-            font-family: "Plus Jakarta Sans", -apple-system, BlinkMacSystemFont, sans-serif;
-            background-color: #f4f6fb;
-            color: #0b1c30;
+            font-family: "Inter", -apple-system, BlinkMacSystemFont, sans-serif;
+            background-color: #FBF7F1;
+            color: #2B2620;
             letter-spacing: -0.01em;
             transition: background-color 0.3s ease, color 0.3s ease;
         }
         .dark body {
-            background-color: #000000;
-            color: #eceaff;
+            background-color: #1a1510;
+            color: #f5f0ea;
         }
         .heading-font {
-            font-family: "Space Grotesk", sans-serif;
-            letter-spacing: -0.025em;
+            font-family: "Baloo 2", sans-serif;
+            letter-spacing: -0.015em;
+            font-weight: 700;
         }
 
         /* Self-Attestation QR panels only: the qrcode@1.5.3 library draws its
@@ -87,202 +88,191 @@ body {
             line-height: 1.4;
         }
 
-        /* Claymorphic 3D Pillow Surfaces */
+        /* Duolingo-style Claymorphic Surfaces - Solid Colors with Chunky Shadows */
         .clay-card {
             background: #ffffff;
-            border-radius: 1.75rem;
-            border: 1px solid rgba(255, 255, 255, 0.9);
-            box-shadow: 
-                14px 18px 36px -8px rgba(67, 83, 255, 0.08),
-                -8px -8px 24px rgba(255, 255, 255, 0.95),
-                inset 1px 2px 2px rgba(255, 255, 255, 1),
-                inset -3px -4px 7px rgba(35, 51, 231, 0.04);
-            transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+            border-radius: 1.5rem;
+            border: 3px solid #2B2620;
+            box-shadow:
+                0 6px 0 #2B2620;
+            transition: all 0.15s cubic-bezier(0.34, 1.56, 0.64, 1);
         }
         .clay-card:hover {
-            box-shadow: 
-                18px 24px 44px -8px rgba(67, 83, 255, 0.12),
-                -10px -10px 28px rgba(255, 255, 255, 1),
-                inset 1px 2px 2px rgba(255, 255, 255, 1),
-                inset -3px -4px 7px rgba(35, 51, 231, 0.06);
+            transform: translateY(-2px);
+            box-shadow:
+                0 8px 0 #2B2620;
+        }
+        .clay-card:active {
+            transform: translateY(2px);
+            box-shadow:
+                0 2px 0 #2B2620;
         }
         .dark .clay-card {
-            background: #0d0f17;
-            border: 1px solid rgba(255, 255, 255, 0.07);
-            box-shadow: 
-                14px 18px 40px -4px rgba(0, 0, 0, 0.8),
-                -6px -6px 20px rgba(255, 255, 255, 0.02),
-                inset 1px 1.5px 1.5px rgba(255, 255, 255, 0.09),
-                inset -3px -4px 8px rgba(0, 0, 0, 0.9);
+            background: #2a2420;
+            border: 3px solid #F0A030;
+            box-shadow:
+                0 6px 0 #1a1510;
         }
         .dark .clay-card:hover {
-            border-color: rgba(67, 83, 255, 0.25);
-            box-shadow: 
-                16px 22px 48px -4px rgba(0, 0, 0, 0.9),
-                inset 1px 2px 2px rgba(255, 255, 255, 0.12),
-                inset -3px -4px 8px rgba(0, 0, 0, 0.95);
+            transform: translateY(-2px);
+            box-shadow:
+                0 8px 0 #1a1510;
+        }
+        .dark .clay-card:active {
+            transform: translateY(2px);
+            box-shadow:
+                0 2px 0 #1a1510;
         }
 
-        /* Tactile Clay Button (Primary) */
+        /* Duolingo-style Primary Button - Chunky and Playful */
         .clay-btn-primary {
-            background: #2333e7;
-            color: #ffffff;
-            border-radius: 9999px;
+            background: #F0A030;
+            color: #2B2620;
+            border-radius: 1rem;
             font-weight: 700;
             letter-spacing: -0.01em;
-            box-shadow: 
-                0 10px 24px -4px rgba(35, 51, 231, 0.45),
-                inset 0 2px 3px rgba(255, 255, 255, 0.5),
-                inset 0 -3px 4px rgba(10, 20, 150, 0.5);
-            border: 1px solid rgba(255, 255, 255, 0.3);
-            transition: all 0.2s cubic-bezier(0.2, 0.8, 0.2, 1);
+            box-shadow:
+                0 5px 0 #c87d1a;
+            border: 3px solid #2B2620;
+            transition: all 0.1s ease;
         }
         .clay-btn-primary:hover {
-            transform: translateY(-2px);
-            box-shadow: 
-                0 14px 30px -4px rgba(35, 51, 231, 0.55),
-                inset 0 2.5px 4px rgba(255, 255, 255, 0.6),
-                inset 0 -3px 5px rgba(10, 20, 150, 0.6);
+            transform: translateY(-3px);
+            box-shadow:
+                0 8px 0 #c87d1a;
         }
         .clay-btn-primary:active {
-            transform: translateY(1px) scale(0.98);
-            box-shadow: 
-                0 4px 10px rgba(35, 51, 231, 0.4),
-                inset 0 3px 5px rgba(10, 20, 150, 0.6);
+            transform: translateY(2px);
+            box-shadow:
+                0 2px 0 #c87d1a;
         }
 
-        /* Tactile Clay Secondary Pill */
+        /* Duolingo-style Secondary Pill */
         .clay-pill {
             background: #ffffff;
-            border: 1px solid rgba(67, 83, 255, 0.12);
-            color: #0b1c30;
-            border-radius: 9999px;
+            border: 3px solid #2B2620;
+            color: #2B2620;
+            border-radius: 1rem;
             font-weight: 600;
-            box-shadow: 
-                4px 6px 14px rgba(67, 83, 255, 0.06),
-                -3px -3px 10px rgba(255, 255, 255, 0.9),
-                inset 1px 1.5px 2px rgba(255, 255, 255, 0.9),
-                inset -2px -2px 4px rgba(0, 0, 0, 0.03);
-            transition: all 0.2s ease;
+            box-shadow:
+                0 4px 0 #2B2620;
+            transition: all 0.1s ease;
         }
         .clay-pill:hover {
-            background: #f8f9ff;
-            color: #2333e7;
-            transform: translateY(-1px);
-            border-color: rgba(35, 51, 231, 0.3);
-            box-shadow: 
-                6px 10px 18px rgba(67, 83, 255, 0.1),
-                -4px -4px 12px rgba(255, 255, 255, 1);
+            background: #1B9C85;
+            color: #ffffff;
+            transform: translateY(-2px);
+            box-shadow:
+                0 6px 0 #156e5e;
+        }
+        .clay-pill:active {
+            transform: translateY(2px);
+            box-shadow:
+                0 2px 0 #2B2620;
         }
         .dark .clay-pill {
-            background: #141724;
-            border: 1px solid rgba(255, 255, 255, 0.08);
-            color: #eceaff;
-            box-shadow: 
-                4px 6px 16px rgba(0, 0, 0, 0.6),
-                -2px -2px 8px rgba(255, 255, 255, 0.02),
-                inset 1px 1px 2px rgba(255, 255, 255, 0.08),
-                inset -2px -2px 4px rgba(0, 0, 0, 0.5);
+            background: #2a2420;
+            border: 3px solid #F0A030;
+            color: #F0A030;
+            box-shadow:
+                0 4px 0 #c87d1a;
         }
         .dark .clay-pill:hover {
-            background: #1b2033;
-            color: #bdc2ff;
-            border-color: rgba(67, 83, 255, 0.4);
+            background: #1B9C85;
+            color: #ffffff;
+            border-color: #1B9C85;
+            box-shadow:
+                0 6px 0 #156e5e;
+        }
+        .dark .clay-pill:active {
+            transform: translateY(2px);
+            box-shadow:
+                0 2px 0 #156e5e;
         }
 
-        /* Inset Well / Dropzone (Hot Coffee Area) */
+        /* Duolingo-style Inset Well / Dropzone */
         .clay-inset {
-            background: #eef3ff;
+            background: #f5f0ea;
             border-radius: 1.5rem;
-            border: 2px dashed rgba(67, 83, 255, 0.25);
-            box-shadow: 
-                inset 4px 5px 12px rgba(35, 51, 231, 0.08),
-                inset -4px -5px 12px rgba(255, 255, 255, 0.9),
-                0 2px 4px rgba(255, 255, 255, 0.8);
-            transition: all 0.25s ease;
+            border: 3px dashed #F0A030;
+            box-shadow:
+                inset 0 3px 0 rgba(43, 38, 32, 0.1);
+            transition: all 0.15s ease;
         }
         .clay-inset:hover, .clay-inset.dragover {
-            border-color: #2333e7;
-            background: #e6edff;
-            box-shadow: 
-                inset 5px 7px 16px rgba(35, 51, 231, 0.14),
-                inset -5px -7px 16px rgba(255, 255, 255, 1);
+            border-color: #1B9C85;
+            background: #e8e3dd;
+            border-style: solid;
+            transform: scale(1.02);
         }
         .dark .clay-inset {
-            background: #08090f;
-            border: 2px dashed rgba(67, 83, 255, 0.3);
-            box-shadow: 
-                inset 5px 6px 16px rgba(0, 0, 0, 0.9),
-                inset -2px -2px 8px rgba(255, 255, 255, 0.03),
-                0 1px 2px rgba(255, 255, 255, 0.02);
+            background: #2a2420;
+            border: 3px dashed #F0A030;
+            box-shadow:
+                inset 0 3px 0 rgba(0, 0, 0, 0.3);
         }
         .dark .clay-inset:hover, .dark .clay-inset.dragover {
-            border-color: #4353ff;
-            background: #0a0d18;
-            box-shadow: 
-                inset 6px 8px 20px rgba(0, 0, 0, 0.95),
-                inset -2px -2px 10px rgba(67, 83, 255, 0.1);
+            border-color: #1B9C85;
+            background: #342e28;
+            border-style: solid;
+            transform: scale(1.02);
         }
 
-        /* Opaque clay top and sub navigation */
+        /* Solid Navigation Bar - No Glass */
         .glass-bar {
-            background: rgba(255, 255, 255, 0.75);
-            border-bottom: 1px solid rgba(255, 255, 255, 0.8);
+            background: #ffffff;
+            border-bottom: 3px solid #2B2620;
         }
         .dark .glass-bar {
-            background: #0d0f17;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+            background: #2a2420;
+            border-bottom: 3px solid #F0A030;
         }
 
-        /* 3D Navigation Tab Buttons */
+        /* Duolingo-style Navigation Tabs */
         .clay-tab {
-            border-radius: 9999px;
+            border-radius: 1rem;
             font-size: 13px;
             font-weight: 700;
             padding: 0.55rem 1.15rem;
-            color: #5b657e;
+            color: #2B2620;
             display: inline-flex;
             align-items: center;
             gap: 0.5rem;
-            transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+            transition: all 0.1s ease;
+            background: transparent;
         }
         .clay-tab:hover {
-            color: #2333e7;
-            background: rgba(255, 255, 255, 0.6);
+            color: #F0A030;
+            background: #f5f0ea;
         }
         .dark .clay-tab {
-            color: #8c97b5;
+            color: #F0A030;
         }
         .dark .clay-tab:hover {
-            color: #eceaff;
-            background: rgba(255, 255, 255, 0.05);
+            color: #ffffff;
+            background: #3a3430;
         }
         .clay-tab.active {
-            background: #ffffff;
-            color: #2333e7;
-            box-shadow: 
-                6px 8px 18px rgba(35, 51, 231, 0.15),
-                -4px -4px 12px rgba(255, 255, 255, 1),
-                inset 1.5px 2px 2px rgba(255, 255, 255, 1);
-            border: 1px solid rgba(67, 83, 255, 0.2);
+            background: #F0A030;
+            color: #2B2620;
+            box-shadow:
+                0 4px 0 #c87d1a;
+            border: 3px solid #2B2620;
         }
         .dark .clay-tab.active {
-            background: #1b2038;
-            color: #bdc2ff;
-            box-shadow: 
-                6px 8px 22px rgba(0, 0, 0, 0.8),
-                inset 1.5px 1.5px 2px rgba(255, 255, 255, 0.12),
-                inset -2px -2px 6px rgba(0, 0, 0, 0.6);
-            border: 1px solid rgba(67, 83, 255, 0.35);
+            background: #F0A030;
+            color: #2B2620;
+            box-shadow:
+                0 4px 0 #c87d1a;
+            border: 3px solid #1a1510;
         }
 
-        /* 3D Token Badges */
+        /* Duolingo-style Token Badges */
         .clay-token {
             border-radius: 1.25rem;
-            box-shadow: 
-                6px 8px 16px -2px rgba(0, 0, 0, 0.08),
-                inset 1.5px 2px 2px rgba(255, 255, 255, 0.6),
-                inset -2px -3px 4px rgba(0, 0, 0, 0.1);
+            box-shadow:
+                0 4px 0 rgba(0, 0, 0, 0.15);
+            border: 3px solid rgba(0, 0, 0, 0.2);
         }
 
         /* Hot Coffee decorative glow overlay */
@@ -488,16 +478,18 @@ body {
             margin-top: 0.2rem;
         }
 
-/* Shared TheFileGarage finish — preserved selectors, consolidated visual language */
+/* Beaver-Inspired Duolingo Color System */
 :root {
-  --tfg-primary: #2333e7;
-  --tfg-primary-strong: #1726c5;
-  --tfg-surface: #f8f9ff;
-  --tfg-canvas: #f4f6fb;
-  --tfg-ink: #0b1c30;
-  --tfg-muted: #5b657e;
-  --tfg-outline: #c5c5d9;
-  --tfg-radius: 1.25rem;
+  --tfg-primary: #F0A030;
+  --tfg-primary-strong: #c87d1a;
+  --tfg-surface: #ffffff;
+  --tfg-canvas: #FBF7F1;
+  --tfg-ink: #2B2620;
+  --tfg-muted: #6b615a;
+  --tfg-outline: #2B2620;
+  --tfg-teal: #1B9C85;
+  --tfg-navy: #2E4374;
+  --tfg-radius: 1rem;
 }
 
 *, *::before, *::after { box-sizing: border-box; }
@@ -511,13 +503,13 @@ button, [role="button"] { -webkit-tap-highlight-color: transparent; }
 .clay-token, .clay-inset, .clay-dropdown-panel, .clay-dropdown-option {
   background-image: none !important;
 }
-.clay-btn-primary { background-color: var(--tfg-primary) !important; }
+.clay-btn-primary { background-color: var(--tfg-primary) !important; color: var(--tfg-ink) !important; }
 .clay-btn-primary:hover { background-color: var(--tfg-primary-strong) !important; }
 .clay-btn-secondary { background-color: #fff !important; }
-.dark .clay-btn-secondary { background-color: #141724 !important; }
+.dark .clay-btn-secondary { background-color: #2a2420 !important; }
 .clay-tab { background-color: transparent; }
-.clay-tab.active { background-color: #fff !important; }
-.dark .clay-tab.active { background-color: #1b2038 !important; }
+.clay-tab.active { background-color: var(--tfg-primary) !important; color: var(--tfg-ink) !important; }
+.dark .clay-tab.active { background-color: var(--tfg-primary) !important; color: var(--tfg-ink) !important; }
 
 /* Drop feedback remains vivid and functional, without blur or decorative glow. */
 .coffee-drag-overlay { background: rgb(234 88 12 / 0.96) !important; }
