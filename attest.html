@@ -23,27 +23,27 @@
             theme: {
                 extend: {
                     colors: {
-                        primary: '#FFC709',
-                        'primary-container': '#e6b308',
-                        'primary-fixed-dim': '#ffdb5c',
-                        secondary: '#1736F5',
-                        'secondary-container': '#0d24b8',
-                        'secondary-fixed': '#5c77f7',
-                        tertiary: '#808080',
-                        'tertiary-fixed': '#a0a0a0',
-                        'tertiary-fixed-dim': '#909090',
-                        surface: '#DEDEDE',
-                        'surface-bright': '#ffffff',
-                        'surface-dim': '#c0c0c0',
-                        'surface-container-lowest': '#ffffff',
-                        'surface-container-low': '#f0f0f0',
-                        'surface-container': '#e8e8e8',
-                        'surface-container-high': '#d0d0d0',
-                        'surface-container-highest': '#c8c8c8',
-                        'on-surface': '#1a1a1a',
-                        'on-surface-variant': '#808080',
-                        outline: '#808080',
-                        'outline-variant': '#a0a0a0',
+                        primary: "#2333e7",
+                        "primary-container": "#4353ff",
+                        "primary-fixed-dim": "#bdc2ff",
+                        secondary: "#a43073",
+                        "secondary-container": "#fc79bd",
+                        "secondary-fixed": "#ffd8e7",
+                        tertiary: "#005d53",
+                        "tertiary-fixed": "#62fae3",
+                        "tertiary-fixed-dim": "#3cddc7",
+                        surface: "#f8f9ff",
+                        "surface-bright": "#f8f9ff",
+                        "surface-dim": "#cbdbf5",
+                        "surface-container-lowest": "#ffffff",
+                        "surface-container-low": "#eff4ff",
+                        "surface-container": "#e5eeff",
+                        "surface-container-high": "#dce9ff",
+                        "surface-container-highest": "#d3e4fe",
+                        "on-surface": "#0b1c30",
+                        "on-surface-variant": "#454556",
+                        outline: "#757688",
+                        "outline-variant": "#c5c5d9",
                     },
                     borderRadius: {
                         DEFAULT: "1rem",
@@ -53,8 +53,8 @@
                         full: "9999px",
                     },
                     fontFamily: {
-                        sans: ["Baloo 2", "sans-serif"],
-                        heading: ["Baloo 2", "sans-serif"],
+                        sans: ["Plus Jakarta Sans", "Inter", "sans-serif"],
+                        heading: ["Space Grotesk", "Plus Jakarta Sans", "sans-serif"],
                         mono: ["JetBrains Mono", "ui-monospace", "monospace"],
                     },
                 },
@@ -65,45 +65,46 @@
 <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet">
 <link href="https://fonts.googleapis.com" rel="preconnect">
 <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect">
-<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;500;600;700;800&amp;family=JetBrains+Mono:wght@400;500;600&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;family=Space+Grotesk:wght@500;600;700&amp;family=JetBrains+Mono:wght@400;500;600&amp;display=swap" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
 
 </head>
-<body class="min-h-screen flex flex-col antialiased relative overflow-x-hidden selection:bg-primary/100 selection:text-white">
+<body class="min-h-screen flex flex-col antialiased relative overflow-x-hidden selection:bg-indigo-500 selection:text-white">
 <!-- Ambient cursor-reactive light (dark mode only) -->
 <div id="ambientCursorLight"></div>
 <!-- Toast notification stack (replaces alert() popups) -->
 <div id="toastStack"></div>
-
+<!-- Ambient Clay Floating Glows -->
+<div class="clay-mesh-blob w-96 h-96 -top-20 -left-20 bg-primary-fixed-dim/60 animate-pulse"></div>
+<div class="clay-mesh-blob w-[32rem] h-[32rem] top-1/3 -right-24 bg-secondary-fixed/70"></div>
+<div class="clay-mesh-blob w-96 h-96 bottom-10 left-1/4 bg-tertiary-fixed/40"></div>
 <!-- Glassmorphic Top Navbar -->
 <header class="glass-bar sticky top-0 z-50 px-4 sm:px-8 py-3.5 transition-colors">
 <div class="max-w-7xl mx-auto flex items-center justify-between gap-3 relative z-10">
 <div class="flex items-center gap-3">
-<button class="flex items-center gap-2.5 group p-1 -ml-1 rounded-2xl  transition-all" onclick="location.href='index.html'">
-<img alt="TheFileGarage Logo" class="w-10 h-10 rounded-2xl object-contain  group-hover:scale-105 transition-transform" src="https://lh3.googleusercontent.com/aida/AEtjO1W3oZ7ciG2AHPbXsf1aUgfScmikHtI_i2PxJSYjKOgY-59tLsT6wj_liggvZCZncIuHUBMcikjXTXEdxEufEvi72utf6P3iWWYM-SnNPgRwFBD4_TUBZBXXGz_D2hoc9kRJlDja4m9Ut4t8flDM1HOVwo-f_Qbk9N4mSDJzHL3aZYIdQTHmxk1_FidqgtTP6YBVS3Mgcjg-vD_67Kg_UW95A2YrNAnIOc-mOPRhPsmm1L0W0arv2HjTy2uK">
+<button class="flex items-center gap-2.5 group p-1 -ml-1 rounded-2xl hover:opacity-90 transition-all" onclick="location.href='index.html'">
+<img alt="TheFileGarage Logo" class="w-10 h-10 rounded-2xl object-contain drop-shadow-[0_4px_8px_rgba(35,51,231,0.03)] group-hover:scale-105 transition-transform" src="https://lh3.googleusercontent.com/aida/AEtjO1W3oZ7ciG2AHPbXsf1aUgfScmikHtI_i2PxJSYjKOgY-59tLsT6wj_liggvZCZncIuHUBMcikjXTXEdxEufEvi72utf6P3iWWYM-SnNPgRwFBD4_TUBZBXXGz_D2hoc9kRJlDja4m9Ut4t8flDM1HOVwo-f_Qbk9N4mSDJzHL3aZYIdQTHmxk1_FidqgtTP6YBVS3Mgcjg-vD_67Kg_UW95A2YrNAnIOc-mOPRhPsmm1L0W0arv2HjTy2uK">
 <div class="text-left">
-<span class="text-base font-extrabold text-[#1a1a1a] dark:text-white tracking-tight heading-font block leading-none">TheFileGarage</span>
-<span class="text-[10px] font-bold text-[#1736F5] dark:text-[#1736F5] ">Your Document Workshop</span>
+<span class="text-base font-extrabold text-slate-900 dark:text-white tracking-tight heading-font block leading-none">TheFileGarage</span>
 </div>
 </button>
-<span class="text-[#808080] dark:text-[#1a1a1a] text-sm select-none">/</span>
-<div class="hidden sm:flex items-center gap-2 text-xs font-semibold text-[#808080] dark:text-[#808080]">
-<span class="text-[#1a1a1a] dark:text-white font-bold" id="breadcrumbCurrent">Home</span>
-<span class="px-2 py-0.5 rounded-full text-[10px] font-mono font-bold bg-primary/10 text-[#1736F5] dark:text-[#1736F5] border border-primary/20"></span>
+<span class="text-slate-300 dark:text-slate-800 text-sm select-none">/</span>
+<div class="hidden sm:flex items-center gap-2 text-xs font-semibold text-slate-600 dark:text-slate-300">
 </div>
 </div>
 <div class="flex items-center gap-2.5">
-
-<button class="clay-pill w-10 h-10 flex items-center justify-center text-[#1a1a1a] dark:text-[#FFC709] transition" id="themeToggleBtn" onclick="toggleGlobalTheme()" title="Toggle Light / Pure Black Dark mode">
+<div class="hidden lg:flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-emerald-500 text-[11px] font-bold text-white">
+<span class="">100% Client-Side Private</span>
+</div>
+<button class="theme-toggle-btn clay-pill w-10 h-10 flex items-center justify-center text-slate-700 dark:text-amber-400 transition" id="themeToggleBtn" onclick="toggleGlobalTheme()" title="Toggle Light / Pure Black Dark mode">
 <i class="fa-solid fa-moon text-sm" id="themeToggleIcon"></i>
 </button>
-
 </div>
 </div>
 </header>
 <!-- Sub-Nav Pill Strip (3D Clay switcher for all 4 workbench tools) -->
 <div class="max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 pt-5 pb-3 relative z-10">
-<div class="p-2 rounded-2xl bg-white dark:bg-[#2a2a2a] border-3 border-[#808080] flex items-center gap-1.5 overflow-x-auto" style="box-shadow: 0 5px 0 #808080;">
+<div class="p-2 rounded-full bg-white/70 dark:bg-[#0c0e18]/80  border border-white/90 dark:border-white/10 flex items-center gap-1.5 overflow-x-auto shadow-[0_12px_32px_-6px_rgba(35,51,231,0.08)] dark:shadow-[0_12px_32px_-6px_rgba(0,0,0,0.8)]">
 <button class="clay-tab flex-1 justify-center whitespace-nowrap" id="tabNav-hub" onclick="location.href='index.html'">
 <span class="text-base"><i class="fa-solid fa-folder-tree" aria-hidden="true"></i></span>
 <span class="">Garage Directory</span>
@@ -121,7 +122,7 @@
 <span class="">3. Self-Attestation</span>
 </button>
 <button class="clay-tab flex-1 justify-center whitespace-nowrap" id="tabNav-pdf" onclick="location.href='doctool.html'">
-<span class="text-base"><i class="fa-solid fa-box-archive" aria-hidden="true"></i></span>
+<span class="text-base"><i class="fa-solid fa-file-pdf" aria-hidden="true"></i></span>
 <span class="">4. PDF &amp; Doc Toolkit</span>
 </button>
 </div>
@@ -131,16 +132,16 @@
 <section class="space-y-6" id="view-attest">
 <div class="flex items-center justify-between pb-3 border-b border-black/[0.06] dark:border-white/[0.08]">
 <div class="flex items-center gap-3">
-<div class="w-10 h-10 rounded-2xl bg-[#1736F5] text-white flex items-center justify-center text-lg clay-token">
-<i class="fa-solid fa-stamp"></i>
+<div class="w-10 h-10 rounded-2xl bg-amber-500 text-white flex items-center justify-center text-lg clay-token">
+<i class="fa-solid fa-file-signature"></i>
 </div>
 <div>
-<h2 class="text-xl font-bold heading-font text-[#1a1a1a] dark:text-white">Digital Self-Attestation Workshop</h2>
-<p class="text-xs text-[#808080] dark:text-[#808080] font-medium">Overlay cleaned signatures, verified legal tags, and today's timestamp directly onto ID scans.</p>
+<h2 class="text-xl font-bold heading-font text-slate-900 dark:text-white">Digital Self-Attestation Workshop</h2>
+<p class="text-xs text-slate-500 dark:text-slate-400 font-medium">Overlay cleaned signatures, verified legal tags, and today's timestamp directly onto ID scans.</p>
 </div>
 </div>
-<button class="clay-pill px-4 py-2 text-xs text-[#808080] dark:text-[#808080] flex items-center gap-2" onclick="switchMainTab('hub')">
-<i class="fa-solid fa-arrow-left text-[10px]"></i> 
+<button class="clay-pill px-4 py-2 text-xs text-slate-600 dark:text-slate-300 flex items-center gap-2" onclick="switchMainTab('hub')">
+<i class="fa-solid fa-arrow-left text-[10px]"></i> All Stations
                 </button>
 </div>
 <div class="grid grid-cols-12 gap-6 items-stretch">
@@ -148,92 +149,92 @@
 <div class="col-span-5 space-y-5 flex flex-col">
 <div class="clay-card p-6 space-y-4 flex-1">
 <div class="border-b border-black/[0.05] dark:border-white/[0.08] pb-3 flex items-center justify-between">
-<span class="text-[10px] font-mono text-[#1736F5] dark:text-[#FFC709] font-bold uppercase tracking-wider">Stamp Controls</span>
+<span class="text-[10px] font-mono text-amber-600 dark:text-amber-400 font-bold uppercase tracking-wider">Stamp Controls</span>
 <span class="hot-coffee-badge text-[10px] font-bold px-2.5 py-0.5 rounded-full">PDF &amp; JPG Stamping</span>
 </div>
 <!-- 1. Document Upload Dropzone -->
 <div class="space-y-1.5">
-<label class="text-[11px] font-bold text-[#1a1a1a] dark:text-[#808080] uppercase tracking-wide">1. Base Document Scan</label>
+<label class="text-[11px] font-bold text-slate-700 dark:text-slate-300 uppercase tracking-wide">1. Base Document Scan</label>
 <div class="clay-inset h-28 flex flex-col items-center justify-center cursor-pointer text-center p-3 relative overflow-hidden" id="docDropZone">
 <!-- Hot Coffee Drag Overlay (Part 3 Spec - strictly hidden initially) -->
 <div class="coffee-drag-overlay hidden" id="attestDragOverlay">
 <div class="w-12 h-12 rounded-full bg-white/20 flex items-center justify-center mb-1 shadow-inner">
-<span class="text-3xl filter drop-shadow "></span>
+<span class="text-3xl filter drop-shadow animate-coffee"></span>
 </div>
 <p class="coffee-message">Drop it like it's hot coffee!</p>
 <p class="coffee-submessage">Instant local client-side processing</p>
 </div>
 <i class="fa-solid fa-file-pdf text-xl text-amber-500 mb-1"></i>
-<span class="text-xs font-bold text-[#1a1a1a] dark:text-[#DEDEDE]">Upload Marksheet, License, or Certificate</span>
-<span class="text-[10px] text-[#808080]">PDF, JPG, PNG accepted</span>
+<span class="text-xs font-bold text-slate-800 dark:text-slate-200">Upload Marksheet, License, or Certificate</span>
+<span class="text-[10px] text-slate-400">PDF, JPG, PNG accepted</span>
 <input accept="image/*,application/pdf" class="hidden" id="attestDocInput" type="file">
 </div>
 </div>
 <!-- 2. Signature Source Choice for Overlay -->
 <div class="space-y-3">
-<label class="text-[11px] font-bold text-[#1a1a1a] dark:text-[#808080] uppercase tracking-wide">2. Signature Source</label>
+<label class="text-[11px] font-bold text-slate-700 dark:text-slate-300 uppercase tracking-wide">2. Signature Source</label>
 <div class="grid grid-cols-3 gap-2">
 <button class="clay-pill py-2 text-xs font-bold text-amber-700 dark:text-amber-300 border-amber-400/50" id="attestSigMode-auto" onclick="switchAttestSigMode('auto')">Auto-Cleaned</button>
-<button class="clay-pill py-2 text-xs font-medium text-[#808080] dark:text-[#808080]" id="attestSigMode-file" onclick="switchAttestSigMode('file')">From File</button>
-<button class="clay-pill py-2 text-xs font-medium text-[#808080] dark:text-[#808080]" id="attestSigMode-mobile" onclick="switchAttestSigMode('mobile')">Mobile Pad</button>
+<button class="clay-pill py-2 text-xs font-medium text-slate-600 dark:text-slate-400" id="attestSigMode-file" onclick="switchAttestSigMode('file')">From File</button>
+<button class="clay-pill py-2 text-xs font-medium text-slate-600 dark:text-slate-400" id="attestSigMode-mobile" onclick="switchAttestSigMode('mobile')">Mobile Pad</button>
 </div>
 <!-- Auto-Cleaned: pulls whatever is currently sitting in the Signature Workshop preview -->
-<div class="p-3 rounded-xl bg-[#f0f0f0] dark:bg-[#2a2a2a] text-[11px] text-[#808080] dark:text-[#808080] font-medium" id="attestSigPanel-auto">
+<div class="p-3 rounded-xl bg-[#f4f6fb] dark:bg-[#131724] text-[11px] text-slate-500 dark:text-slate-400 font-medium" id="attestSigPanel-auto">
 Uses the last signature cleaned in the Signature Workshop. If nothing shows up on the stamp, clean one there first.
 </div>
 <!-- From File: simple upload, independent of the Part 2 uploader -->
 <div class="hidden space-y-2" id="attestSigPanel-file">
 <div class="clay-inset h-20 flex flex-col items-center justify-center cursor-pointer text-center p-2" id="attestSigFileDropZone">
 <i class="fa-solid fa-upload text-sm text-amber-500 mb-1"></i>
-<span class="text-[11px] font-bold text-[#1a1a1a] dark:text-[#808080]">Upload signature image</span>
+<span class="text-[11px] font-bold text-slate-700 dark:text-slate-300">Upload signature image</span>
 <input accept="image/*" class="hidden" id="attestSigFileInput" type="file">
 </div>
 </div>
 <!-- Mobile Pad: its own independent QR/Firestore session, separate from the Part 2 one -->
-<div class="hidden p-4 bg-[#f0f0f0] dark:bg-[#2a2a2a] rounded-2xl" id="attestSigPanel-mobile">
+<div class="hidden p-4 bg-[#f4f6fb] dark:bg-[#131724] rounded-2xl" id="attestSigPanel-mobile">
 <div class="flex flex-row items-center gap-4">
 <div class="w-[216px] h-[216px] shrink-0 bg-white p-2 rounded-2xl flex items-center justify-center border border-black/[0.08] shadow-md" id="attestMobileQr">
-<i class="fa-solid fa-qrcode text-5xl text-[#1a1a1a]"></i>
+<i class="fa-solid fa-qrcode text-5xl text-slate-900"></i>
 </div>
 <div class="flex-1 text-left space-y-1.5">
-<p class="text-xs font-bold text-[#1a1a1a] dark:text-white" id="attestMobileStatus">Generating QR code…</p>
-<p class="text-[11px] text-[#808080] dark:text-[#808080]">Scan with your phone to draw and send the attestation signature.</p>
-<button class="clay-pill px-4 py-1.5 text-[11px] font-bold text-[#1a1a1a] dark:text-[#DEDEDE]" onclick="refreshAttestMobileSession()">
+<p class="text-xs font-bold text-slate-900 dark:text-white" id="attestMobileStatus">Generating QR code…</p>
+<p class="text-[11px] text-slate-500 dark:text-slate-400">Scan with your phone to draw and send the attestation signature.</p>
+<button class="clay-pill px-4 py-1.5 text-[11px] font-bold text-slate-700 dark:text-slate-200" onclick="refreshAttestMobileSession()">
 <i class="fa-solid fa-rotate-right mr-1"></i> New QR Code
 </button>
 </div>
 </div>
 </div>
 <!-- 3. Self-Attested Block Configuration -->
-<div class="p-4 rounded-2xl bg-[#f0f0f0] dark:bg-[#2a2a2a] border border-black/[0.06] dark:border-white/[0.08] space-y-3">
+<div class="p-4 rounded-2xl bg-[#f4f6fb] dark:bg-[#131724] border border-black/[0.06] dark:border-white/[0.08] space-y-3">
 <div class="flex items-center justify-between">
-<label class="flex items-center gap-2 text-xs font-bold text-[#1a1a1a] dark:text-white cursor-pointer">
+<label class="flex items-center gap-2 text-xs font-bold text-slate-900 dark:text-white cursor-pointer">
 <input checked="" class="w-4 h-4 accent-amber-500 rounded cursor-pointer" id="attestTextCheck" type="checkbox">
 <span class="">Include "Self-Attested" Label</span>
 </label>
-<span class="text-[10px] font-mono text-[#808080]">Editable Stamp</span>
+<span class="text-[10px] font-mono text-slate-400">Editable Stamp</span>
 </div>
 <div class="grid grid-cols-2 gap-2">
 <button class="clay-pill py-1.5 text-[11px] font-bold text-amber-700 dark:text-amber-300 border-amber-400/50" id="attestBlockMode-typed" onclick="switchAttestBlockMode('typed')">Typed</button>
-<button class="clay-pill py-1.5 text-[11px] font-medium text-[#808080] dark:text-[#808080]" id="attestBlockMode-handwritten" onclick="switchAttestBlockMode('handwritten')">Write by Hand (Mobile)</button>
+<button class="clay-pill py-1.5 text-[11px] font-medium text-slate-600 dark:text-slate-400" id="attestBlockMode-handwritten" onclick="switchAttestBlockMode('handwritten')">Write by Hand (Mobile)</button>
 </div>
 <div class="space-y-2" id="attestBlockPanel-typed">
-<input class="w-full bg-white dark:bg-[#1d2236] border border-black/[0.08] dark:border-white/[0.1] rounded-xl px-3 py-2 text-xs font-bold text-[#1a1a1a] dark:text-white" id="attestNameField" oninput="updateStampPreview()" type="text" value="Self-Attested for Official Verification">
+<input class="w-full bg-white dark:bg-[#1d2236] border border-black/[0.08] dark:border-white/[0.1] rounded-xl px-3 py-2 text-xs font-bold text-slate-900 dark:text-white" id="attestNameField" oninput="updateStampPreview()" type="text" value="Self-Attested for Official Verification">
 <div class="grid grid-cols-2 gap-2">
-<input class="bg-white dark:bg-[#1d2236] border border-black/[0.08] dark:border-white/[0.1] rounded-xl px-3 py-1.5 text-xs font-semibold text-[#1a1a1a] dark:text-white" id="attestSignerName" oninput="updateStampPreview()" placeholder="Full Name" type="text" value="Johnathan Doe">
-<input class="bg-white dark:bg-[#1d2236] border border-black/[0.08] dark:border-white/[0.1] rounded-xl px-3 py-1.5 text-xs font-semibold text-[#1a1a1a] dark:text-white" id="attestDateField" oninput="updateStampPreview()" type="date">
+<input class="bg-white dark:bg-[#1d2236] border border-black/[0.08] dark:border-white/[0.1] rounded-xl px-3 py-1.5 text-xs font-semibold text-slate-900 dark:text-white" id="attestSignerName" oninput="updateStampPreview()" placeholder="Full Name" type="text" value="Johnathan Doe">
+<input class="bg-white dark:bg-[#1d2236] border border-black/[0.08] dark:border-white/[0.1] rounded-xl px-3 py-1.5 text-xs font-semibold text-slate-900 dark:text-white" id="attestDateField" oninput="updateStampPreview()" type="date">
 </div>
 </div>
 <!-- Handwritten Self-Attested + Date block, via the same Mobile Pad relay pattern -->
 <div class="hidden p-4 bg-white dark:bg-[#1d2236] rounded-2xl" id="attestBlockPanel-handwritten">
 <div class="flex flex-row items-center gap-3">
 <div class="w-[216px] h-[216px] shrink-0 bg-white p-2 rounded-2xl flex items-center justify-center border border-black/[0.08] shadow-md" id="attestHandwrittenQr">
-<i class="fa-solid fa-qrcode text-4xl text-[#1a1a1a]"></i>
+<i class="fa-solid fa-qrcode text-4xl text-slate-900"></i>
 </div>
 <div class="flex-1 text-left space-y-1.5">
-<p class="text-xs font-bold text-[#1a1a1a] dark:text-white" id="attestHandwrittenStatus">Generating QR code…</p>
-<p class="text-[11px] text-[#808080] dark:text-[#808080]">Scan, then write "Self-Attested" plus today's date by hand.</p>
-<button class="clay-pill px-4 py-1.5 text-[11px] font-bold text-[#1a1a1a] dark:text-[#DEDEDE]" onclick="refreshAttestHandwrittenSession()">
+<p class="text-xs font-bold text-slate-900 dark:text-white" id="attestHandwrittenStatus">Generating QR code…</p>
+<p class="text-[11px] text-slate-500 dark:text-slate-400">Scan, then write "Self-Attested" plus today's date by hand.</p>
+<button class="clay-pill px-4 py-1.5 text-[11px] font-bold text-slate-700 dark:text-slate-200" onclick="refreshAttestHandwrittenSession()">
 <i class="fa-solid fa-rotate-right mr-1"></i> New QR Code
 </button>
 </div>
@@ -249,7 +250,7 @@ Uses the last signature cleaned in the Signature Workshop. If nothing shows up o
 <div class="col-span-7 space-y-5 flex flex-col">
 <div class="clay-card p-6 space-y-3 flex-1">
 <div class="flex items-center justify-between border-b border-black/[0.05] dark:border-white/[0.08] pb-2.5">
-<span class="text-[10px] font-mono text-[#808080] uppercase tracking-wider font-bold">Interactive Stamping Stage</span>
+<span class="text-[10px] font-mono text-slate-400 uppercase tracking-wider font-bold">Interactive Stamping Stage</span>
 <span class="text-[10px] font-mono font-bold px-2.5 py-0.5 rounded-full bg-amber-100 dark:bg-amber-950/60 text-amber-800 dark:text-amber-300">
                                 Drag &amp; Position Freely
                             </span>
@@ -259,7 +260,7 @@ Uses the last signature cleaned in the Signature Workshop. If nothing shows up o
 <!-- Real uploaded document preview (image or PDF) — hidden until a file is loaded -->
 <div class="hidden absolute inset-4 flex items-center justify-center" id="attestDocPreviewContainer"></div>
 <!-- Simulated A4 Document Base (placeholder shown until a real document is uploaded) -->
-<div class="w-72 h-96 bg-white dark:bg-[#1a1d2d] rounded-2xl shadow-xl border border-black/[0.08] dark:border-white/[0.08] p-6 flex flex-col justify-between text-[11px] text-[#808080] relative select-none" id="attestDocPlaceholder">
+<div class="w-72 h-96 bg-white dark:bg-[#1a1d2d] rounded-2xl shadow-xl border border-black/[0.08] dark:border-white/[0.08] p-6 flex flex-col justify-between text-[11px] text-slate-400 relative select-none" id="attestDocPlaceholder">
 <div class="space-y-2">
 <div class="flex items-center gap-2">
 <div class="w-8 h-8 rounded-lg bg-slate-200 dark:bg-slate-700"></div>
@@ -270,7 +271,7 @@ Uses the last signature cleaned in the Signature Workshop. If nothing shows up o
 <div class="w-4/6 h-2 bg-slate-100 dark:bg-slate-800 rounded"></div>
 <div class="w-full h-2 bg-slate-100 dark:bg-slate-800 rounded"></div>
 </div>
-<div class="border-t border-black/[0.06] dark:border-white/[0.08] pt-3 flex justify-between items-center text-[9px] text-[#808080]">
+<div class="border-t border-black/[0.06] dark:border-white/[0.08] pt-3 flex justify-between items-center text-[9px] text-slate-400">
 <span class="">CERTIFIED TRUE COPY</span>
 <span class="">PAGE 1 OF 1</span>
 </div>
@@ -278,9 +279,9 @@ Uses the last signature cleaned in the Signature Workshop. If nothing shows up o
 <!-- Draggable & Resizable Signature Overlay Stamp -->
 <div class="absolute bottom-12 right-24 p-2 flex flex-col items-center select-none cursor-move" id="attestInteractiveStamp">
 <img alt="Signature" class="hidden max-h-10 mb-1 object-contain" id="attestSignatureImg"/>
-<span class="text-sm font-extrabold text-blue-700 dark:text-[#1736F5] font-serif italic" id="previewSignerDisplay">Johnathan Doe</span>
-<span class="text-[10px] font-bold text-[#1a1a1a] dark:text-[#DEDEDE] mt-0.5" id="previewAttestTag">Self-Attested for Official Verification</span>
-<span class="text-[9px] font-mono text-[#808080]" id="previewDateDisplay">Date: 2026-09-12</span>
+<span class="text-sm font-extrabold text-blue-700 dark:text-blue-400 font-serif italic" id="previewSignerDisplay">Johnathan Doe</span>
+<span class="text-[10px] font-bold text-slate-800 dark:text-slate-200 mt-0.5" id="previewAttestTag">Self-Attested for Official Verification</span>
+<span class="text-[9px] font-mono text-slate-500" id="previewDateDisplay">Date: 2026-09-12</span>
 <img alt="Handwritten self-attestation" class="hidden max-h-10 mt-0.5 object-contain" id="attestHandwrittenImg"/>
 </div>
 </div>
@@ -288,6 +289,22 @@ Uses the last signature cleaned in the Signature Workshop. If nothing shows up o
 </div>
 </div>
 </section>
+<!-- Glassmorphic / Clay Footer -->
+<footer class="border-t border-black/[0.06] dark:border-white/[0.08] bg-white/40 dark:bg-black/40 py-7 px-6 text-[13px] text-slate-500 dark:text-slate-400 transition-colors mt-auto relative z-10">
+<div class="max-w-7xl mx-auto flex flex-wrap items-center justify-between gap-x-6 gap-y-3">
+<div class="flex items-center gap-2.5">
+<span class="font-black text-slate-900 dark:text-white heading-font">TheFileGarage</span>
+<span class="text-slate-300 dark:text-slate-700">·</span>
+<span class="">Tactile local document workshop</span>
+</div>
+<div class="flex flex-wrap items-center gap-x-5 gap-y-2 font-semibold">
+<span>&copy; 2026 TheFileGarage</span>
+<a class="footer-link" href="#">Privacy Policy</a>
+<a class="footer-link" href="#">Terms &amp; Conditions</a>
+<a class="footer-link" href="#">Contact Us</a>
+</div>
+</div>
+</footer>
 <!-- Comprehensive JavaScript Logic & State Machine -->
 <script>
         // Ambient cursor-reactive light — follows mouse, fills dead canvas space
@@ -389,7 +406,7 @@ Uses the last signature cleaned in the Signature Workshop. If nothing shows up o
         let currentActiveCategory = "exams";
 
         const BREADCRUMB_MAP = {
-            hub: "Home",
+            hub: "Workspace Directory",
             photo: "1. Biometric Photo Studio",
             signature: "2. Signature Clean-Up",
             attest: "3. Digital Self-Attestation",
@@ -410,7 +427,7 @@ Uses the last signature cleaned in the Signature Workshop. If nothing shows up o
             if (isDark) {
                 html.classList.remove("dark");
                 html.classList.add("light");
-                icon.className = "fa-solid fa-moon text-[#1a1a1a] text-sm";
+                icon.className = "fa-solid fa-moon text-slate-700 text-sm";
                 localStorage.setItem("theme", "light");
             } else {
                 html.classList.add("dark");
@@ -419,6 +436,20 @@ Uses the last signature cleaned in the Signature Workshop. If nothing shows up o
                 localStorage.setItem("theme", "dark");
             }
         }
+
+        // Sync the toggle icon to the theme already applied by the blocking
+        // head script, so it's correct on first paint (no hardcoded icon).
+        // Dark mode active -> show the "switch to light" (sun) icon.
+        // Light mode active -> show the "switch to dark" (moon) icon.
+        (function initThemeIcon() {
+            const icon = document.getElementById("themeToggleIcon");
+            if (!icon) return;
+            if (document.documentElement.classList.contains("dark")) {
+                icon.className = "fa-solid fa-sun text-amber-400 text-sm";
+            } else {
+                icon.className = "fa-solid fa-moon text-slate-700 text-sm";
+            }
+        })();
 
         // Preset Population
         function refreshPresetOptions() {
@@ -450,11 +481,11 @@ Uses the last signature cleaned in the Signature Workshop. If nothing shows up o
             ["exams", "visa", "identity"].forEach(k => {
                 const btn = document.getElementById("srvBtn-" + k);
                 if (btn) {
-                    btn.classList.toggle("text-[#1736F5]", k === cat);
-                    btn.classList.toggle("dark:text-[#1736F5]", k === cat);
+                    btn.classList.toggle("text-primary", k === cat);
+                    btn.classList.toggle("dark:text-indigo-400", k === cat);
                     btn.classList.toggle("border-primary/40", k === cat);
                     btn.classList.toggle("font-bold", k === cat);
-                    btn.classList.toggle("text-[#808080]", k !== cat);
+                    btn.classList.toggle("text-slate-600", k !== cat);
                 }
             });
             refreshPresetOptions();
@@ -784,8 +815,8 @@ Uses the last signature cleaned in the Signature Workshop. If nothing shows up o
                     btn.classList.toggle("dark:text-amber-300", m === mode);
                     btn.classList.toggle("border-amber-400/50", m === mode);
                     btn.classList.toggle("font-bold", m === mode);
-                    btn.classList.toggle("text-[#808080]", m !== mode);
-                    btn.classList.toggle("dark:text-[#808080]", m !== mode);
+                    btn.classList.toggle("text-slate-600", m !== mode);
+                    btn.classList.toggle("dark:text-slate-400", m !== mode);
                     btn.classList.toggle("font-medium", m !== mode);
                 }
                 if (pnl) pnl.classList.toggle("hidden", m !== mode);
@@ -815,8 +846,8 @@ Uses the last signature cleaned in the Signature Workshop. If nothing shows up o
                     btn.classList.toggle("dark:text-amber-300", m === mode);
                     btn.classList.toggle("border-amber-400/50", m === mode);
                     btn.classList.toggle("font-bold", m === mode);
-                    btn.classList.toggle("text-[#808080]", m !== mode);
-                    btn.classList.toggle("dark:text-[#808080]", m !== mode);
+                    btn.classList.toggle("text-slate-600", m !== mode);
+                    btn.classList.toggle("dark:text-slate-400", m !== mode);
                     btn.classList.toggle("font-medium", m !== mode);
                 }
                 if (pnl) pnl.classList.toggle("hidden", m !== mode);
@@ -965,10 +996,10 @@ Uses the last signature cleaned in the Signature Workshop. If nothing shows up o
                 const pnl = document.getElementById("sigPanel-" + m);
                 if (btn) {
                     btn.classList.toggle("border-primary/40", m === mode);
-                    btn.classList.toggle("text-[#1736F5]", m === mode);
-                    btn.classList.toggle("dark:text-[#1736F5]", m === mode);
+                    btn.classList.toggle("text-primary", m === mode);
+                    btn.classList.toggle("dark:text-indigo-400", m === mode);
                     btn.classList.toggle("font-bold", m === mode);
-                    btn.classList.toggle("text-[#808080]", m !== mode);
+                    btn.classList.toggle("text-slate-600", m !== mode);
                 }
                 if (pnl) pnl.classList.toggle("hidden", m !== mode);
             });

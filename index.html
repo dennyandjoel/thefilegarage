@@ -23,27 +23,27 @@
             theme: {
                 extend: {
                     colors: {
-                        primary: '#FFC709',
-                        'primary-container': '#e6b308',
-                        'primary-fixed-dim': '#ffdb5c',
-                        secondary: '#1736F5',
-                        'secondary-container': '#0d24b8',
-                        'secondary-fixed': '#5c77f7',
-                        tertiary: '#808080',
-                        'tertiary-fixed': '#a0a0a0',
-                        'tertiary-fixed-dim': '#909090',
-                        surface: '#DEDEDE',
-                        'surface-bright': '#ffffff',
-                        'surface-dim': '#c0c0c0',
-                        'surface-container-lowest': '#ffffff',
-                        'surface-container-low': '#f0f0f0',
-                        'surface-container': '#e8e8e8',
-                        'surface-container-high': '#d0d0d0',
-                        'surface-container-highest': '#c8c8c8',
-                        'on-surface': '#1a1a1a',
-                        'on-surface-variant': '#808080',
-                        outline: '#808080',
-                        'outline-variant': '#a0a0a0',
+                        primary: "#2333e7",
+                        "primary-container": "#4353ff",
+                        "primary-fixed-dim": "#bdc2ff",
+                        secondary: "#a43073",
+                        "secondary-container": "#fc79bd",
+                        "secondary-fixed": "#ffd8e7",
+                        tertiary: "#005d53",
+                        "tertiary-fixed": "#62fae3",
+                        "tertiary-fixed-dim": "#3cddc7",
+                        surface: "#f8f9ff",
+                        "surface-bright": "#f8f9ff",
+                        "surface-dim": "#cbdbf5",
+                        "surface-container-lowest": "#ffffff",
+                        "surface-container-low": "#eff4ff",
+                        "surface-container": "#e5eeff",
+                        "surface-container-high": "#dce9ff",
+                        "surface-container-highest": "#d3e4fe",
+                        "on-surface": "#0b1c30",
+                        "on-surface-variant": "#454556",
+                        outline: "#757688",
+                        "outline-variant": "#c5c5d9",
                     },
                     borderRadius: {
                         DEFAULT: "1rem",
@@ -53,8 +53,8 @@
                         full: "9999px",
                     },
                     fontFamily: {
-                        sans: ["Baloo 2", "sans-serif"],
-                        heading: ["Baloo 2", "sans-serif"],
+                        sans: ["Plus Jakarta Sans", "Inter", "sans-serif"],
+                        heading: ["Space Grotesk", "Plus Jakarta Sans", "sans-serif"],
                         mono: ["JetBrains Mono", "ui-monospace", "monospace"],
                     },
                 },
@@ -65,45 +65,46 @@
 <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet">
 <link href="https://fonts.googleapis.com" rel="preconnect">
 <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect">
-<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;500;600;700;800&amp;family=JetBrains+Mono:wght@400;500;600&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;family=Space+Grotesk:wght@500;600;700&amp;family=JetBrains+Mono:wght@400;500;600&amp;display=swap" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
 
 </head>
-<body class="min-h-screen flex flex-col antialiased relative overflow-x-hidden selection:bg-primary/100 selection:text-white">
+<body class="min-h-screen flex flex-col antialiased relative overflow-x-hidden selection:bg-indigo-500 selection:text-white">
 <!-- Ambient cursor-reactive light (dark mode only) -->
 <div id="ambientCursorLight"></div>
 <!-- Toast notification stack (replaces alert() popups) -->
 <div id="toastStack"></div>
-
+<!-- Ambient Clay Floating Glows -->
+<div class="clay-mesh-blob w-96 h-96 -top-20 -left-20 bg-primary-fixed-dim/60 animate-pulse"></div>
+<div class="clay-mesh-blob w-[32rem] h-[32rem] top-1/3 -right-24 bg-secondary-fixed/70"></div>
+<div class="clay-mesh-blob w-96 h-96 bottom-10 left-1/4 bg-tertiary-fixed/40"></div>
 <!-- Glassmorphic Top Navbar -->
 <header class="glass-bar sticky top-0 z-50 px-4 sm:px-8 py-3.5 transition-colors">
 <div class="max-w-7xl mx-auto flex items-center justify-between gap-3 relative z-10">
 <div class="flex items-center gap-3">
-<button class="flex items-center gap-2.5 group p-1 -ml-1 rounded-2xl  transition-all" onclick="location.href='index.html'">
-<img alt="TheFileGarage Logo" class="w-10 h-10 rounded-2xl object-contain  group-hover:scale-105 transition-transform" src="https://lh3.googleusercontent.com/aida/AEtjO1W3oZ7ciG2AHPbXsf1aUgfScmikHtI_i2PxJSYjKOgY-59tLsT6wj_liggvZCZncIuHUBMcikjXTXEdxEufEvi72utf6P3iWWYM-SnNPgRwFBD4_TUBZBXXGz_D2hoc9kRJlDja4m9Ut4t8flDM1HOVwo-f_Qbk9N4mSDJzHL3aZYIdQTHmxk1_FidqgtTP6YBVS3Mgcjg-vD_67Kg_UW95A2YrNAnIOc-mOPRhPsmm1L0W0arv2HjTy2uK">
+<button class="flex items-center gap-2.5 group p-1 -ml-1 rounded-2xl hover:opacity-90 transition-all" onclick="location.href='index.html'">
+<img alt="TheFileGarage Logo" class="w-10 h-10 rounded-2xl object-contain drop-shadow-[0_4px_8px_rgba(35,51,231,0.03)] group-hover:scale-105 transition-transform" src="https://lh3.googleusercontent.com/aida/AEtjO1W3oZ7ciG2AHPbXsf1aUgfScmikHtI_i2PxJSYjKOgY-59tLsT6wj_liggvZCZncIuHUBMcikjXTXEdxEufEvi72utf6P3iWWYM-SnNPgRwFBD4_TUBZBXXGz_D2hoc9kRJlDja4m9Ut4t8flDM1HOVwo-f_Qbk9N4mSDJzHL3aZYIdQTHmxk1_FidqgtTP6YBVS3Mgcjg-vD_67Kg_UW95A2YrNAnIOc-mOPRhPsmm1L0W0arv2HjTy2uK">
 <div class="text-left">
-<span class="text-base font-extrabold text-[#1a1a1a] dark:text-white tracking-tight heading-font block leading-none">TheFileGarage</span>
-<span class="text-[10px] font-bold text-[#1736F5] dark:text-[#1736F5] ">Your Document Workshop</span>
+<span class="text-base font-extrabold text-slate-900 dark:text-white tracking-tight heading-font block leading-none">TheFileGarage</span>
 </div>
 </button>
-<span class="text-[#808080] dark:text-[#1a1a1a] text-sm select-none">/</span>
-<div class="hidden sm:flex items-center gap-2 text-xs font-semibold text-[#808080] dark:text-[#808080]">
-<span class="text-[#1a1a1a] dark:text-white font-bold" id="breadcrumbCurrent">Home</span>
-<span class="px-2 py-0.5 rounded-full text-[10px] font-mono font-bold bg-primary/10 text-[#1736F5] dark:text-[#1736F5] border border-primary/20"></span>
+<span class="text-slate-300 dark:text-slate-800 text-sm select-none">/</span>
+<div class="hidden sm:flex items-center gap-2 text-xs font-semibold text-slate-600 dark:text-slate-300">
 </div>
 </div>
 <div class="flex items-center gap-2.5">
-
-<button class="clay-pill w-10 h-10 flex items-center justify-center text-[#1a1a1a] dark:text-[#FFC709] transition" id="themeToggleBtn" onclick="toggleGlobalTheme()" title="Toggle Light / Pure Black Dark mode">
+<div class="hidden lg:flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-emerald-500 text-[11px] font-bold text-white">
+<span class="">100% Client-Side Private</span>
+</div>
+<button class="theme-toggle-btn clay-pill w-10 h-10 flex items-center justify-center text-slate-700 dark:text-amber-400 transition" id="themeToggleBtn" onclick="toggleGlobalTheme()" title="Toggle Light / Pure Black Dark mode">
 <i class="fa-solid fa-moon text-sm" id="themeToggleIcon"></i>
 </button>
-
 </div>
 </div>
 </header>
 <!-- Sub-Nav Pill Strip (3D Clay switcher for all 4 workbench tools) -->
 <div class="max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 pt-5 pb-3 relative z-10">
-<div class="p-2 rounded-2xl bg-white dark:bg-[#2a2a2a] border-3 border-[#808080] flex items-center gap-1.5 overflow-x-auto" style="box-shadow: 0 5px 0 #808080;">
+<div class="p-2 rounded-full bg-white/70 dark:bg-[#0c0e18]/80  border border-white/90 dark:border-white/10 flex items-center gap-1.5 overflow-x-auto shadow-[0_12px_32px_-6px_rgba(35,51,231,0.08)] dark:shadow-[0_12px_32px_-6px_rgba(0,0,0,0.8)]">
 <button class="clay-tab active flex-1 justify-center whitespace-nowrap" id="tabNav-hub" onclick="location.href='index.html'">
 <span class="text-base"><i class="fa-solid fa-folder-tree" aria-hidden="true"></i></span>
 <span class="">Garage Directory</span>
@@ -121,7 +122,7 @@
 <span class="">3. Self-Attestation</span>
 </button>
 <button class="clay-tab flex-1 justify-center whitespace-nowrap" id="tabNav-pdf" onclick="location.href='doctool.html'">
-<span class="text-base"><i class="fa-solid fa-box-archive" aria-hidden="true"></i></span>
+<span class="text-base"><i class="fa-solid fa-file-pdf" aria-hidden="true"></i></span>
 <span class="">4. PDF &amp; Doc Toolkit</span>
 </button>
 </div>
@@ -132,127 +133,147 @@
 <!-- 3D Clay Hero Banner -->
 <div class="clay-card p-8 sm:p-12 relative overflow-hidden">
 <div class="relative z-10 max-w-3xl space-y-6">
-<div class="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-[#1736F5] text-white text-sm font-extrabold border-3 border-[#808080]" style="box-shadow: 0 4px 0 #808080;">📁 Drop Your Files Here</div>
-<h1 class="text-3xl sm:text-5xl lg:text-6xl font-black heading-font tracking-tight text-[#1a1a1a] dark:text-white leading-[1.08]">
-                        Get your documents ready for applications and forms.
+<h1 class="text-3xl sm:text-5xl lg:text-6xl font-black heading-font tracking-tight text-slate-900 dark:text-white leading-[1.08]">
+                        Precision file tuning for strict portals and official documents.
                     </h1>
-<p class="text-sm sm:text-base text-[#808080] dark:text-[#808080] leading-relaxed max-w-2xl font-medium">
-                        Fix passport photos, clean signatures, stamp documents, and compress PDFs. All processing happens on your device.
+<p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed max-w-2xl font-medium">
+                        Every biometric face alignment, signature extraction, document attestation stamp, and PDF shrinkage executes strictly in your local browser memory. Zero upload latency, 100% privacy.
                     </p>
 <div class="pt-2 flex flex-wrap items-center gap-4">
 <button class="clay-btn-primary px-7 py-3.5 text-xs uppercase tracking-wider flex items-center gap-2.5" onclick="switchMainTab('photo')">
-<span class="">Start Photo Tool</span>
+<span class="">Open Biometric Studio</span>
 <i class="fa-solid fa-arrow-right text-[11px]"></i>
 </button>
-<button class="clay-pill px-6 py-3.5 text-xs font-bold text-[#1a1a1a] dark:text-[#DEDEDE] flex items-center gap-2" onclick="switchMainTab('pdf')">
-<i class="fa-solid fa-shield-check text-[#1736F5]"></i>
-<span class="">Check PDF</span>
-</button>
 </div>
 </div>
-
+<div class="absolute -right-8 -bottom-10 opacity-[0.05] dark:opacity-[0.07] pointer-events-none text-primary dark:text-indigo-400 transform rotate-12">
+<i class="fa-solid fa-cubes-stacked text-[20rem]"></i>
+</div>
 </div>
 <!-- Service Workbenches Directory (4 Tactile Clay Cards) -->
 <div class="space-y-4">
 <div class="flex items-center justify-between pb-3 border-b border-black/[0.06] dark:border-white/[0.08]">
 <div class="flex items-center gap-2.5">
-<span class="text-lg font-black heading-font text-[#1a1a1a] dark:text-white">Your Tools</span>
-
+<span class="text-lg font-black heading-font text-slate-900 dark:text-white">Tactile Tool Workbenches</span>
+<span class="text-xs font-mono font-bold px-2.5 py-0.5 rounded-full bg-primary/10 text-primary dark:text-indigo-300">4 Stations</span>
 </div>
-<span class="text-xs font-medium text-[#808080]"></span>
 </div>
 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
 <!-- Workbench 1: Biometric Photo Studio -->
 <div class="clay-card p-6 flex flex-col justify-between cursor-pointer group" onclick="switchMainTab('photo')">
 <div class="space-y-4">
 <div class="flex items-center justify-between">
-<div class="w-14 h-14 rounded-2xl bg-[#1736F5] text-white flex items-center justify-center clay-token text-xl  transition-transform ">
+<div class="w-14 h-14 rounded-2xl bg-teal-500 text-white flex items-center justify-center clay-token text-xl transition-transform">
 <i class="fa-solid fa-camera"></i>
 </div>
-
+<span class="text-[10px] font-mono font-bold px-3 py-1 rounded-full bg-teal-50 dark:bg-teal-950/40 text-teal-700 dark:text-teal-300 border border-teal-200 dark:border-teal-800/40">Station 01</span>
 </div>
-<h3 class="text-lg font-bold text-[#1a1a1a] dark:text-white heading-font ">
+<h3 class="text-lg font-bold text-slate-900 dark:text-white heading-font group-hover:text-primary dark:group-hover:text-indigo-400 transition-colors">
                                 Biometric Photo Studio
                             </h3>
-<p class="text-xs text-[#808080] dark:text-[#808080] leading-relaxed font-medium">
-                                Perfect passport photos for any country. Resize, center face, change background, compress.
+<p class="text-xs text-slate-600 dark:text-slate-400 leading-relaxed font-medium">
+                                Strict country specs (India, US, UK, Canada, Schengen), face centering crop guide, backdrop swap, and exact KB clamping.
                             </p>
-
+<div class="spec-reveal text-[10px] font-mono font-bold text-teal-600 dark:text-teal-400 flex items-center gap-1.5">
+<i class="fa-solid fa-bolt text-[9px]"></i><span>Max 50KB · Processed in &lt;1s</span>
 </div>
-<div class="mt-6 pt-4 border-t border-black/[0.06] dark:border-white/[0.08] flex items-center justify-between text-xs font-bold text-[#1736F5] dark:text-[#1736F5]">
-<span class="">Start</span>
-<i class="fa-solid fa-arrow-right text-[11px] transform  transition-transform"></i>
+</div>
+<div class="mt-6 pt-4 border-t border-black/[0.06] dark:border-white/[0.08] flex items-center justify-between text-xs font-bold text-teal-600 dark:text-teal-400">
+<span class="">Open Photo Studio</span>
+<i class="fa-solid fa-arrow-right text-[11px] transform group-hover:translate-x-1.5 transition-transform"></i>
 </div>
 </div>
 <!-- Workbench 2: Signature Clean-Up -->
 <div class="clay-card p-6 flex flex-col justify-between cursor-pointer group" onclick="switchMainTab('signature')">
 <div class="space-y-4">
 <div class="flex items-center justify-between">
-<div class="w-14 h-14 rounded-2xl bg-[#FFC709] text-white flex items-center justify-center clay-token text-xl  transition-transform ">
+<div class="w-14 h-14 rounded-2xl bg-primary text-white flex items-center justify-center clay-token text-xl transition-transform">
 <i class="fa-solid fa-pen-nib"></i>
 </div>
-
+<span class="text-[10px] font-mono font-bold px-3 py-1 rounded-full bg-indigo-50 dark:bg-indigo-950/40 text-primary dark:text-indigo-300 border border-indigo-200 dark:border-indigo-800/40">Station 02</span>
 </div>
-<h3 class="text-lg font-bold text-[#1a1a1a] dark:text-white heading-font ">
+<h3 class="text-lg font-bold text-slate-900 dark:text-white heading-font group-hover:text-primary dark:group-hover:text-indigo-400 transition-colors">
                                 Signature Vector Clean-Up
                             </h3>
-<p class="text-xs text-[#808080] dark:text-[#808080] leading-relaxed font-medium">
-                                Clean up scanned signatures. Remove background, adjust colors, crop perfectly.
+<p class="text-xs text-slate-600 dark:text-slate-400 leading-relaxed font-medium">
+                                Remove paper noise, adjust ink color (Royal blue, black, custom), straighten, crop, and export transparent PNGs with KB control.
                             </p>
-
+<div class="spec-reveal text-[10px] font-mono font-bold text-primary dark:text-indigo-400 flex items-center gap-1.5">
+<i class="fa-solid fa-bolt text-[9px]"></i><span>Max 20KB · Processed in &lt;2s</span>
 </div>
-<div class="mt-6 pt-4 border-t border-black/[0.06] dark:border-white/[0.08] flex items-center justify-between text-xs font-bold text-[#1736F5] dark:text-[#1736F5]">
-<span class="">Start</span>
-<i class="fa-solid fa-arrow-right text-[11px] transform  transition-transform"></i>
+</div>
+<div class="mt-6 pt-4 border-t border-black/[0.06] dark:border-white/[0.08] flex items-center justify-between text-xs font-bold text-primary dark:text-indigo-400">
+<span class="">Clean Signature</span>
+<i class="fa-solid fa-arrow-right text-[11px] transform group-hover:translate-x-1.5 transition-transform"></i>
 </div>
 </div>
 <!-- Workbench 3: Digital Self-Attestation -->
 <div class="clay-card p-6 flex flex-col justify-between cursor-pointer group" onclick="switchMainTab('attest')">
 <div class="space-y-4">
 <div class="flex items-center justify-between">
-<div class="w-14 h-14 rounded-2xl bg-[#1736F5] text-white flex items-center justify-center clay-token text-xl  transition-transform ">
-<i class="fa-solid fa-stamp"></i>
+<div class="w-14 h-14 rounded-2xl bg-amber-500 text-white flex items-center justify-center clay-token text-xl transition-transform">
+<i class="fa-solid fa-file-signature"></i>
 </div>
-
+<span class="text-[10px] font-mono font-bold px-3 py-1 rounded-full bg-amber-50 dark:bg-amber-950/40 text-amber-700 dark:text-amber-300 border border-amber-200 dark:border-amber-800/40">Station 03</span>
 </div>
-<h3 class="text-lg font-bold text-[#1a1a1a] dark:text-white heading-font ">
+<h3 class="text-lg font-bold text-slate-900 dark:text-white heading-font group-hover:text-primary dark:group-hover:text-indigo-400 transition-colors">
                                 Digital Self-Attestation
                             </h3>
-<p class="text-xs text-[#808080] dark:text-[#808080] leading-relaxed font-medium">
+<p class="text-xs text-slate-600 dark:text-slate-400 leading-relaxed font-medium">
                                 Drag &amp; drop signature overlay, customizable self-attestation tag, and automatic today's date onto legal ID scans or PDFs.
                             </p>
-
+<div class="spec-reveal text-[10px] font-mono font-bold text-amber-600 dark:text-amber-400 flex items-center gap-1.5">
+<i class="fa-solid fa-bolt text-[9px]"></i><span>PDF &amp; JPG · Processed in &lt;2s</span>
 </div>
-<div class="mt-6 pt-4 border-t border-black/[0.06] dark:border-white/[0.08] flex items-center justify-between text-xs font-bold text-[#1736F5] dark:text-[#FFC709]">
-<span class="">Start</span>
-<i class="fa-solid fa-arrow-right text-[11px] transform  transition-transform"></i>
+</div>
+<div class="mt-6 pt-4 border-t border-black/[0.06] dark:border-white/[0.08] flex items-center justify-between text-xs font-bold text-amber-600 dark:text-amber-400">
+<span class="">Attest Document</span>
+<i class="fa-solid fa-arrow-right text-[11px] transform group-hover:translate-x-1.5 transition-transform"></i>
 </div>
 </div>
 <!-- Workbench 4: PDF & Document Toolkit -->
 <div class="clay-card p-6 flex flex-col justify-between cursor-pointer group" onclick="switchMainTab('pdf')">
 <div class="space-y-4">
 <div class="flex items-center justify-between">
-<div class="w-14 h-14 rounded-2xl bg-[#FFC709] text-white flex items-center justify-center clay-token text-xl  transition-transform ">
+<div class="w-14 h-14 rounded-2xl bg-sky-600 text-white flex items-center justify-center clay-token text-xl transition-transform">
 <i class="fa-solid fa-file-pdf"></i>
 </div>
-
+<span class="text-[10px] font-mono font-bold px-3 py-1 rounded-full bg-sky-50 dark:bg-sky-950/40 text-sky-700 dark:text-sky-300 border border-sky-200 dark:border-sky-800/40">Station 04</span>
 </div>
-<h3 class="text-lg font-bold text-[#1a1a1a] dark:text-white heading-font ">
+<h3 class="text-lg font-bold text-slate-900 dark:text-white heading-font group-hover:text-primary dark:group-hover:text-indigo-400 transition-colors">
                                 PDF &amp; Document Toolkit
                             </h3>
-<p class="text-xs text-[#808080] dark:text-[#808080] leading-relaxed font-medium">
-                                Merge images into PDF, compress files, verify signatures.
+<p class="text-xs text-slate-600 dark:text-slate-400 leading-relaxed font-medium">
+                                Multi-JPG merge into 1-page PDF (Aadhaar / ID Card front+back), targeted PDF compressor, and cryptographic signature audit.
                             </p>
-
+<div class="spec-reveal text-[10px] font-mono font-bold text-blue-600 dark:text-blue-400 flex items-center gap-1.5">
+<i class="fa-solid fa-bolt text-[9px]"></i><span>Max 1MB · Processed in &lt;3s</span>
 </div>
-<div class="mt-6 pt-4 border-t border-black/[0.06] dark:border-white/[0.08] flex items-center justify-between text-xs font-bold text-[#1736F5] dark:text-[#1736F5]">
-<span class="">Start</span>
-<i class="fa-solid fa-arrow-right text-[11px] transform  transition-transform"></i>
+</div>
+<div class="mt-6 pt-4 border-t border-black/[0.06] dark:border-white/[0.08] flex items-center justify-between text-xs font-bold text-blue-600 dark:text-blue-400">
+<span class="">Launch Doc Tools</span>
+<i class="fa-solid fa-arrow-right text-[11px] transform group-hover:translate-x-1.5 transition-transform"></i>
 </div>
 </div>
 </div>
 </div>
 </section>
+<!-- Glassmorphic / Clay Footer -->
+<footer class="border-t border-black/[0.06] dark:border-white/[0.08] bg-white/40 dark:bg-black/40 py-7 px-6 text-[13px] text-slate-500 dark:text-slate-400 transition-colors mt-auto relative z-10">
+<div class="max-w-7xl mx-auto flex flex-wrap items-center justify-between gap-x-6 gap-y-3">
+<div class="flex items-center gap-2.5">
+<span class="font-black text-slate-900 dark:text-white heading-font">TheFileGarage</span>
+<span class="text-slate-300 dark:text-slate-700">·</span>
+<span class="">Tactile local document workshop</span>
+</div>
+<div class="flex flex-wrap items-center gap-x-5 gap-y-2 font-semibold">
+<span>&copy; 2026 TheFileGarage</span>
+<a class="footer-link" href="#">Privacy Policy</a>
+<a class="footer-link" href="#">Terms &amp; Conditions</a>
+<a class="footer-link" href="#">Contact Us</a>
+</div>
+</div>
+</footer>
 <!-- Comprehensive JavaScript Logic & State Machine -->
 <script>
         // Ambient cursor-reactive light — follows mouse, fills dead canvas space
@@ -354,7 +375,7 @@
         let currentActiveCategory = "exams";
 
         const BREADCRUMB_MAP = {
-            hub: "Home",
+            hub: "Workspace Directory",
             photo: "1. Biometric Photo Studio",
             signature: "2. Signature Clean-Up",
             attest: "3. Digital Self-Attestation",
@@ -375,7 +396,7 @@
             if (isDark) {
                 html.classList.remove("dark");
                 html.classList.add("light");
-                icon.className = "fa-solid fa-moon text-[#1a1a1a] text-sm";
+                icon.className = "fa-solid fa-moon text-slate-700 text-sm";
                 localStorage.setItem("theme", "light");
             } else {
                 html.classList.add("dark");
@@ -384,6 +405,20 @@
                 localStorage.setItem("theme", "dark");
             }
         }
+
+        // Sync the toggle icon to the theme already applied by the blocking
+        // head script, so it's correct on first paint (no hardcoded icon).
+        // Dark mode active -> show the "switch to light" (sun) icon.
+        // Light mode active -> show the "switch to dark" (moon) icon.
+        (function initThemeIcon() {
+            const icon = document.getElementById("themeToggleIcon");
+            if (!icon) return;
+            if (document.documentElement.classList.contains("dark")) {
+                icon.className = "fa-solid fa-sun text-amber-400 text-sm";
+            } else {
+                icon.className = "fa-solid fa-moon text-slate-700 text-sm";
+            }
+        })();
 
         // Preset Population
         function refreshPresetOptions() {
@@ -415,11 +450,11 @@
             ["exams", "visa", "identity"].forEach(k => {
                 const btn = document.getElementById("srvBtn-" + k);
                 if (btn) {
-                    btn.classList.toggle("text-[#1736F5]", k === cat);
-                    btn.classList.toggle("dark:text-[#1736F5]", k === cat);
+                    btn.classList.toggle("text-primary", k === cat);
+                    btn.classList.toggle("dark:text-indigo-400", k === cat);
                     btn.classList.toggle("border-primary/40", k === cat);
                     btn.classList.toggle("font-bold", k === cat);
-                    btn.classList.toggle("text-[#808080]", k !== cat);
+                    btn.classList.toggle("text-slate-600", k !== cat);
                 }
             });
             refreshPresetOptions();
@@ -749,8 +784,8 @@
                     btn.classList.toggle("dark:text-amber-300", m === mode);
                     btn.classList.toggle("border-amber-400/50", m === mode);
                     btn.classList.toggle("font-bold", m === mode);
-                    btn.classList.toggle("text-[#808080]", m !== mode);
-                    btn.classList.toggle("dark:text-[#808080]", m !== mode);
+                    btn.classList.toggle("text-slate-600", m !== mode);
+                    btn.classList.toggle("dark:text-slate-400", m !== mode);
                     btn.classList.toggle("font-medium", m !== mode);
                 }
                 if (pnl) pnl.classList.toggle("hidden", m !== mode);
@@ -780,8 +815,8 @@
                     btn.classList.toggle("dark:text-amber-300", m === mode);
                     btn.classList.toggle("border-amber-400/50", m === mode);
                     btn.classList.toggle("font-bold", m === mode);
-                    btn.classList.toggle("text-[#808080]", m !== mode);
-                    btn.classList.toggle("dark:text-[#808080]", m !== mode);
+                    btn.classList.toggle("text-slate-600", m !== mode);
+                    btn.classList.toggle("dark:text-slate-400", m !== mode);
                     btn.classList.toggle("font-medium", m !== mode);
                 }
                 if (pnl) pnl.classList.toggle("hidden", m !== mode);
@@ -930,10 +965,10 @@
                 const pnl = document.getElementById("sigPanel-" + m);
                 if (btn) {
                     btn.classList.toggle("border-primary/40", m === mode);
-                    btn.classList.toggle("text-[#1736F5]", m === mode);
-                    btn.classList.toggle("dark:text-[#1736F5]", m === mode);
+                    btn.classList.toggle("text-primary", m === mode);
+                    btn.classList.toggle("dark:text-indigo-400", m === mode);
                     btn.classList.toggle("font-bold", m === mode);
-                    btn.classList.toggle("text-[#808080]", m !== mode);
+                    btn.classList.toggle("text-slate-600", m !== mode);
                 }
                 if (pnl) pnl.classList.toggle("hidden", m !== mode);
             });

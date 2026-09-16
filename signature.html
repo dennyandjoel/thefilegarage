@@ -23,27 +23,27 @@
             theme: {
                 extend: {
                     colors: {
-                        primary: '#FFC709',
-                        'primary-container': '#e6b308',
-                        'primary-fixed-dim': '#ffdb5c',
-                        secondary: '#1736F5',
-                        'secondary-container': '#0d24b8',
-                        'secondary-fixed': '#5c77f7',
-                        tertiary: '#808080',
-                        'tertiary-fixed': '#a0a0a0',
-                        'tertiary-fixed-dim': '#909090',
-                        surface: '#DEDEDE',
-                        'surface-bright': '#ffffff',
-                        'surface-dim': '#c0c0c0',
-                        'surface-container-lowest': '#ffffff',
-                        'surface-container-low': '#f0f0f0',
-                        'surface-container': '#e8e8e8',
-                        'surface-container-high': '#d0d0d0',
-                        'surface-container-highest': '#c8c8c8',
-                        'on-surface': '#1a1a1a',
-                        'on-surface-variant': '#808080',
-                        outline: '#808080',
-                        'outline-variant': '#a0a0a0',
+                        primary: "#2333e7",
+                        "primary-container": "#4353ff",
+                        "primary-fixed-dim": "#bdc2ff",
+                        secondary: "#a43073",
+                        "secondary-container": "#fc79bd",
+                        "secondary-fixed": "#ffd8e7",
+                        tertiary: "#005d53",
+                        "tertiary-fixed": "#62fae3",
+                        "tertiary-fixed-dim": "#3cddc7",
+                        surface: "#f8f9ff",
+                        "surface-bright": "#f8f9ff",
+                        "surface-dim": "#cbdbf5",
+                        "surface-container-lowest": "#ffffff",
+                        "surface-container-low": "#eff4ff",
+                        "surface-container": "#e5eeff",
+                        "surface-container-high": "#dce9ff",
+                        "surface-container-highest": "#d3e4fe",
+                        "on-surface": "#0b1c30",
+                        "on-surface-variant": "#454556",
+                        outline: "#757688",
+                        "outline-variant": "#c5c5d9",
                     },
                     borderRadius: {
                         DEFAULT: "1rem",
@@ -53,8 +53,8 @@
                         full: "9999px",
                     },
                     fontFamily: {
-                        sans: ["Baloo 2", "sans-serif"],
-                        heading: ["Baloo 2", "sans-serif"],
+                        sans: ["Plus Jakarta Sans", "Inter", "sans-serif"],
+                        heading: ["Space Grotesk", "Plus Jakarta Sans", "sans-serif"],
                         mono: ["JetBrains Mono", "ui-monospace", "monospace"],
                     },
                 },
@@ -65,45 +65,46 @@
 <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet">
 <link href="https://fonts.googleapis.com" rel="preconnect">
 <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect">
-<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;500;600;700;800&amp;family=JetBrains+Mono:wght@400;500;600&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;family=Space+Grotesk:wght@500;600;700&amp;family=JetBrains+Mono:wght@400;500;600&amp;display=swap" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
 
 </head>
-<body class="min-h-screen flex flex-col antialiased relative overflow-x-hidden selection:bg-primary/100 selection:text-white">
+<body class="min-h-screen flex flex-col antialiased relative overflow-x-hidden selection:bg-indigo-500 selection:text-white">
 <!-- Ambient cursor-reactive light (dark mode only) -->
 <div id="ambientCursorLight"></div>
 <!-- Toast notification stack (replaces alert() popups) -->
 <div id="toastStack"></div>
-
+<!-- Ambient Clay Floating Glows -->
+<div class="clay-mesh-blob w-96 h-96 -top-20 -left-20 bg-primary-fixed-dim/60 animate-pulse"></div>
+<div class="clay-mesh-blob w-[32rem] h-[32rem] top-1/3 -right-24 bg-secondary-fixed/70"></div>
+<div class="clay-mesh-blob w-96 h-96 bottom-10 left-1/4 bg-tertiary-fixed/40"></div>
 <!-- Glassmorphic Top Navbar -->
 <header class="glass-bar sticky top-0 z-50 px-4 sm:px-8 py-3.5 transition-colors">
 <div class="max-w-7xl mx-auto flex items-center justify-between gap-3 relative z-10">
 <div class="flex items-center gap-3">
-<button class="flex items-center gap-2.5 group p-1 -ml-1 rounded-2xl  transition-all" onclick="location.href='index.html'">
-<img alt="TheFileGarage Logo" class="w-10 h-10 rounded-2xl object-contain  group-hover:scale-105 transition-transform" src="https://lh3.googleusercontent.com/aida/AEtjO1W3oZ7ciG2AHPbXsf1aUgfScmikHtI_i2PxJSYjKOgY-59tLsT6wj_liggvZCZncIuHUBMcikjXTXEdxEufEvi72utf6P3iWWYM-SnNPgRwFBD4_TUBZBXXGz_D2hoc9kRJlDja4m9Ut4t8flDM1HOVwo-f_Qbk9N4mSDJzHL3aZYIdQTHmxk1_FidqgtTP6YBVS3Mgcjg-vD_67Kg_UW95A2YrNAnIOc-mOPRhPsmm1L0W0arv2HjTy2uK">
+<button class="flex items-center gap-2.5 group p-1 -ml-1 rounded-2xl hover:opacity-90 transition-all" onclick="location.href='index.html'">
+<img alt="TheFileGarage Logo" class="w-10 h-10 rounded-2xl object-contain drop-shadow-[0_4px_8px_rgba(35,51,231,0.03)] group-hover:scale-105 transition-transform" src="https://lh3.googleusercontent.com/aida/AEtjO1W3oZ7ciG2AHPbXsf1aUgfScmikHtI_i2PxJSYjKOgY-59tLsT6wj_liggvZCZncIuHUBMcikjXTXEdxEufEvi72utf6P3iWWYM-SnNPgRwFBD4_TUBZBXXGz_D2hoc9kRJlDja4m9Ut4t8flDM1HOVwo-f_Qbk9N4mSDJzHL3aZYIdQTHmxk1_FidqgtTP6YBVS3Mgcjg-vD_67Kg_UW95A2YrNAnIOc-mOPRhPsmm1L0W0arv2HjTy2uK">
 <div class="text-left">
-<span class="text-base font-extrabold text-[#1a1a1a] dark:text-white tracking-tight heading-font block leading-none">TheFileGarage</span>
-<span class="text-[10px] font-bold text-[#1736F5] dark:text-[#1736F5] ">Your Document Workshop</span>
+<span class="text-base font-extrabold text-slate-900 dark:text-white tracking-tight heading-font block leading-none">TheFileGarage</span>
 </div>
 </button>
-<span class="text-[#808080] dark:text-[#1a1a1a] text-sm select-none">/</span>
-<div class="hidden sm:flex items-center gap-2 text-xs font-semibold text-[#808080] dark:text-[#808080]">
-<span class="text-[#1a1a1a] dark:text-white font-bold" id="breadcrumbCurrent">Home</span>
-<span class="px-2 py-0.5 rounded-full text-[10px] font-mono font-bold bg-primary/10 text-[#1736F5] dark:text-[#1736F5] border border-primary/20"></span>
+<span class="text-slate-300 dark:text-slate-800 text-sm select-none">/</span>
+<div class="hidden sm:flex items-center gap-2 text-xs font-semibold text-slate-600 dark:text-slate-300">
 </div>
 </div>
 <div class="flex items-center gap-2.5">
-
-<button class="clay-pill w-10 h-10 flex items-center justify-center text-[#1a1a1a] dark:text-[#FFC709] transition" id="themeToggleBtn" onclick="toggleGlobalTheme()" title="Toggle Light / Pure Black Dark mode">
+<div class="hidden lg:flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-emerald-500 text-[11px] font-bold text-white">
+<span class="">100% Client-Side Private</span>
+</div>
+<button class="theme-toggle-btn clay-pill w-10 h-10 flex items-center justify-center text-slate-700 dark:text-amber-400 transition" id="themeToggleBtn" onclick="toggleGlobalTheme()" title="Toggle Light / Pure Black Dark mode">
 <i class="fa-solid fa-moon text-sm" id="themeToggleIcon"></i>
 </button>
-
 </div>
 </div>
 </header>
 <!-- Sub-Nav Pill Strip (3D Clay switcher for all 4 workbench tools) -->
 <div class="max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 pt-5 pb-3 relative z-10">
-<div class="p-2 rounded-2xl bg-white dark:bg-[#2a2a2a] border-3 border-[#808080] flex items-center gap-1.5 overflow-x-auto" style="box-shadow: 0 5px 0 #808080;">
+<div class="p-2 rounded-full bg-white/70 dark:bg-[#0c0e18]/80  border border-white/90 dark:border-white/10 flex items-center gap-1.5 overflow-x-auto shadow-[0_12px_32px_-6px_rgba(35,51,231,0.08)] dark:shadow-[0_12px_32px_-6px_rgba(0,0,0,0.8)]">
 <button class="clay-tab flex-1 justify-center whitespace-nowrap" id="tabNav-hub" onclick="location.href='index.html'">
 <span class="text-base"><i class="fa-solid fa-folder-tree" aria-hidden="true"></i></span>
 <span class="">Garage Directory</span>
@@ -121,7 +122,7 @@
 <span class="">3. Self-Attestation</span>
 </button>
 <button class="clay-tab flex-1 justify-center whitespace-nowrap" id="tabNav-pdf" onclick="location.href='doctool.html'">
-<span class="text-base"><i class="fa-solid fa-box-archive" aria-hidden="true"></i></span>
+<span class="text-base"><i class="fa-solid fa-file-pdf" aria-hidden="true"></i></span>
 <span class="">4. PDF &amp; Doc Toolkit</span>
 </button>
 </div>
@@ -135,12 +136,12 @@
 <i class="fa-solid fa-pen-nib"></i>
 </div>
 <div>
-<h2 class="text-xl font-bold heading-font text-[#1a1a1a] dark:text-white">Signature Vector Clean-Up</h2>
-<p class="text-xs text-[#808080] dark:text-[#808080] font-medium">Convert camera snapshots or digital ink into crisp transparent PNGs with custom tones.</p>
+<h2 class="text-xl font-bold heading-font text-slate-900 dark:text-white">Signature Vector Clean-Up</h2>
+<p class="text-xs text-slate-500 dark:text-slate-400 font-medium">Convert camera snapshots or digital ink into crisp transparent PNGs with custom tones.</p>
 </div>
 </div>
-<button class="clay-pill px-4 py-2 text-xs text-[#808080] dark:text-[#808080] flex items-center gap-2" onclick="switchMainTab('hub')">
-<i class="fa-solid fa-arrow-left text-[10px]"></i> 
+<button class="clay-pill px-4 py-2 text-xs text-slate-600 dark:text-slate-300 flex items-center gap-2" onclick="switchMainTab('hub')">
+<i class="fa-solid fa-arrow-left text-[10px]"></i> All Stations
                 </button>
 </div>
 <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-stretch">
@@ -148,18 +149,17 @@
 <div class="lg:col-span-5 space-y-5 flex flex-col">
 <div class="clay-card p-6 space-y-4 flex-1">
 <div class="border-b border-black/[0.05] dark:border-white/[0.08] pb-3 flex items-center justify-between">
-<span class="text-[10px] font-mono text-[#1736F5] dark:text-[#1736F5] font-bold uppercase tracking-wider">Input Source</span>
-<span class="hot-coffee-badge text-[10px] font-bold px-2.5 py-0.5 rounded-full">Ink Vectorizer</span>
+<span class="text-[10px] font-mono text-primary dark:text-indigo-400 font-bold uppercase tracking-wider">Input Source</span>
 </div>
 <!-- Source Mode Switch (Upload, Draw, Mobile Relay) -->
 <div class="grid grid-cols-3 gap-2">
-<button class="clay-pill py-2.5 px-2 text-xs font-bold text-[#1736F5] dark:text-[#1736F5] border-primary/40 flex items-center justify-center gap-1.5" id="sigMode-upload" onclick="switchSigInputMode('upload')">
+<button class="clay-pill py-2.5 px-2 text-xs font-bold text-primary dark:text-indigo-400 border-primary/40 flex items-center justify-center gap-1.5" id="sigMode-upload" onclick="switchSigInputMode('upload')">
 <i class="fa-solid fa-upload"></i> Upload File
                             </button>
-<button class="clay-pill py-2.5 px-2 text-xs font-medium text-[#808080] dark:text-[#808080] flex items-center justify-center gap-1.5" id="sigMode-draw" onclick="switchSigInputMode('draw')">
+<button class="clay-pill py-2.5 px-2 text-xs font-medium text-slate-600 dark:text-slate-400 flex items-center justify-center gap-1.5" id="sigMode-draw" onclick="switchSigInputMode('draw')">
 <i class="fa-solid fa-pen"></i> Draw Pad
                             </button>
-<button class="clay-pill py-2.5 px-2 text-xs font-medium text-[#808080] dark:text-[#808080] flex items-center justify-center gap-1.5" id="sigMode-mobile" onclick="switchSigInputMode('mobile')">
+<button class="clay-pill py-2.5 px-2 text-xs font-medium text-slate-600 dark:text-slate-400 flex items-center justify-center gap-1.5" id="sigMode-mobile" onclick="switchSigInputMode('mobile')">
 <i class="fa-solid fa-qrcode"></i> Mobile Relay
                             </button>
 </div>
@@ -169,14 +169,14 @@
 <!-- Hot Coffee Drag Overlay (Part 2 Spec - strictly hidden initially) -->
 <div class="coffee-drag-overlay hidden" id="sigDragOverlay">
 <div class="w-12 h-12 rounded-full bg-white/20 flex items-center justify-center mb-1 shadow-inner">
-<span class="text-3xl filter drop-shadow "></span>
+<span class="text-3xl filter drop-shadow animate-coffee"></span>
 </div>
 <p class="coffee-message">Drop it like it's hot coffee!</p>
 <p class="coffee-submessage">Instant local client-side processing</p>
 </div>
-<i class="fa-solid fa-file-signature text-2xl text-[#1736F5] mb-1"></i>
-<span class="text-xs font-bold text-[#1a1a1a] dark:text-[#DEDEDE]">Drag Snapshot or Paper Photo</span>
-<span class="text-[10px] text-[#808080] mt-0.5">JPG, PNG from phone camera</span>
+<i class="fa-solid fa-file-signature text-2xl text-primary mb-1"></i>
+<span class="text-xs font-bold text-slate-800 dark:text-slate-200">Drag Snapshot or Paper Photo</span>
+<span class="text-[10px] text-slate-400 mt-0.5">JPG, PNG from phone camera</span>
 
 <input accept="image/*" class="hidden" id="sigFileInputField" type="file">
 </div>
@@ -185,24 +185,24 @@
 <div class="hidden space-y-2" id="sigPanel-draw">
 <canvas class="w-full h-32 bg-white dark:bg-[#121524] rounded-2xl border border-black/[0.08] dark:border-white/[0.08] cursor-crosshair touch-none shadow-inner" height="150" id="sigLocalDrawPad" width="400"></canvas>
 <div class="flex justify-between items-center text-xs">
-<span class="text-[#808080] font-medium text-[10px]">Use finger, mouse or stylus</span>
+<span class="text-slate-400 font-medium text-[10px]">Use finger, mouse or stylus</span>
 <button class="text-red-500 font-bold hover:underline text-[11px]" onclick="clearSigDrawPad()">Clear Canvas</button>
 </div>
 </div>
 <!-- 3. Mobile QR Relay Panel (wired to Firebase Firestore realtime relay) -->
-<div class="hidden space-y-3 text-center p-5 bg-[#f0f0f0] dark:bg-[#2a2a2a] rounded-2xl" id="sigPanel-mobile">
+<div class="hidden space-y-3 text-center p-5 bg-[#f4f6fb] dark:bg-[#131724] rounded-2xl" id="sigPanel-mobile">
 <div class="w-32 h-32 bg-white p-2.5 rounded-2xl mx-auto flex items-center justify-center border border-black/[0.08] shadow-md" id="sigMobileQr">
-<i class="fa-solid fa-qrcode text-6xl text-[#1a1a1a]"></i>
+<i class="fa-solid fa-qrcode text-6xl text-slate-900"></i>
 </div>
-<p class="text-xs font-bold text-[#1a1a1a] dark:text-white" id="sigMobileStatus">Generating QR code…</p>
-<p class="text-[11px] text-[#808080] dark:text-[#808080]">Scan with your phone camera. Draw your signature there — it syncs here instantly over Firestore.</p>
-<button class="clay-pill px-4 py-1.5 text-[11px] font-bold text-[#1a1a1a] dark:text-[#DEDEDE]" onclick="refreshMobileSignatureSession()">
+<p class="text-xs font-bold text-slate-900 dark:text-white" id="sigMobileStatus">Generating QR code…</p>
+<p class="text-[11px] text-slate-500 dark:text-slate-400">Scan with your phone camera. Draw your signature there — it syncs here instantly over Firestore.</p>
+<button class="clay-pill px-4 py-1.5 text-[11px] font-bold text-slate-700 dark:text-slate-200" onclick="refreshMobileSignatureSession()">
 <i class="fa-solid fa-rotate-right mr-1"></i> New QR Code
 </button>
 </div>
 <!-- Ink Tone Selection (Royal Blue, Black, Custom RGB/Hex) -->
 <div class="space-y-2 pt-1">
-<label class="text-[11px] font-bold text-[#1a1a1a] dark:text-[#808080] uppercase tracking-wide">Target Ink Color Tone</label>
+<label class="text-[11px] font-bold text-slate-700 dark:text-slate-300 uppercase tracking-wide">Target Ink Color Tone</label>
 <div class="flex items-center gap-2">
 <button class="clay-pill px-3.5 py-2 text-xs font-bold flex items-center gap-2" onclick="setSigInkTone('#0033cc')">
 <span class="w-3 h-3 rounded-full bg-blue-700 shadow-sm"></span> Royal Blue
@@ -212,36 +212,36 @@
                                 </button>
 <div class="flex items-center gap-2 ml-auto">
 <input class="w-7 h-7 rounded-lg cursor-pointer border-0 bg-transparent" id="sigCustomColor" onchange="setSigInkTone(this.value)" type="color" value="#2333e7">
-<span class="text-[11px] font-mono font-bold text-[#808080]">Custom</span>
+<span class="text-[11px] font-mono font-bold text-slate-500">Custom</span>
 </div>
 </div>
 </div>
 <!-- Sliders: Contrast, Brightness, Straighten, Boldness, Despeckle -->
 <div class="space-y-3 pt-2">
 <div class="space-y-1">
-<div class="flex justify-between text-xs font-bold text-[#1a1a1a] dark:text-[#808080]">
+<div class="flex justify-between text-xs font-bold text-slate-700 dark:text-slate-300">
 <span class="">Paper Contrast / Background Whiteness</span>
-<span class="font-mono text-[#1736F5]" id="sigContrastVal">130%</span>
+<span class="font-mono text-primary" id="sigContrastVal">130%</span>
 </div>
 <input class="w-full accent-primary h-1.5 bg-slate-200 dark:bg-slate-700 rounded-lg cursor-pointer" max="200" min="80" oninput="document.getElementById('sigContrastVal').innerText = this.value + '%'" type="range" value="130">
 </div>
 <div class="space-y-1">
-<div class="flex justify-between text-xs font-bold text-[#1a1a1a] dark:text-[#808080]">
+<div class="flex justify-between text-xs font-bold text-slate-700 dark:text-slate-300">
 <span class="">Threshold &amp; Despeckle Filter</span>
-<span class="font-mono text-[#1736F5]" id="sigDespeckleVal">Aggressive</span>
+<span class="font-mono text-primary" id="sigDespeckleVal">Aggressive</span>
 </div>
 <input class="w-full accent-primary h-1.5 bg-slate-200 dark:bg-slate-700 rounded-lg cursor-pointer" max="4" min="1" oninput="document.getElementById('sigDespeckleVal').innerText = ['Low','Medium','Aggressive','Ultra'][this.value-1]" type="range" value="3">
 </div>
 <div class="grid grid-cols-2 gap-3">
 <div>
-<label class="text-[10px] font-bold text-[#808080] uppercase">Straighten Tilt</label>
+<label class="text-[10px] font-bold text-slate-500 uppercase">Straighten Tilt</label>
 <div class="flex items-center gap-1.5 mt-1">
 <input class="w-full accent-primary h-1.5 bg-slate-200 dark:bg-slate-700 rounded-lg" id="sigRotate" max="15" min="-15" type="range" value="0">
 </div>
 </div>
 <div>
-<label class="text-[10px] font-bold text-[#808080] uppercase">Stroke Weight</label>
-<select class="w-full bg-[#f0f0f0] dark:bg-[#2a2a2a] border border-black/[0.08] dark:border-white/[0.1] rounded-xl px-2.5 py-1 text-xs font-semibold mt-1">
+<label class="text-[10px] font-bold text-slate-500 uppercase">Stroke Weight</label>
+<select class="w-full bg-[#f4f6fb] dark:bg-[#131724] border border-black/[0.08] dark:border-white/[0.1] rounded-xl px-2.5 py-1 text-xs font-semibold mt-1">
 <option>Fine Hairline (0.8px)</option>
 <option selected="">Natural Ballpoint (1.5px)</option>
 <option>Bold Fountain (2.5px)</option>
@@ -250,11 +250,11 @@
 </div>
 <!-- Size preset & Auto-crop -->
 <div class="pt-1 flex items-center justify-between">
-<label class="flex items-center gap-2 text-xs font-bold text-[#1a1a1a] dark:text-[#808080] cursor-pointer">
+<label class="flex items-center gap-2 text-xs font-bold text-slate-700 dark:text-slate-300 cursor-pointer">
 <input checked="" class="w-4 h-4 accent-primary rounded cursor-pointer" id="sigAutoCrop" type="checkbox">
 <span class="">Tight Auto-Crop Borders</span>
 </label>
-<select class="bg-[#f0f0f0] dark:bg-[#2a2a2a] border border-black/[0.08] dark:border-white/[0.1] rounded-xl px-2 py-1 text-[11px] font-semibold">
+<select class="bg-[#f4f6fb] dark:bg-[#131724] border border-black/[0.08] dark:border-white/[0.1] rounded-xl px-2 py-1 text-[11px] font-semibold">
 <option>Bank Mandate (140x60)</option>
 <option>Passport / Visa Spec</option>
 <option>Standard Form Box</option>
@@ -268,21 +268,18 @@
 <div class="lg:col-span-7 space-y-5 flex flex-col">
 <div class="clay-card p-6 space-y-4 flex-1">
 <div class="flex items-center justify-between border-b border-black/[0.05] dark:border-white/[0.08] pb-3">
-<span class="text-[10px] font-mono uppercase tracking-wider text-[#808080] font-bold">Interactive Vector Inspection</span>
-<span class="text-[10px] font-mono font-bold px-2.5 py-0.5 rounded-full bg-primary/10 text-[#1736F5] dark:text-[#1736F5]">
-                                Real-Time Alpha Channel
-                            </span>
+<span class="text-[10px] font-mono uppercase tracking-wider text-slate-400 font-bold">Interactive Vector Inspection</span>
 </div>
 <!-- Before / After Viewer Container with Checkerboard -->
 <div class="h-64 rounded-2xl p-4 checker-bg relative overflow-hidden border border-black/[0.08] dark:border-white/[0.08] flex items-center justify-center" id="sigComparisonBox">
 <canvas class="max-w-full max-h-full drop-shadow-md" height="200" id="sigPreviewCanvas" width="450"></canvas>
-<span class="text-xs text-[#808080] font-bold" id="sigPlaceholderNote">Draw or upload above to inspect clean vector PNG</span>
+<span class="text-xs text-slate-500 font-bold" id="sigPlaceholderNote">Draw or upload above to inspect clean vector PNG</span>
 </div>
 <!-- Export Options Strip: Format, File Size Slider -->
-<div class="p-4 rounded-2xl bg-[#f0f0f0] dark:bg-[#2a2a2a] border border-black/[0.06] dark:border-white/[0.08] space-y-3">
+<div class="p-4 rounded-2xl bg-[#f4f6fb] dark:bg-[#131724] border border-black/[0.06] dark:border-white/[0.08] space-y-3">
 <div class="grid grid-cols-2 gap-4 items-center">
 <div>
-<label class="text-[10px] font-bold uppercase text-[#808080]">Export Format</label>
+<label class="text-[10px] font-bold uppercase text-slate-500">Export Format</label>
 <select class="w-full bg-white dark:bg-[#1e2338] border border-black/[0.08] dark:border-white/[0.1] rounded-xl px-3 py-1.5 text-xs font-bold mt-1" id="sigExportFormat">
 <option value="png">PNG (Transparent Vectorized)</option>
 <option value="webp">WebP (Compressed Alpha)</option>
@@ -290,9 +287,9 @@
 </select>
 </div>
 <div>
-<div class="flex justify-between text-xs font-bold text-[#1a1a1a] dark:text-[#808080]">
+<div class="flex justify-between text-xs font-bold text-slate-700 dark:text-slate-300">
 <span class="">Target Weight</span>
-<span class="font-mono text-[#1736F5]" id="sigTargetKb">20 KB</span>
+<span class="font-mono text-primary" id="sigTargetKb">20 KB</span>
 </div>
 <input class="w-full accent-primary h-1.5 bg-slate-200 dark:bg-slate-700 rounded-lg cursor-pointer mt-1" max="100" min="5" oninput="document.getElementById('sigTargetKb').innerText = this.value + ' KB'" type="range" value="20">
 </div>
@@ -300,8 +297,8 @@
 </div>
 <!-- Download & Clipboard Actions -->
 <div class="grid grid-cols-2 gap-3 pt-1">
-<button class="clay-pill py-3 px-4 text-xs font-bold text-[#1a1a1a] dark:text-[#DEDEDE] flex items-center justify-center gap-2" onclick="copyCleanSignature()">
-<i class="fa-solid fa-copy text-[#1736F5]"></i> Copy to Clipboard
+<button class="clay-pill py-3 px-4 text-xs font-bold text-slate-800 dark:text-slate-200 flex items-center justify-center gap-2" onclick="copyCleanSignature()">
+<i class="fa-solid fa-copy text-primary"></i> Copy to Clipboard
                             </button>
 <button class="clay-btn-primary py-3 px-4 text-xs uppercase tracking-wider flex items-center justify-center gap-2" onclick="downloadCleanSignature()">
 <i class="fa-solid fa-download"></i> Download Signature PNG
@@ -311,6 +308,22 @@
 </div>
 </div>
 </section>
+<!-- Glassmorphic / Clay Footer -->
+<footer class="border-t border-black/[0.06] dark:border-white/[0.08] bg-white/40 dark:bg-black/40 py-7 px-6 text-[13px] text-slate-500 dark:text-slate-400 transition-colors mt-auto relative z-10">
+<div class="max-w-7xl mx-auto flex flex-wrap items-center justify-between gap-x-6 gap-y-3">
+<div class="flex items-center gap-2.5">
+<span class="font-black text-slate-900 dark:text-white heading-font">TheFileGarage</span>
+<span class="text-slate-300 dark:text-slate-700">·</span>
+<span class="">Tactile local document workshop</span>
+</div>
+<div class="flex flex-wrap items-center gap-x-5 gap-y-2 font-semibold">
+<span>&copy; 2026 TheFileGarage</span>
+<a class="footer-link" href="#">Privacy Policy</a>
+<a class="footer-link" href="#">Terms &amp; Conditions</a>
+<a class="footer-link" href="#">Contact Us</a>
+</div>
+</div>
+</footer>
 <!-- Comprehensive JavaScript Logic & State Machine -->
 <script>
         // Ambient cursor-reactive light — follows mouse, fills dead canvas space
@@ -412,7 +425,7 @@
         let currentActiveCategory = "exams";
 
         const BREADCRUMB_MAP = {
-            hub: "Home",
+            hub: "Workspace Directory",
             photo: "1. Biometric Photo Studio",
             signature: "2. Signature Clean-Up",
             attest: "3. Digital Self-Attestation",
@@ -433,7 +446,7 @@
             if (isDark) {
                 html.classList.remove("dark");
                 html.classList.add("light");
-                icon.className = "fa-solid fa-moon text-[#1a1a1a] text-sm";
+                icon.className = "fa-solid fa-moon text-slate-700 text-sm";
                 localStorage.setItem("theme", "light");
             } else {
                 html.classList.add("dark");
@@ -442,6 +455,20 @@
                 localStorage.setItem("theme", "dark");
             }
         }
+
+        // Sync the toggle icon to the theme already applied by the blocking
+        // head script, so it's correct on first paint (no hardcoded icon).
+        // Dark mode active -> show the "switch to light" (sun) icon.
+        // Light mode active -> show the "switch to dark" (moon) icon.
+        (function initThemeIcon() {
+            const icon = document.getElementById("themeToggleIcon");
+            if (!icon) return;
+            if (document.documentElement.classList.contains("dark")) {
+                icon.className = "fa-solid fa-sun text-amber-400 text-sm";
+            } else {
+                icon.className = "fa-solid fa-moon text-slate-700 text-sm";
+            }
+        })();
 
         // Preset Population
         function refreshPresetOptions() {
@@ -473,11 +500,11 @@
             ["exams", "visa", "identity"].forEach(k => {
                 const btn = document.getElementById("srvBtn-" + k);
                 if (btn) {
-                    btn.classList.toggle("text-[#1736F5]", k === cat);
-                    btn.classList.toggle("dark:text-[#1736F5]", k === cat);
+                    btn.classList.toggle("text-primary", k === cat);
+                    btn.classList.toggle("dark:text-indigo-400", k === cat);
                     btn.classList.toggle("border-primary/40", k === cat);
                     btn.classList.toggle("font-bold", k === cat);
-                    btn.classList.toggle("text-[#808080]", k !== cat);
+                    btn.classList.toggle("text-slate-600", k !== cat);
                 }
             });
             refreshPresetOptions();
@@ -807,8 +834,8 @@
                     btn.classList.toggle("dark:text-amber-300", m === mode);
                     btn.classList.toggle("border-amber-400/50", m === mode);
                     btn.classList.toggle("font-bold", m === mode);
-                    btn.classList.toggle("text-[#808080]", m !== mode);
-                    btn.classList.toggle("dark:text-[#808080]", m !== mode);
+                    btn.classList.toggle("text-slate-600", m !== mode);
+                    btn.classList.toggle("dark:text-slate-400", m !== mode);
                     btn.classList.toggle("font-medium", m !== mode);
                 }
                 if (pnl) pnl.classList.toggle("hidden", m !== mode);
@@ -838,8 +865,8 @@
                     btn.classList.toggle("dark:text-amber-300", m === mode);
                     btn.classList.toggle("border-amber-400/50", m === mode);
                     btn.classList.toggle("font-bold", m === mode);
-                    btn.classList.toggle("text-[#808080]", m !== mode);
-                    btn.classList.toggle("dark:text-[#808080]", m !== mode);
+                    btn.classList.toggle("text-slate-600", m !== mode);
+                    btn.classList.toggle("dark:text-slate-400", m !== mode);
                     btn.classList.toggle("font-medium", m !== mode);
                 }
                 if (pnl) pnl.classList.toggle("hidden", m !== mode);
@@ -988,10 +1015,10 @@
                 const pnl = document.getElementById("sigPanel-" + m);
                 if (btn) {
                     btn.classList.toggle("border-primary/40", m === mode);
-                    btn.classList.toggle("text-[#1736F5]", m === mode);
-                    btn.classList.toggle("dark:text-[#1736F5]", m === mode);
+                    btn.classList.toggle("text-primary", m === mode);
+                    btn.classList.toggle("dark:text-indigo-400", m === mode);
                     btn.classList.toggle("font-bold", m === mode);
-                    btn.classList.toggle("text-[#808080]", m !== mode);
+                    btn.classList.toggle("text-slate-600", m !== mode);
                 }
                 if (pnl) pnl.classList.toggle("hidden", m !== mode);
             });
