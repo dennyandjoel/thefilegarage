@@ -96,15 +96,16 @@ body {
         .clay-card {
             background: #ffffff;
             border-radius: 1.5rem;
-            border: 3px solid #808080;
+            border: 3px solid #1736F5;
             box-shadow:
-                0 6px 0 #808080;
+                0 6px 0 #1736F5;
             transition: all 0.15s cubic-bezier(0.34, 1.56, 0.64, 1);
         }
         .clay-card:hover {
             transform: translateY(-2px);
             box-shadow:
-                0 8px 0 #808080;
+                0 8px 0 #FFC709;
+            border-color: #FFC709;
         }
         .clay-card:active {
             transform: translateY(2px);
@@ -113,14 +114,15 @@ body {
         }
         .dark .clay-card {
             background: #2a2a2a;
-            border: 3px solid #808080;
+            border: 3px solid #1736F5;
             box-shadow:
-                0 6px 0 #808080;
+                0 6px 0 #1736F5;
         }
         .dark .clay-card:hover {
             transform: translateY(-2px);
             box-shadow:
-                0 8px 0 #808080;
+                0 8px 0 #FFC709;
+            border-color: #FFC709;
         }
         .dark .clay-card:active {
             transform: translateY(2px);
@@ -130,8 +132,8 @@ body {
 
         /* Duolingo-style Primary Button - Chunky and Playful */
         .clay-btn-primary {
-            background: #FFC709;
-            color: #1a1a1a;
+            background: #1736F5;
+            color: #ffffff;
             border-radius: 1rem;
             font-weight: 700;
             letter-spacing: -0.01em;
@@ -144,9 +146,9 @@ body {
             transform: translateY(-3px);
             box-shadow:
                 0 8px 0 #1736F5;
-            background: #1736F5;
-            color: #ffffff;
-            border-color: #1736F5;
+            background: #FFC709;
+            color: #1a1a1a;
+            border-color: #808080;
         }
         .clay-btn-primary:active {
             transform: translateY(2px);
@@ -229,11 +231,11 @@ body {
         /* Solid Navigation Bar - No Glass */
         .glass-bar {
             background: #ffffff;
-            border-bottom: 3px solid #808080;
+            border-bottom: 3px solid #1736F5;
         }
         .dark .glass-bar {
             background: #2a2a2a;
-            border-bottom: 3px solid #808080;
+            border-bottom: 3px solid #1736F5;
         }
 
         /* Duolingo-style Navigation Tabs */
@@ -261,18 +263,18 @@ body {
             background: #3a3a3a;
         }
         .clay-tab.active {
-            background: #FFC709;
-            color: #1a1a1a;
+            background: #1736F5;
+            color: #ffffff;
             box-shadow:
-                0 4px 0 #808080;
-            border: 3px solid #808080;
+                0 4px 0 #FFC709;
+            border: 3px solid #FFC709;
         }
         .dark .clay-tab.active {
-            background: #FFC709;
-            color: #1a1a1a;
+            background: #1736F5;
+            color: #ffffff;
             box-shadow:
-                0 4px 0 #808080;
-            border: 3px solid #808080;
+                0 4px 0 #FFC709;
+            border: 3px solid #FFC709;
         }
 
         /* Duolingo-style Token Badges */
