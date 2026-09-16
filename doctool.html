@@ -27,9 +27,9 @@
                         primary: "#F0A030",
                         "primary-container": "#c87d1a",
                         "primary-fixed-dim": "#f5d6a8",
-                        secondary: "#1B9C85",
-                        "secondary-container": "#15826d",
-                        "secondary-fixed": "#d4f4ed",
+                        secondary: "#F0A030",
+                        "secondary-container": "#c87d1a",
+                        "secondary-fixed": "#f5d6a8",
                         tertiary: "#2E4374",
                         "tertiary-fixed": "#7a9bcf",
                         "tertiary-fixed-dim": "#5b7db3",
@@ -80,7 +80,7 @@
 <div id="ambientCursorLight"></div>
 <!-- Ambient Clay Floating Glows -->
 <div class="clay-mesh-blob w-96 h-96 -top-20 -left-20 bg-primary-fixed-dim/60 "></div>
-<div class="clay-mesh-blob w-[32rem] h-[32rem] top-1/3 -right-24 bg-secondary-fixed/70"></div>
+<div class="clay-mesh-blob w-[32rem] h-[32rem] top-1/3 -right-24 bg-primary-fixed/70"></div>
 <div class="clay-mesh-blob w-96 h-96 bottom-10 left-1/4 bg-tertiary-fixed/40"></div>
 
     <!-- Header Navigation -->
@@ -221,7 +221,7 @@
                     <i class="fa-solid fa-file-circle-check"></i> Merge into 1-Page PDF
                 </button>
                 <div id="multiJpgSkeleton" class="hidden w-full h-10 rounded-xl skeleton"></div>
-                <a id="multiJpgDownloadBtn" download="merged-document.pdf" class="hidden w-full text-center clay-pill text-xs py-3 px-4 font-bold tracking-wider uppercase transition-all duration-150 items-center justify-center gap-2 text-secondary dark:text-secondary">
+                <a id="multiJpgDownloadBtn" download="merged-document.pdf" class="hidden w-full text-center clay-pill text-xs py-3 px-4 font-bold tracking-wider uppercase transition-all duration-150 items-center justify-center gap-2 text-primary dark:text-primary">
                     <i class="fa-solid fa-download"></i> Download Merged PDF
                 </a>
                 <button id="multiJpgClearBtn" onclick="clearMultiJpgFiles()" class="hidden w-full bg-slate-100 dark:bg-slate-950 border border-slate-300 dark:border-slate-700 text-[#6b615a] dark:text-[#9d8f85] text-xs py-3 px-4 rounded-xl font-bold tracking-wider uppercase transition-all duration-150 hover:border-red-400 hover:text-red-500">
@@ -234,10 +234,10 @@
             <div class="pdf-tool-card w-full flex-1 flex flex-col clay-card p-6 space-y-5">
                 <div>
                     <div class="flex items-center justify-between mb-2">
-                        <div class="w-12 h-12 rounded-2xl bg-secondary/10 text-secondary dark:text-secondary flex items-center justify-center text-xl clay-token">
+                        <div class="w-12 h-12 rounded-2xl bg-primary/10 text-primary dark:text-primary flex items-center justify-center text-xl clay-token">
                             <i class="fa-solid fa-compress"></i>
                         </div>
-                        <span class="text-[10px] font-mono font-bold px-2.5 py-0.5 rounded-full bg-emerald-100 dark:bg-emerald-950 text-emerald-700 dark:text-emerald-300">Flate Stream</span>
+                        <span class="text-[10px] font-mono font-bold px-2.5 py-0.5 rounded-full bg-amber-100 dark:bg-amber-950 text-amber-700 dark:text-amber-300">Flate Stream</span>
                     </div>
                     <h2 class="text-xl font-bold text-[#2B2620] dark:text-white heading-font mt-1">PDF Compressor</h2>
                     <p class="text-sm text-[#6b615a] dark:text-[#9d8f85] mt-1">Shrink an existing PDF to fit strict portal upload limits.</p>
@@ -271,8 +271,8 @@
                     <i class="fa-solid fa-eraser"></i> Clear PDF
                 </button>
                 <div id="pdfCompressSkeleton" class="hidden w-full h-10 rounded-xl skeleton"></div>
-                <p id="pdfCompressResult" class="text-[11px] text-emerald-500 font-semibold hidden"></p>
-                <a id="pdfCompressDownloadBtn" download="compressed-document.pdf" class="hidden w-full text-center clay-pill text-xs py-3 px-4 font-bold tracking-wider uppercase transition-all duration-150 items-center justify-center gap-2 text-secondary dark:text-secondary">
+                <p id="pdfCompressResult" class="text-[11px] text-amber-500 font-semibold hidden"></p>
+                <a id="pdfCompressDownloadBtn" download="compressed-document.pdf" class="hidden w-full text-center clay-pill text-xs py-3 px-4 font-bold tracking-wider uppercase transition-all duration-150 items-center justify-center gap-2 text-primary dark:text-primary">
                     <i class="fa-solid fa-download"></i> Download Compressed PDF
                 </a>
             </div>
@@ -893,12 +893,12 @@
         function setPdfCompressTarget(kb) {
             pdfCompressTargetKb = kb;
             document.querySelectorAll(".pdf-target-btn").forEach(b => {
-                b.classList.remove("border-emerald-500", "bg-secondary/10", "text-secondary", "dark:text-secondary");
+                b.classList.remove("border-emerald-500", "bg-primary/10", "text-primary", "dark:text-primary");
                 b.classList.add("border-slate-300", "dark:border-slate-700", "bg-slate-100", "dark:bg-slate-950", "text-[#6b615a]", "dark:text-[#9d8f85]");
             });
             const map = { 100: "pdfTarget100", 500: "pdfTarget500", 1024: "pdfTarget1024" };
             const activeBtn = document.getElementById(map[kb]);
-            activeBtn.classList.add("border-emerald-500", "bg-secondary/10", "text-secondary", "dark:text-secondary");
+            activeBtn.classList.add("border-emerald-500", "bg-primary/10", "text-primary", "dark:text-primary");
             activeBtn.classList.remove("border-slate-300", "dark:border-slate-700", "bg-slate-100", "dark:bg-slate-950", "text-[#6b615a]", "dark:text-[#9d8f85]");
         }
         setPdfCompressTarget(500);
@@ -1215,8 +1215,8 @@
             const statusDetail = document.getElementById("sigVerifyStatusDetail");
             const displayReady = Boolean(result.verifiedDisplayPdf);
             if (allCryptoValid && allIntegrityOkay) {
-                icon.className = "fa-solid fa-circle-check text-lg text-emerald-500";
-                statusText.className = "text-sm font-bold text-emerald-500";
+                icon.className = "fa-solid fa-circle-check text-lg text-amber-500";
+                statusText.className = "text-sm font-bold text-amber-500";
                 statusText.textContent = displayReady ? "Signature valid" : "Signature cryptographically valid";
                 statusDetail.textContent = `${details.map(detail => `Digitally signed by ${detail.signerName || detail.certificateSubject || "Signer not reported"}`).join(" · ")}. Certificate trust, revocation, timestamp, and LTV/DSS are reported independently below.`;
             } else if (result.status === "NO_SIGNATURE" || details.length === 0) {
