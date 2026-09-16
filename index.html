@@ -53,8 +53,8 @@
                         full: "9999px",
                     },
                     fontFamily: {
-                        sans: ["Inter", "sans-serif"],
-                        heading: ["Baloo 2", "Inter", "sans-serif"],
+                        sans: ["Baloo 2", "sans-serif"],
+                        heading: ["Baloo 2", "sans-serif"],
                         mono: ["JetBrains Mono", "ui-monospace", "monospace"],
                     },
                 },
@@ -65,11 +65,11 @@
 <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet">
 <link href="https://fonts.googleapis.com" rel="preconnect">
 <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect">
-<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;500;600;700;800&amp;family=Inter:wght@500;600;700&amp;family=JetBrains+Mono:wght@400;500;600&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;500;600;700;800&amp;family=JetBrains+Mono:wght@400;500;600&amp;display=swap" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
 
 </head>
-<body class="min-h-screen flex flex-col antialiased relative overflow-x-hidden selection:bg-indigo-500 selection:text-white">
+<body class="min-h-screen flex flex-col antialiased relative overflow-x-hidden selection:bg-primary/100 selection:text-white">
 <!-- Ambient cursor-reactive light (dark mode only) -->
 <div id="ambientCursorLight"></div>
 <!-- Toast notification stack (replaces alert() popups) -->
@@ -85,19 +85,19 @@
 <button class="flex items-center gap-2.5 group p-1 -ml-1 rounded-2xl  transition-all" onclick="location.href='index.html'">
 <img alt="TheFileGarage Logo" class="w-10 h-10 rounded-2xl object-contain  group-hover:scale-105 transition-transform" src="https://lh3.googleusercontent.com/aida/AEtjO1W3oZ7ciG2AHPbXsf1aUgfScmikHtI_i2PxJSYjKOgY-59tLsT6wj_liggvZCZncIuHUBMcikjXTXEdxEufEvi72utf6P3iWWYM-SnNPgRwFBD4_TUBZBXXGz_D2hoc9kRJlDja4m9Ut4t8flDM1HOVwo-f_Qbk9N4mSDJzHL3aZYIdQTHmxk1_FidqgtTP6YBVS3Mgcjg-vD_67Kg_UW95A2YrNAnIOc-mOPRhPsmm1L0W0arv2HjTy2uK">
 <div class="text-left">
-<span class="text-base font-extrabold text-slate-900 dark:text-white tracking-tight heading-font block leading-none">TheFileGarage</span>
-<span class="text-[10px] font-bold text-primary dark:text-indigo-400 font-mono">Your Document Workshop</span>
+<span class="text-base font-extrabold text-[#2B2620] dark:text-white tracking-tight heading-font block leading-none">TheFileGarage</span>
+<span class="text-[10px] font-bold text-primary dark:text-primary ">Your Document Workshop</span>
 </div>
 </button>
-<span class="text-slate-300 dark:text-slate-800 text-sm select-none">/</span>
-<div class="hidden sm:flex items-center gap-2 text-xs font-semibold text-slate-600 dark:text-slate-300">
-<span class="text-slate-900 dark:text-white font-bold" id="breadcrumbCurrent">Home</span>
-<span class="px-2 py-0.5 rounded-full text-[10px] font-mono font-bold bg-primary/10 text-primary dark:text-indigo-300 border border-primary/20"></span>
+<span class="text-[#9d8f85] dark:text-[#2B2620] text-sm select-none">/</span>
+<div class="hidden sm:flex items-center gap-2 text-xs font-semibold text-[#6b615a] dark:text-[#9d8f85]">
+<span class="text-[#2B2620] dark:text-white font-bold" id="breadcrumbCurrent">Home</span>
+<span class="px-2 py-0.5 rounded-full text-[10px] font-mono font-bold bg-primary/10 text-primary dark:text-primary border border-primary/20"></span>
 </div>
 </div>
 <div class="flex items-center gap-2.5">
 
-<button class="clay-pill w-10 h-10 flex items-center justify-center text-slate-700 dark:text-amber-400 transition" id="themeToggleBtn" onclick="toggleGlobalTheme()" title="Toggle Light / Pure Black Dark mode">
+<button class="clay-pill w-10 h-10 flex items-center justify-center text-[#2B2620] dark:text-amber-400 transition" id="themeToggleBtn" onclick="toggleGlobalTheme()" title="Toggle Light / Pure Black Dark mode">
 <i class="fa-solid fa-moon text-sm" id="themeToggleIcon"></i>
 </button>
 
@@ -136,10 +136,10 @@
 <div class="clay-card p-8 sm:p-12 relative overflow-hidden">
 <div class="relative z-10 max-w-3xl space-y-6">
 <div class="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-primary text-[#2B2620] text-sm font-extrabold border-3 border-[#2B2620]" style="box-shadow: 0 4px 0 #c87d1a;">📁 Drop Your Files Here</div>
-<h1 class="text-3xl sm:text-5xl lg:text-6xl font-black heading-font tracking-tight text-slate-900 dark:text-white leading-[1.08]">
+<h1 class="text-3xl sm:text-5xl lg:text-6xl font-black heading-font tracking-tight text-[#2B2620] dark:text-white leading-[1.08]">
                         Get your documents ready for applications and forms.
                     </h1>
-<p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed max-w-2xl font-medium">
+<p class="text-sm sm:text-base text-[#6b615a] dark:text-[#9d8f85] leading-relaxed max-w-2xl font-medium">
                         Fix passport photos, clean signatures, stamp documents, and compress PDFs. All processing happens on your device.
                     </p>
 <div class="pt-2 flex flex-wrap items-center gap-4">
@@ -147,7 +147,7 @@
 <span class="">Start Photo Tool</span>
 <i class="fa-solid fa-arrow-right text-[11px]"></i>
 </button>
-<button class="clay-pill px-6 py-3.5 text-xs font-bold text-slate-800 dark:text-slate-200 flex items-center gap-2" onclick="switchMainTab('pdf')">
+<button class="clay-pill px-6 py-3.5 text-xs font-bold text-[#2B2620] dark:text-[#f5f0ea] flex items-center gap-2" onclick="switchMainTab('pdf')">
 <i class="fa-solid fa-shield-check text-primary"></i>
 <span class="">Check PDF</span>
 </button>
@@ -159,30 +159,30 @@
 <div class="space-y-4">
 <div class="flex items-center justify-between pb-3 border-b border-black/[0.06] dark:border-white/[0.08]">
 <div class="flex items-center gap-2.5">
-<span class="text-lg font-black heading-font text-slate-900 dark:text-white">Your Tools</span>
+<span class="text-lg font-black heading-font text-[#2B2620] dark:text-white">Your Tools</span>
 
 </div>
-<span class="text-xs font-medium text-slate-400"></span>
+<span class="text-xs font-medium text-[#9d8f85]"></span>
 </div>
 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
 <!-- Workbench 1: Biometric Photo Studio -->
 <div class="clay-card p-6 flex flex-col justify-between cursor-pointer group" onclick="switchMainTab('photo')">
 <div class="space-y-4">
 <div class="flex items-center justify-between">
-<div class="w-14 h-14 rounded-2xl bg-teal-500 text-white flex items-center justify-center clay-token text-xl  transition-transform ">
+<div class="w-14 h-14 rounded-2xl bg-secondary text-white flex items-center justify-center clay-token text-xl  transition-transform ">
 <i class="fa-solid fa-camera"></i>
 </div>
 
 </div>
-<h3 class="text-lg font-bold text-slate-900 dark:text-white heading-font ">
+<h3 class="text-lg font-bold text-[#2B2620] dark:text-white heading-font ">
                                 Biometric Photo Studio
                             </h3>
-<p class="text-xs text-slate-600 dark:text-slate-400 leading-relaxed font-medium">
+<p class="text-xs text-[#6b615a] dark:text-[#9d8f85] leading-relaxed font-medium">
                                 Perfect passport photos for any country. Resize, center face, change background, compress.
                             </p>
 
 </div>
-<div class="mt-6 pt-4 border-t border-black/[0.06] dark:border-white/[0.08] flex items-center justify-between text-xs font-bold text-teal-600 dark:text-teal-400">
+<div class="mt-6 pt-4 border-t border-black/[0.06] dark:border-white/[0.08] flex items-center justify-between text-xs font-bold text-secondary dark:text-secondary">
 <span class="">Start</span>
 <i class="fa-solid fa-arrow-right text-[11px] transform  transition-transform"></i>
 </div>
@@ -196,15 +196,15 @@
 </div>
 
 </div>
-<h3 class="text-lg font-bold text-slate-900 dark:text-white heading-font ">
+<h3 class="text-lg font-bold text-[#2B2620] dark:text-white heading-font ">
                                 Signature Vector Clean-Up
                             </h3>
-<p class="text-xs text-slate-600 dark:text-slate-400 leading-relaxed font-medium">
+<p class="text-xs text-[#6b615a] dark:text-[#9d8f85] leading-relaxed font-medium">
                                 Clean up scanned signatures. Remove background, adjust colors, crop perfectly.
                             </p>
 
 </div>
-<div class="mt-6 pt-4 border-t border-black/[0.06] dark:border-white/[0.08] flex items-center justify-between text-xs font-bold text-primary dark:text-indigo-400">
+<div class="mt-6 pt-4 border-t border-black/[0.06] dark:border-white/[0.08] flex items-center justify-between text-xs font-bold text-primary dark:text-primary">
 <span class="">Start</span>
 <i class="fa-solid fa-arrow-right text-[11px] transform  transition-transform"></i>
 </div>
@@ -218,10 +218,10 @@
 </div>
 
 </div>
-<h3 class="text-lg font-bold text-slate-900 dark:text-white heading-font ">
+<h3 class="text-lg font-bold text-[#2B2620] dark:text-white heading-font ">
                                 Digital Self-Attestation
                             </h3>
-<p class="text-xs text-slate-600 dark:text-slate-400 leading-relaxed font-medium">
+<p class="text-xs text-[#6b615a] dark:text-[#9d8f85] leading-relaxed font-medium">
                                 Drag &amp; drop signature overlay, customizable self-attestation tag, and automatic today's date onto legal ID scans or PDFs.
                             </p>
 
@@ -235,70 +235,40 @@
 <div class="clay-card p-6 flex flex-col justify-between cursor-pointer group" onclick="switchMainTab('pdf')">
 <div class="space-y-4">
 <div class="flex items-center justify-between">
-<div class="w-14 h-14 rounded-2xl bg-sky-600 text-white flex items-center justify-center clay-token text-xl  transition-transform ">
+<div class="w-14 h-14 rounded-2xl bg-primary text-white flex items-center justify-center clay-token text-xl  transition-transform ">
 <i class="fa-solid fa-file-pdf"></i>
 </div>
 
 </div>
-<h3 class="text-lg font-bold text-slate-900 dark:text-white heading-font ">
+<h3 class="text-lg font-bold text-[#2B2620] dark:text-white heading-font ">
                                 PDF &amp; Document Toolkit
                             </h3>
-<p class="text-xs text-slate-600 dark:text-slate-400 leading-relaxed font-medium">
+<p class="text-xs text-[#6b615a] dark:text-[#9d8f85] leading-relaxed font-medium">
                                 Merge images into PDF, compress files, verify signatures.
                             </p>
 
 </div>
-<div class="mt-6 pt-4 border-t border-black/[0.06] dark:border-white/[0.08] flex items-center justify-between text-xs font-bold text-blue-600 dark:text-blue-400">
+<div class="mt-6 pt-4 border-t border-black/[0.06] dark:border-white/[0.08] flex items-center justify-between text-xs font-bold text-primary dark:text-primary">
 <span class="">Start</span>
 <i class="fa-solid fa-arrow-right text-[11px] transform  transition-transform"></i>
 </div>
 </div>
 </div>
 </div>
-<!-- Bottom Clay Feature Highlights -->
-<div class="grid grid-cols-1 md:grid-cols-3 gap-5 pt-2">
-<div class="clay-card p-5 flex items-start gap-4">
-<div class="w-12 h-12 rounded-2xl bg-primary/10 text-primary dark:text-indigo-400 flex items-center justify-center shrink-0 text-xl clay-token">
-<i class="fa-solid fa-microchip"></i>
-</div>
-<div>
-<h4 class="text-sm font-bold text-slate-900 dark:text-white heading-font">Local File Processing</h4>
-<p class="text-xs text-slate-600 dark:text-slate-400 mt-1 leading-normal font-medium">Your files stay private on your device. Nothing is uploaded.</p>
-</div>
-</div>
-<div class="clay-card p-5 flex items-start gap-4">
-<div class="w-12 h-12 rounded-2xl bg-amber-500/10 text-amber-600 dark:text-amber-400 flex items-center justify-center shrink-0 text-xl clay-token">
-<i class="fa-solid fa-mug-hot"></i>
-</div>
-<div>
-<h4 class="text-sm font-bold text-slate-900 dark:text-white heading-font">"Hot Coffee" Drag &amp; Drop</h4>
-<p class="text-xs text-slate-600 dark:text-slate-400 mt-1 leading-normal font-medium">Visual high-fidelity dropzones across all 4 stations with live mime validation and instant canvas binding.</p>
-</div>
-</div>
-<div class="clay-card p-5 flex items-start gap-4">
-<div class="w-12 h-12 rounded-2xl bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 flex items-center justify-center shrink-0 text-xl clay-token">
-<i class="fa-solid fa-qrcode"></i>
-</div>
-<div>
-<h4 class="text-sm font-bold text-slate-900 dark:text-white heading-font">Sign From Your Phone</h4>
-<p class="text-xs text-slate-600 dark:text-slate-400 mt-1 leading-normal font-medium">Draw your signature on your phone and use it here instantly.</p>
-</div>
-</div>
-</div>
 </section>
 <!-- Glassmorphic / Clay Footer -->
-<footer class="border-t-3 border-[#2B2620] dark:border-[#F0A030] bg-white dark:bg-[#2a2420] py-6 px-6 text-xs text-slate-500 dark:text-slate-400 transition-colors mt-auto relative z-10">
+<footer class="border-t-3 border-[#2B2620] dark:border-[#F0A030] bg-white dark:bg-[#2a2420] py-6 px-6 text-xs text-[#6b615a] dark:text-[#9d8f85] transition-colors mt-auto relative z-10">
 <div class="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4">
 <div class="flex items-center gap-2.5">
-<span class="font-black text-slate-900 dark:text-white heading-font">TheFileGarage</span>
-<span class="text-slate-300 dark:text-slate-700">·</span>
+<span class="font-black text-[#2B2620] dark:text-white heading-font">TheFileGarage</span>
+<span class="text-[#9d8f85] dark:text-[#2B2620]">·</span>
 <span class="">Fix your documents here</span>
 </div>
-<div class="flex items-center gap-3 text-[11px] font-mono">
-<span class="clay-pill px-3 py-1 font-bold text-emerald-600 dark:text-emerald-400 flex items-center gap-1.5">
+<div class="flex items-center gap-3 text-[11px] ">
+<span class="clay-pill px-3 py-1 font-bold text-secondary dark:text-secondary flex items-center gap-1.5">
 <i class="fa-solid fa-shield-halved text-[10px]"></i> Private
                 </span>
-<span class="text-slate-300 dark:text-slate-700">/</span>
+<span class="text-[#9d8f85] dark:text-[#2B2620]">/</span>
 <span class="font-semibold">No Cloud</span>
 </div>
 </div>
@@ -425,7 +395,7 @@
             if (isDark) {
                 html.classList.remove("dark");
                 html.classList.add("light");
-                icon.className = "fa-solid fa-moon text-slate-700 text-sm";
+                icon.className = "fa-solid fa-moon text-[#2B2620] text-sm";
                 localStorage.setItem("theme", "light");
             } else {
                 html.classList.add("dark");
@@ -466,10 +436,10 @@
                 const btn = document.getElementById("srvBtn-" + k);
                 if (btn) {
                     btn.classList.toggle("text-primary", k === cat);
-                    btn.classList.toggle("dark:text-indigo-400", k === cat);
+                    btn.classList.toggle("dark:text-primary", k === cat);
                     btn.classList.toggle("border-primary/40", k === cat);
                     btn.classList.toggle("font-bold", k === cat);
-                    btn.classList.toggle("text-slate-600", k !== cat);
+                    btn.classList.toggle("text-[#6b615a]", k !== cat);
                 }
             });
             refreshPresetOptions();
@@ -799,8 +769,8 @@
                     btn.classList.toggle("dark:text-amber-300", m === mode);
                     btn.classList.toggle("border-amber-400/50", m === mode);
                     btn.classList.toggle("font-bold", m === mode);
-                    btn.classList.toggle("text-slate-600", m !== mode);
-                    btn.classList.toggle("dark:text-slate-400", m !== mode);
+                    btn.classList.toggle("text-[#6b615a]", m !== mode);
+                    btn.classList.toggle("dark:text-[#9d8f85]", m !== mode);
                     btn.classList.toggle("font-medium", m !== mode);
                 }
                 if (pnl) pnl.classList.toggle("hidden", m !== mode);
@@ -830,8 +800,8 @@
                     btn.classList.toggle("dark:text-amber-300", m === mode);
                     btn.classList.toggle("border-amber-400/50", m === mode);
                     btn.classList.toggle("font-bold", m === mode);
-                    btn.classList.toggle("text-slate-600", m !== mode);
-                    btn.classList.toggle("dark:text-slate-400", m !== mode);
+                    btn.classList.toggle("text-[#6b615a]", m !== mode);
+                    btn.classList.toggle("dark:text-[#9d8f85]", m !== mode);
                     btn.classList.toggle("font-medium", m !== mode);
                 }
                 if (pnl) pnl.classList.toggle("hidden", m !== mode);
@@ -981,9 +951,9 @@
                 if (btn) {
                     btn.classList.toggle("border-primary/40", m === mode);
                     btn.classList.toggle("text-primary", m === mode);
-                    btn.classList.toggle("dark:text-indigo-400", m === mode);
+                    btn.classList.toggle("dark:text-primary", m === mode);
                     btn.classList.toggle("font-bold", m === mode);
-                    btn.classList.toggle("text-slate-600", m !== mode);
+                    btn.classList.toggle("text-[#6b615a]", m !== mode);
                 }
                 if (pnl) pnl.classList.toggle("hidden", m !== mode);
             });

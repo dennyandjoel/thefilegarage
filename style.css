@@ -1,8 +1,8 @@
 body {
-            font-family: "Inter", -apple-system, BlinkMacSystemFont, sans-serif;
+            font-family: "Baloo 2", -apple-system, BlinkMacSystemFont, sans-serif;
             background-color: #FBF7F1;
             color: #2B2620;
-            letter-spacing: -0.01em;
+            letter-spacing: -0.015em;
             transition: background-color 0.3s ease, color 0.3s ease;
         }
         .dark body {
@@ -13,6 +13,10 @@ body {
             font-family: "Baloo 2", sans-serif;
             letter-spacing: -0.015em;
             font-weight: 700;
+        }
+        /* Force Baloo 2 everywhere */
+        *, *::before, *::after {
+            font-family: "Baloo 2", -apple-system, BlinkMacSystemFont, sans-serif !important;
         }
 
         /* Self-Attestation QR panels only: the qrcode@1.5.3 library draws its
